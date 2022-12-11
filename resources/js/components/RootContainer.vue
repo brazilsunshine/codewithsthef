@@ -1,14 +1,18 @@
 <template>
     <div>
-        <p>
-            TEST ROOT CONTAINER
-        </p>
+        <Nav />
+
+        <router-view />
     </div>
 </template>
 
 <script>
+import Nav from './Nav'
 export default {
-    name: "RootContainer"
+    name: "RootContainer",
+    components: {
+        Nav
+    },
 }
 </script>
 

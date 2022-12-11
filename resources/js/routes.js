@@ -8,7 +8,10 @@ import middlewarePipeline from './middleware/middlewarePipeline'
 const router = new VueRouter({
     mode: "history",
     routes: [
-
+        {
+            path: '/',
+            component: require('./components/Home').default
+        },
     ]
 });
 

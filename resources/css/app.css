@@ -1,0 +1,169 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+/* Tailwindcss */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* CSS */
+
+.comments-container::before {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: -40px;
+    content: "";
+    width: 3px;
+    height: 100%;
+    background: #edf0f5;
+}
+
+.comment-container::before {
+    position: absolute;
+    display: block;
+    top: 57px;
+    content: "";
+    width: 23px;
+    height: 3px;
+    background: #edf0f5;
+    left: -40px;
+}
+
+.comment-container:last-child::after {
+    position: absolute;
+    display: block;
+    top: 60px;
+    left: -40px;
+    content: "";
+    width: 3px;
+    height: calc(100% - 60px);
+    background: #f7f8fc;
+}
+
+.gradient {
+    border-image-source: linear-gradient(to bottom, rgba(50, 138, 241, 0.22), rgba(99, 123, 255, 0));
+    border-image-slice: 1;
+    background-image: linear-gradient(to bottom, #ffffff, #ffffff), linear-gradient(to bottom, rgba(50, 138, 241, 0.22), rgba(99, 123, 255, 0));
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+
+
+.is-admin {
+    border-width: 1px;
+    border-image-source: linear-gradient(266deg, #21c8f6 98%, #637bff -52%);
+    border-image-slice: 1;
+    background-image: linear-gradient(to bottom, #ffffff, #ffffff), linear-gradient(266deg, #21c8f6 98%, #637bff -52%);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.is-admin::before {
+    position: absolute;
+    width: 38px;
+    height: 38px;
+    border-radius: 38px;
+    border: 7px solid white;
+    box-shadow: 4px 4px 15px 0 rgba(36, 37, 38, 0.08);
+    left: -58px;
+    background: theme('colors.purple');
+    opacity: 1;
+}
+
+.in-button {
+    margin-left: auto;
+    margin-right: auto;
+    display: block !important;
+}
+
+.show-error {
+    color: red;
+    margin-left: 8px;
+}
+.show-error-ideas {
+    color: red;
+    margin-left: 8px;
+    font-size: 0.75rem;
+    line-height: 1rem
+}
+
+.signup-container {
+    margin: auto;
+    width: 35em;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+
+/* MOBILE VIEW */
+
+/* This will apply when the screen width is 687px or below */
+@media screen and (max-width: 687px) {
+    .hide-on-mobile {
+        display: none;
+    }
+
+    .vote-button-mobile {
+        flex-direction: column;
+    }
+
+    .mobile-modal-container {
+        width: 315px !important;
+    }
+
+    .mobile-left-10 {
+        left: -10em;
+        margin-top: 17px;
+    }
+
+    .mobile-right-182 {
+        position: absolute !important;
+        right: 182px !important;
+    }
+
+    .mobile-left-196 {
+        z-index: 999;
+        position: absolute;
+        left: 207px;
+    }
+
+    .is-loading {
+        cursor: wait;
+        border: none; /* Remove borders */
+        color: black; /* White text */
+        padding: 12px 16px; /* Some padding */
+        font-size: 13px /* Set a font size */
+    }
+}
+
+/* This will apply when the screen width is 687px or below */
+@media screen and (max-width: 687px) {
+    .padding-mob-1 {
+        padding: 4px;
+    }
+
+    .padding-mob-2 {
+        padding: 20px;
+    }
+
+    .font-size-mob {
+        font-size: 2.25rem;
+    }
+
+    .flex-column-mob {
+        flex-direction: column;
+    }
+}
+
+
+
+
+
