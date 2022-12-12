@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sthefane Oliveira</title>
     <link rel="stylesheet" href="/css/dist/output.css">
-    <link rel="shortcut icon" href="#">
+    <link rel="shortcut icon" href="/img/favicon.png">
     <!-- Dropzone -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.css" />
 </head>
