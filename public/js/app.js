@@ -2352,7 +2352,9 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_vm._m(0), _vm._v(" "), _c("div", {
+  return _c("div", {
+    staticClass: "padding"
+  }, [_vm._m(0), _vm._v(" "), _c("div", {
     staticClass: "text-sm"
   }, [_vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _c("div", [_vm._m(4), _vm._v(" "), _c("p", {
     staticClass: "mt-3"
@@ -2645,7 +2647,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.padding-top[data-v-4ac4d2f8] {\n    padding-top: 44px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.padding-top[data-v-4ac4d2f8] {\n    padding-top: 44px;\n}\n.padding[data-v-4ac4d2f8] {\n    padding: 30px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

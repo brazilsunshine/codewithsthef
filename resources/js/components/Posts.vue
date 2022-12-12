@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="padding">
         <div>
             <p class="text-lg font-semibold">
                 O que precisa para colocar um site no ar? (Hover, Forge e DigitalOcean)
@@ -78,5 +78,9 @@ export default {
 <style scoped>
 .padding-top {
     padding-top: 44px;
+}
+
+.padding {
+    padding: 30px;
 }
 </style>
