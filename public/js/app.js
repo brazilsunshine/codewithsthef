@@ -2352,34 +2352,22 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", {
-    staticClass: "padding"
-  }, [_vm._m(0), _vm._v(" "), _c("div", {
-    staticClass: "text-sm"
-  }, [_vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _c("div", [_vm._m(4), _vm._v(" "), _c("p", {
-    staticClass: "mt-3"
-  }, [_vm._v("\n                DigitalOcean nos permite alugar servidores. Resumindo: nos permite "), _c("spam", {
-    staticClass: "italic"
-  }, [_vm._v("\n                alugar o espaço que o nosso website vai ficar na internet")]), _vm._v('.\n                e possível integrar Forge com DigitalOcean, juntando as duas ferramentas, facilita o gerenciamento\n                dos servidores, pois você pode se concentrar apenas em Forge para "implantar" seu website.\n            ')], 1)])])]);
+  return _vm._m(0);
 };
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_c("p", {
+  return _c("div", {
+    staticClass: "padding"
+  }, [_c("div", [_c("p", {
     staticClass: "text-lg font-semibold"
-  }, [_vm._v("\n            O que precisa para colocar um site no ar? (Hover, Forge e DigitalOcean)\n        ")])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", [_c("p", {
+  }, [_vm._v("\n            O que precisa para colocar um site no ar? (Hover, Forge e DigitalOcean)\n        ")])]), _vm._v(" "), _c("div", {
+    staticClass: "text-sm"
+  }, [_c("div", [_c("p", {
     staticClass: "padding-top"
   }, [_vm._v("\n                Para esse primeiro post, eu pensei em algo que todo desenvolvedor precisa saber: "), _c("span", {
     staticClass: "italic"
-  }, [_vm._v("\n                como colocar um site no ar")]), _vm._v("?\n            ")]), _vm._v(" "), _c("p", [_vm._v("\n                Apesar de ser um pouco complicado, essa habilidade é exigida pela maioria das empresas.\n\n                Exitem varios websites que alugam serivdores e websites para voce comprar o dominio.\n\n                Eu vou citar aqui os que eu conheço e que eu acho que bons para quem está começando.\n            ")])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", [_c("a", {
+  }, [_vm._v("\n                como colocar um site no ar")]), _vm._v("?\n            ")]), _vm._v(" "), _c("p", [_vm._v("\n                Apesar de ser um pouco complicado, essa habilidade é exigida pela maioria das empresas.\n\n                Exitem varios websites que alugam serivdores e websites para voce comprar o dominio.\n\n                Eu vou citar aqui os que eu conheço e que eu acho que bons para quem está começando.\n            ")])]), _vm._v(" "), _c("div", [_c("a", {
     attrs: {
       href: "https://www.hover.com/"
     }
@@ -2387,11 +2375,7 @@ var staticRenderFns = [function () {
     staticClass: "mt-8 font-semibold text-blue hover:underline pointer"
   }, [_vm._v("\n                    Hover\n                ")])]), _vm._v(" "), _c("p", {
     staticClass: "mt-3"
-  }, [_vm._v("\n                Hover é um bom lugar pra comecar e comprar seu dominio. Os valores irao variar de acordo com\n                o nome do seu website.\n            ")])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", [_c("a", {
+  }, [_vm._v("\n                Hover é um bom lugar pra comecar e comprar seu dominio. Os valores irao variar de acordo com\n                o nome do seu website.\n            ")])]), _vm._v(" "), _c("div", [_c("a", {
     attrs: {
       href: "https://forge.laravel.com/"
     }
@@ -2399,17 +2383,17 @@ var staticRenderFns = [function () {
     staticClass: "mt-8 font-semibold text-blue hover:underline pointer"
   }, [_vm._v("\n                    Forge\n                ")])]), _vm._v(" "), _c("p", {
     staticClass: "mt-3"
-  }, [_vm._v("\n                Com Forge a gente consegue gerenciar nossos servidores. Especialmente se você trabalhar com\n                Laravel. Pois Forge foi criado especialment para projestos Laravel, e esse ferramenta com certeza\n                deixa a vida dos desenvolvedores mais facil. E ainda podemos configurar as filas e até\n                ter o certificado TLS.\n                O plano mais barato custa $12 mensalmente e você tem 5 dias para testar.\n            ")])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("a", {
+  }, [_vm._v("\n                Com Forge a gente consegue gerenciar nossos servidores. Especialmente se você trabalhar com\n                Laravel. Pois Forge foi criado especialment para projestos Laravel, e esse ferramenta com certeza\n                deixa a vida dos desenvolvedores mais facil. E ainda podemos configurar as filas e até\n                ter o certificado TLS.\n                O plano mais barato custa $12 mensalmente e você tem 5 dias para testar.\n            ")])]), _vm._v(" "), _c("div", [_c("a", {
     attrs: {
       href: "https://www.digitalocean.com/"
     }
   }, [_c("p", {
     staticClass: "mt-8 font-semibold text-blue hover:underline pointer"
-  }, [_vm._v("\n                    DigitalOcean\n                ")])]);
+  }, [_vm._v("\n                    DigitalOcean\n                ")])]), _vm._v(" "), _c("p", {
+    staticClass: "mt-3"
+  }, [_vm._v("\n                DigitalOcean nos permite alugar servidores. Resumindo: nos permite "), _c("span", {
+    staticClass: "italic"
+  }, [_vm._v("\n                alugar o espaço que o nosso website vai ficar na internet")]), _vm._v('.\n                e possível integrar Forge com DigitalOcean, juntando as duas ferramentas, facilita o gerenciamento\n                dos servidores, pois você pode se concentrar apenas em Forge para "implantar" seu website.\n            ')])])])]);
 }];
 render._withStripped = true;
 

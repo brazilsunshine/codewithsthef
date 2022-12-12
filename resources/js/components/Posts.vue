@@ -55,8 +55,8 @@
                     </p>
                 </a>
                 <p class="mt-3">
-                    DigitalOcean nos permite alugar servidores. Resumindo: nos permite <spam class="italic">
-                    alugar o espaço que o nosso website vai ficar na internet</spam>.
+                    DigitalOcean nos permite alugar servidores. Resumindo: nos permite <span class="italic">
+                    alugar o espaço que o nosso website vai ficar na internet</span>.
                     e possível integrar Forge com DigitalOcean, juntando as duas ferramentas, facilita o gerenciamento
                     dos servidores, pois você pode se concentrar apenas em Forge para "implantar" seu website.
                 </p>
