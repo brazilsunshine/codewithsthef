@@ -3,6 +3,8 @@ import './bootstrap';
 import axios from 'axios';
 import router from './routes';
 import store from './store';
+
+console.log({ store });
 import Vue from 'vue';
 import vClickOutside from 'v-click-outside';
 import VueRouter from 'vue-router';

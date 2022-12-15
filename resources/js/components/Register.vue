@@ -1,5 +1,5 @@
 <template>
-    <div class="signup-container">
+    <div class="signup-container padding-bottom">
         <div class="bg-white border-2 border-blue rounded-xl mt-16 ">
             <div class="text-center px-6 py-2 pt-6">
                 <h3 class="font-semibold text-base">
@@ -153,8 +153,8 @@ export default {
             name: '',
             username: '',
             email: '',
-            password: '',
-            password_confirmation: '',
+            password: '12345678',
+            password_confirmation: '12345678',
         }
     },
 
@@ -172,13 +172,36 @@ export default {
                 return '';
             }
 
-            await this.$store.dispatch('REGISTER', {
+            await axios.post('/api/register', {
                 name: this.name,
                 username: this.username,
                 email: this.email,
                 password: this.password,
                 password_confirmation: this.password_confirmation
-            });
+            })
+
+                .then(response => {
+                    console.log('register', response);
+
+                    this.$store.commit('setUserObject', response.data.user);
+
+                    alert('Congratulations! Your account has been created. Please verify your emails to activate login');
+
+                    // Push the user to the path /home
+                    if (this.$route.path !== '/')
+                    {
+                        this.$router.push("/");
+                    }
+
+                })
+                .catch(error => {
+                    console.log('register', error.response.data);
+
+                   // this.$store.commit('setErrorsObject', error.response.data.errors);
+                });
+
+            this.processing = false;
+
         },
     },
 }
@@ -188,5 +211,9 @@ export default {
 .signup-container {
     margin: auto;
     width: 35em;
+}
+
+.padding-bottom {
+    padding-bottom: 50px;
 }
 </style>
