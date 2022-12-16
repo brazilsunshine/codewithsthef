@@ -27,10 +27,6 @@ class User extends Authenticatable
         static::creating(function($user) {
             $user->token = str_random(30); // composer require laravel/helpers
         });
-
-        static::creating(function($user) {
-            $user->sub_token = str_random(30);
-        });
     }
 
     /**
