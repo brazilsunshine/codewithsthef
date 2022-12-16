@@ -717,6 +717,10 @@ select{
   }
 }
 
+.invisible{
+  visibility: hidden;
+}
+
 .absolute{
   position: absolute;
 }
@@ -732,6 +736,10 @@ select{
 .mx-auto{
   margin-left: auto;
   margin-right: auto;
+}
+
+.mr-2{
+  margin-right: 0.5rem;
 }
 
 .mt-16{
@@ -820,12 +828,12 @@ select{
   border-radius: 0.75rem;
 }
 
-.border-2{
-  border-width: 2px;
-}
-
 .border{
   border-width: 1px;
+}
+
+.border-2{
+  border-width: 2px;
 }
 
 .border-none{
@@ -850,11 +858,6 @@ select{
 .bg-gray-100{
   --tw-bg-opacity: 1;
   background-color: rgb(245 245 245 / var(--tw-bg-opacity));
-}
-
-.bg-gray-background{
-  --tw-bg-opacity: 1;
-  background-color: rgb(247 248 252 / var(--tw-bg-opacity));
 }
 
 .fill-current{
@@ -903,6 +906,11 @@ select{
   text-align: center;
 }
 
+.text-xs{
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
 .text-base{
   font-size: 1rem;
   line-height: 1.5rem;
@@ -921,11 +929,6 @@ select{
 .text-lg{
   font-size: 1.125rem;
   line-height: 1.75rem;
-}
-
-.text-xs{
-  font-size: 0.75rem;
-  line-height: 1rem;
 }
 
 .font-semibold{
@@ -954,6 +957,22 @@ select{
 .placeholder-gray-400::placeholder{
   --tw-placeholder-opacity: 1;
   color: rgb(163 163 163 / var(--tw-placeholder-opacity));
+}
+
+.outline{
+  outline-style: solid;
+}
+
+.transition{
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.ease-in-out{
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* CSS */
@@ -1056,50 +1075,6 @@ select{
 /* This will apply when the screen width is 687px or below */
 
 @media screen and (max-width: 687px) {
-  .hide-on-mobile {
-    display: none;
-  }
-
-  .vote-button-mobile {
-    flex-direction: column;
-  }
-
-  .mobile-modal-container {
-    width: 315px !important;
-  }
-
-  .mobile-left-10 {
-    left: -10em;
-    margin-top: 17px;
-  }
-
-  .mobile-right-182 {
-    position: absolute !important;
-    right: 182px !important;
-  }
-
-  .mobile-left-196 {
-    z-index: 999;
-    position: absolute;
-    left: 207px;
-  }
-
-  .is-loading {
-    cursor: wait;
-    border: none;
-    /* Remove borders */
-    color: black;
-    /* White text */
-    padding: 12px 16px;
-    /* Some padding */
-    font-size: 13px
-    /* Set a font size */
-  }
-}
-
-/* This will apply when the screen width is 687px or below */
-
-@media screen and (max-width: 687px) {
   .padding-mob-1 {
     padding: 4px;
   }
@@ -1114,6 +1089,19 @@ select{
 
   .flex-column-mob {
     flex-direction: column;
+  }
+
+  .mobile-add-admin {
+    padding: 16px !important;
+  }
+
+  .input-mobile-add-admin {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .button-mobile-mt {
+    /*margin-top: 30px !important;*/
   }
 }
 
@@ -1152,8 +1140,3 @@ select{
     padding-right: 0px;
   }
 }
-
-
-
-
-

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->foreign('category_id')
                 ->references('id')
                 ->on('categories');
+            $table->text('cover_photo');
             $table->string('title');
             $table->string('slug')->nullable();
             $table->text('description');

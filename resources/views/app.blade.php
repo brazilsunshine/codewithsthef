@@ -12,7 +12,7 @@
 </head>
 
 
-<body class="bg-gray-background">
+<body>
 <div id="app" v-cloak>
     @yield('content')
 </div>

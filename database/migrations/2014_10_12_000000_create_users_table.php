@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('username')->unique();
-            $table->boolean('is_admin')->default(false);
             $table->string('password');
             $table->string('token')->nullable();
             $table->string('avatar')->default('default.png');

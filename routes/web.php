@@ -20,3 +20,11 @@ Route::get('/', function () {
 Route::get('/register', function () {
     return view('root');
 });
+
+Route::get('/create-post/admin', function () {
+    return view('root');
+});
+
+Route::get('/admin', function () {
+    return view('root');
+});

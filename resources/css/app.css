@@ -107,45 +107,6 @@
 
 /* This will apply when the screen width is 687px or below */
 @media screen and (max-width: 687px) {
-    .hide-on-mobile {
-        display: none;
-    }
-
-    .vote-button-mobile {
-        flex-direction: column;
-    }
-
-    .mobile-modal-container {
-        width: 315px !important;
-    }
-
-    .mobile-left-10 {
-        left: -10em;
-        margin-top: 17px;
-    }
-
-    .mobile-right-182 {
-        position: absolute !important;
-        right: 182px !important;
-    }
-
-    .mobile-left-196 {
-        z-index: 999;
-        position: absolute;
-        left: 207px;
-    }
-
-    .is-loading {
-        cursor: wait;
-        border: none; /* Remove borders */
-        color: black; /* White text */
-        padding: 12px 16px; /* Some padding */
-        font-size: 13px /* Set a font size */
-    }
-}
-
-/* This will apply when the screen width is 687px or below */
-@media screen and (max-width: 687px) {
     .padding-mob-1 {
         padding: 4px;
     }
@@ -161,9 +122,18 @@
     .flex-column-mob {
         flex-direction: column;
     }
+
+    .mobile-add-admin {
+        padding: 16px !important;
+    }
+
+    .input-mobile-add-admin {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .button-mobile-mt {
+        /*margin-top: 30px !important;*/
+    }
+
 }
-
-
-
-
-
