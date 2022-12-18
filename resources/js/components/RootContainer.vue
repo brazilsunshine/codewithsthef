@@ -2,7 +2,7 @@
     <div>
         <Nav />
 
-        <BlogCoverPreview v-show="this.$store.state.posts.blogPhotoPreview" />
+        <BlogCoverPreviewModal v-show="this.$store.state.posts.blogPhotoPreview" />
 
         <router-view />
     </div>
@@ -10,11 +10,11 @@
 
 <script>
 import Nav from './Nav'
-import BlogCoverPreview from "./BlogCoverPreview";
+import BlogCoverPreviewModal from "./BlogCoverPreviewModal";
 export default {
     name: "RootContainer",
     components: {
-        BlogCoverPreview,
+        BlogCoverPreviewModal,  
         Nav
     },
     async mounted ()
