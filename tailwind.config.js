@@ -32,7 +32,6 @@ module.exports = {
                 custom: '62.5rem'
             },
             fontFamily: {
-                sans: ['Open Sans', ...defaultTheme.fontFamily.sans]
             },
         },
     },

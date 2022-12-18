@@ -1,5 +1,3 @@
-/* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 /* Tailwindcss */
 @import 'tailwindcss/base';
@@ -7,6 +5,10 @@
 @import 'tailwindcss/utilities';
 
 /* CSS */
+
+* {
+    font-family: Nunito;
+}
 
 .comments-container::before {
     position: absolute;
@@ -132,8 +134,13 @@
         padding: 0 !important;
     }
 
-    .button-mobile-mt {
-        /*margin-top: 30px !important;*/
+    .vh37-mobile {
+       height: 37vh !important;
     }
+
+    .inline-flex-mob {
+        display: inline-flex
+    }
+
 
 }

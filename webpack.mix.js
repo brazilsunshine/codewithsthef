@@ -14,3 +14,17 @@ require('laravel-mix-tailwind');
  */
 
 mix.js('resources/js/app.js', 'public/js').vue();
+
+// new webpack.ProvidePlugin({
+//     'window.Quill': 'quill/dist/quill.js',
+//     'Quill': 'quill/dist/quill.js'
+// })
+
+// mix.extend('foo',new class{
+//     webpackPlugins(){
+//         return new webpack.ProvidePlugin({
+//             "window.Quill": "quill/dist/quill.js",
+//             Quill: "quill/dist/quill.js"
+//         });
+//     }
+// });

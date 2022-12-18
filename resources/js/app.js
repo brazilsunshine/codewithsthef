@@ -4,7 +4,6 @@ import axios from 'axios';
 import router from './routes';
 import store from './store';
 
-console.log({ store });
 import Vue from 'vue';
 import Vue2Editor from "vue2-editor";
 import vClickOutside from 'v-click-outside';
