@@ -2843,7 +2843,7 @@ var staticRenderFns = [function () {
     staticClass: "mt-3"
   }, [_vm._v("\n                DigitalOcean nos permite alugar servidores. Resumindo: nos permite "), _c("span", {
     staticClass: "italic"
-  }, [_vm._v("\n                alugar o espaço que o nosso website vai ficar na internet")]), _vm._v('.\n                e possível integrar Forge com DigitalOcean, juntando as duas ferramentas, facilita o gerenciamento\n                dos servidores, pois você pode se concentrar apenas em Forge para "implantar" seu website.\n            ')])])])]);
+  }, [_vm._v("\n                alugar o espaço que o nosso website vai ficar na internet")]), _vm._v('.\n\n                É possível integrar Forge com DigitalOcean, juntando as duas ferramentas, o gerenciamento\n                dos servidores se torna mais fácil, pois você pode se concentrar apenas em Forge para "implantar" seu website.\n            ')])])])]);
 }];
 render._withStripped = true;
 
