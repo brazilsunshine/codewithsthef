@@ -17,8 +17,16 @@ const router = new VueRouter({
             component: require('./components/Register').default
         },
         {
+            path: '/login',
+            component: require('./components/Login').default
+        },
+        {
             path: '/create-post/admin',
             component: require('./components/CreatePost').default
+        },
+        {
+            path: '/blog-preview/admin',
+            component: require('./components/BlogPreview').default
         },
         {
             path: '/admin',

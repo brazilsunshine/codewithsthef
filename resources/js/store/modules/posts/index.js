@@ -2,8 +2,8 @@ import { actions } from './actions';
 import { mutations } from './mutations';
 
 const state = {
-    // paginated: null,
-    blogHTML: "Write your blog here...",
+    paginated: null,
+    blogHTML: "",
     blogTitle: "",
     blogPhotoName: "",
     blogPhotoFileURL: null,

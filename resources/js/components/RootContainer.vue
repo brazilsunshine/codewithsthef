@@ -19,7 +19,15 @@ export default {
     },
     async mounted ()
     {
+        /**
+         * Reset the state to not be saved in the localstorage
+         */
         this.$store.commit('resetState');
+
+        /**
+         * Check auth on the backend before doing anything else
+         */
+        await this.$store.dispatch('CHECK_AUTH');
     }
 }
 </script>

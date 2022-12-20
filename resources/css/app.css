@@ -134,12 +134,20 @@
         padding: 0 !important;
     }
 
-    .vh37-mobile {
-       height: 37vh !important;
+    .vh46-mobile {
+       height: 46vh !important;
+    }
+
+    .pt-44-mob {
+        padding-top: 44px !important;
     }
 
     .inline-flex-mob {
         display: inline-flex
+    }
+
+    .pl-50-mob {
+        padding-left: 50px !important;
     }
 
 

@@ -4,10 +4,6 @@ export const mutations = {
      */
     fileNameChange (state, payload)
     {
-        console.log({ state });
-
-        console.log({ payload });
-
         state.blogPhotoName = payload;
     },
 
@@ -16,8 +12,6 @@ export const mutations = {
      */
     createBlogPhotoFileURL (state, payload)
     {
-        console.log({ payload });
-
         state.blogPhotoFileURL = payload;
     },
 
@@ -39,5 +33,30 @@ export const mutations = {
         state.blogPhotoName = '';
         state.blogPhotoPreview = '';
         state.blogPhotoFileURL = '';
+        state.blogHTML = '';
     },
+
+    /**
+     * Update the blogTitle from v-model="blogTitle"
+     */
+    updateBlogTitle (state, payload)
+    {
+        state.blogTitle = payload;
+    },
+
+    /**
+     * Update the blogHTML from v-model="blogHTML"
+     */
+    updateBlogHTML (state, payload)
+    {
+        state.blogHTML = payload;
+    },
+
+    /**
+     * Set paginated posts to become my payload;
+     */
+    setPaginatedPosts (state, payload)
+    {
+        state.paginated = payload;
+    }
 }

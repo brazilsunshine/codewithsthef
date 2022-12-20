@@ -12,7 +12,13 @@ use Illuminate\Support\Facades\Route;
 //});
 
 Route::post('/register', 'Auth\RegisterController');
-Route::post('/post/upload-cover-photo', 'Admin\UploadPostCoverPhotoController');
+Route::post('/login', 'Auth\LoginController');
+
+Route::get('/user/check-auth', 'Auth\CheckAuthController');
+
+Route::post('/posts/upload-image-blog-html', 'Admin\UploadImageBlogHtmlController');
+Route::post('/posts/submit-blog-post', 'Admin\SubmitBlogPostController');
+Route::get('/posts/get-paginated-posts', 'Posts\GetPaginatedPostsController');
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 

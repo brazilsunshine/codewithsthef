@@ -28,7 +28,23 @@
 
                 <div class="w-full px-2 md:px-0 md:w-175 padding-idea-on-mobile">
                     <div class="mt-16">
-                        <Posts />
+                        <div
+                            v-for="post in posts"
+                            :key="post.id"
+                        >
+                            <Posts
+                                :post="post"
+                            />
+                        </div>
+
+                        <PaginationButtons
+                            :current_page="this.$store.state.posts.paginated.current_page"
+                            :next_page_url="this.$store.state.posts.paginated.next_page_url"
+                            prev_page="PREVIOUS_IDEAS_PAGE"
+                            next_page="NEXT_IDEAS_PAGE"
+                        />
+
+
                     </div>
                 </div>
             </main>
@@ -38,10 +54,27 @@
 
 <script>
 import Posts from "./Posts";
+import PaginationButtons from "./PaginationButtons";
 export default {
     name: "Home",
     components: {
+        PaginationButtons,
         Posts
+    },
+
+    computed: {
+        /**
+         * Return paginated posts from vuex store
+         */
+        posts ()
+        {
+            return this.$store.state.posts.paginated.data;
+        }
+    },
+
+    async mounted ()
+    {
+       await this.$store.dispatch('GET_PAGINATED_POSTS')
     }
 }
 </script>

@@ -8,58 +8,62 @@
                 <p><span>Error</span>{{ this.errorMsg }}</p>
             </div>
             <div class="blog-info">
-                <input
-                    type="text"
-                    placeholder="Enter Blog Title"
-                    v-model="blogTitle"
-                    class="margin-bottom"
-                />
-                <div>
-                    <div class="buttons">
-                        <label for="upload" class="mr-2" style="padding: 14px;">
+                <form @submit.prevent="submit">
+                    <input
+                        type="text"
+                        placeholder="Enter Blog Title"
+                        v-model="blogTitle"
+                        class="margin-bottom"
+                    />
+                    <div>
+                        <div class="buttons">
+                            <label for="upload" class="mr-2" style="padding: 14px;">
                             <span class=" glyphicon glyphicon-folder-open" aria-hidden="true">
                                 Upload Cover Photo
                             </span>
-                            <input
-                                type="file"
-                                ref="blogPhoto"
-                                id="upload"
-                                accept=".png, .jpg, .jpeg"
-                                style="display: none"
-                                @change="fileChange"
-                            />
-                        </label>
-                        <div v-if="this.$store.state.posts.blogPhotoName">
-                            <button
-                                @click="openPreview"
-                                class="preview-button mr-2"
-                            >
-                                Preview Photo
-                            </button>
-                            <span class="inline-flex-mob">
+                                <input
+                                    type="file"
+                                    ref="blogPhoto"
+                                    id="upload"
+                                    accept=".png, .jpg, .jpeg"
+                                    style="display: none"
+                                    @change="fileChange"
+                                />
+                            </label>
+                            <div v-if="this.$store.state.posts.blogPhotoName">
+                                <button
+                                    @click="openPreview"
+                                    class="preview-button mr-2"
+                                >
+                                    Preview Photo
+                                </button>
+                                <span class="inline-flex-mob">
                                 File Chosen: {{ this.$store.state.posts.blogPhotoName }}
                             </span>
+                            </div>
+                        </div>
+                        <div class="editor vh46-mobile">
+                            <vue-editor
+                                v-model="blogHTML"
+                                :editorOptions="editorSettings"
+                                useCustomImageHandler
+                                @image-added="handleImageAdded"
+                            />
                         </div>
                     </div>
-                    <div class="editor vh37-mobile">
-                        <vue-editor
-                            v-model="blogHTML"
-                            useCustomImageHandler
-                            @image-added="handleImageAdded"
-                        />
-                    </div>
-                    <div class="blog-actions">
+                    <div class="blog-actions pt-44-mob">
                         <button>Publish Blog</button>
-                        <button class="preview-button" >Post Preview</button>
+                        <router-link class="preview-button padding-15" to="/blog-preview/admin">Post Preview</router-link>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import { VueEditor, Quill } from 'vue2-editor'
+import { VueEditor, Quill } from 'vue2-editor';
+import Vue from 'vue';
 
 import ImageResize from 'quill-image-resize-vue';
 import { ImageDrop } from 'quill-image-drop-module';
@@ -72,17 +76,16 @@ export default {
     components: {
         VueEditor
     },
+
     data ()
     {
         return {
             loading: true,
 
             // data
-            file: null,
+            file: null, // cover_photo
             error: null,
             errorMsg: null,
-            blogTitle: '',
-            blogHTML: 'Write your blog here...',
             editorSettings: {
                 modules: {
                     imageDrop: true,
@@ -91,21 +94,75 @@ export default {
             }
         }
     },
+
     created ()
     {
         this.loading = false;
     },
 
+    computed: {
+        /**
+         * Using v-model to get and update the blogTitle in Vuex store
+         */
+        blogTitle: {
+            get ()
+            {
+                return this.$store.state.posts.blogTitle;
+            },
+
+            set (payload)
+            {
+                 this.$store.commit("updateBlogTitle", payload);
+            }
+        },
+
+        /**
+         * Using v-model to get and update the blogHTML in Vuex store
+         */
+        blogHTML: {
+            get ()
+            {
+                return this.$store.state.posts.blogHTML;
+            },
+
+            set (payload)
+            {
+                 this.$store.commit("updateBlogHTML", payload);
+            }
+        }
+    },
+
     methods: {
         /**
-         * Upload an image
+         *
+         */
+        async submit ()
+        {
+            await axios.post('/api/posts/submit-blog-post', {
+                title: this.blogTitle,
+                description: this.blogHTML,
+                cover_photo: this.file.name,
+            })
+
+            .then(response => {
+                console.log('submit-blog-post', response);
+
+                Vue.$vToastify.success("You created your post! =)");
+             })
+            .catch(error => {
+                console.log('submit-blog-post', error);
+            });
+        },
+
+        /**
+         * Image added vue-editor HTML
          */
         handleImageAdded: function (file, Editor, cursorLocation, resetUploader) {
             let formData = new FormData();
             formData.append("file", file);
 
             axios({
-                url: "/api/post/upload-cover-photo",
+                url: "/api/posts/upload-image-blog-html",
                 method: "POST",
                 data: formData,
                 headers: { 'X-CSRF-TOKEN': window.axios.defaults.headers.common['X-CSRF-TOKEN'] }
@@ -121,6 +178,9 @@ export default {
             });
         },
 
+        /**
+         *  Create a blogPhotoFileURL
+         */
         fileChange () {
             this.file = this.$refs.blogPhoto.files[0]; // in <type="file" input ref="blogPhoto">
 
@@ -130,6 +190,9 @@ export default {
             this.$store.commit('createBlogPhotoFileURL', URL.createObjectURL(this.file));
         },
 
+        /**
+         * Open the photoPreview
+         */
         openPreview ()
         {
             this.$store.commit('openOrClosePhotoPreview');
@@ -164,7 +227,6 @@ export default {
         text-decoration: none;
         color: white;
         margin-top: 26px;
-        margin-bottom: 11px;
     }
 
     label,
@@ -204,16 +266,17 @@ export default {
     }
 
     .editor {
-        height: 60vh;
+        height: 73vh;
         display: flex;
         flex-direction: column;
+        margin-top: 43px;
     }
 
     .quillWrapper {
         position: relative;
         display: flex;
         flex-direction: column;
-        height: 90%
+        height: 80%
     }
 
     .ql-container {
@@ -224,11 +287,7 @@ export default {
     }
 
     .margin-bottom {
-        margin-bottom: 10px;
-    }
-
-    .blog-actions {
-        margin-top: 32px;
+        margin-bottom: 20px;
     }
 
     p {
@@ -266,5 +325,9 @@ export default {
         left: 313px;
         top: 152px;
 
+    }
+
+        .padding-15 {
+        padding: 15px;
     }
 </style>

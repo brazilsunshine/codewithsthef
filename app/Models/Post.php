@@ -12,7 +12,6 @@ class Post extends Model
 
     protected $guarded = [];
 
-
     /**
      * Return the sluggable configuration array for this model.
      */
