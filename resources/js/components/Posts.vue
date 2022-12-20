@@ -8,10 +8,10 @@
 
         <div class="text-sm">
             <div>
-                <p class="padding-top">
-                    {{ post.description }}
-                </p>
-
+                <p
+                    class="padding-top"
+                    v-html="post.description"
+                />
             </div>
         </div>
     </div>

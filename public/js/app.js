@@ -3304,8 +3304,11 @@ var render = function render() {
   }, [_vm._v("\n            " + _vm._s(_vm.post.title) + "\n        ")])]), _vm._v(" "), _c("div", {
     staticClass: "text-sm"
   }, [_c("div", [_c("p", {
-    staticClass: "padding-top"
-  }, [_vm._v("\n                " + _vm._s(_vm.post.description) + "\n            ")])])])]);
+    staticClass: "padding-top",
+    domProps: {
+      innerHTML: _vm._s(_vm.post.description)
+    }
+  })])])]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
