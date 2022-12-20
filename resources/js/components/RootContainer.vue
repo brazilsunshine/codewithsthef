@@ -14,7 +14,7 @@ import BlogCoverPreviewModal from "./BlogCoverPreviewModal";
 export default {
     name: "RootContainer",
     components: {
-        BlogCoverPreviewModal,  
+        BlogCoverPreviewModal,
         Nav
     },
     async mounted ()
