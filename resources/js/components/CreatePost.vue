@@ -5,15 +5,19 @@
         </p>
         <div v-else class="post-container">
             <div :class="{invisible: !error}" class="error-message">
-                <p><span>Error</span>{{ this.errorMsg }}</p>
+                <p>{{ this.errorMsg }}</p>
             </div>
             <div class="blog-info">
+                <p v-if="errors['title']" class="error-message">
+                    {{ this.errors['title'][0] }}
+                </p>
                 <form @submit.prevent="submit">
                     <input
                         type="text"
                         placeholder="Enter Blog Title"
                         v-model="blogTitle"
                         class="margin-bottom"
+                        @keydown="clearError('title')"
                     />
                     <div>
                         <div class="buttons">
@@ -32,7 +36,7 @@
                             </label>
                             <div v-if="this.$store.state.posts.blogPhotoName">
                                 <button
-                                    @click="openPreview"
+                                    @click.prevent="openPreview"
                                     class="preview-button mr-2"
                                 >
                                     Preview Photo
@@ -52,8 +56,14 @@
                         </div>
                     </div>
                     <div class="blog-actions pt-44-mob">
-                        <button>Publish Blog</button>
-                        <router-link class="preview-button padding-15" to="/blog-preview/admin">Post Preview</router-link>
+                        <button
+                            :disabled="processing"
+                        >
+                            Publish Blog
+                        </button>
+                        <router-link class="preview-button padding-15" to="/blog-preview/admin">
+                            Post Preview
+                        </router-link>
                     </div>
                 </form>
             </div>
@@ -62,11 +72,11 @@
 </template>
 
 <script>
-import { VueEditor, Quill } from 'vue2-editor';
+import { Quill, VueEditor } from 'vue2-editor';
 import Vue from 'vue';
 
 import ImageResize from 'quill-image-resize-vue';
-import { ImageDrop } from 'quill-image-drop-module';
+import {ImageDrop} from 'quill-image-drop-module';
 
 Quill.register("modules/imageDrop", ImageDrop);
 Quill.register("modules/imageResize", ImageResize);
@@ -76,11 +86,11 @@ export default {
     components: {
         VueEditor
     },
-
-    data ()
-    {
+    data () {
         return {
             loading: true,
+
+            processing: false, // button
 
             // data
             file: null, // cover_photo
@@ -94,22 +104,18 @@ export default {
             }
         }
     },
-
     created ()
     {
         this.loading = false;
     },
-
     computed: {
         /**
          * Using v-model to get and update the blogTitle in Vuex store
          */
         blogTitle: {
-            get ()
-            {
+            get () {
                 return this.$store.state.posts.blogTitle;
             },
-
             set (payload)
             {
                  this.$store.commit("updateBlogTitle", payload);
@@ -120,38 +126,74 @@ export default {
          * Using v-model to get and update the blogHTML in Vuex store
          */
         blogHTML: {
-            get ()
-            {
+            get () {
                 return this.$store.state.posts.blogHTML;
             },
-
-            set (payload)
-            {
+            set (payload) {
                  this.$store.commit("updateBlogHTML", payload);
             }
-        }
+        },
+
+        /**
+         * Return errors
+         */
+        errors ()
+        {
+            return this.$store.state.errors.errorsObject;
+        },
     },
 
     methods: {
         /**
-         *
+         * Submit cover_photo & blog post
          */
         async submit ()
         {
-            await axios.post('/api/posts/submit-blog-post', {
-                title: this.blogTitle,
-                description: this.blogHTML,
-                cover_photo: this.file.name,
-            })
+            this.processing = true;
 
-            .then(response => {
-                console.log('submit-blog-post', response);
+            if (this.blogTitle.length !== 0 && this.blogHTML.length !==0)
+            {
+                if (this.$store.state.posts.blogPhotoName)
+                {
+                    let formData = new FormData();
+                    formData.append('file', this.$refs.blogPhoto.files[0]);
+                    formData.append('title', this.blogTitle);
+                    formData.append('description', this.blogHTML);
 
-                Vue.$vToastify.success("You created your post! =)");
-             })
-            .catch(error => {
-                console.log('submit-blog-post', error);
-            });
+                    await axios({
+                        url: "/api/posts/submit-blog-post",
+                        method: "POST",
+                        data: formData,
+                        headers: { 'X-CSRF-TOKEN': window.axios.defaults.headers.common['X-CSRF-TOKEN'] }
+                    })
+
+                    .then(response => {
+                        console.log('submit-blog-post', response);
+
+                        // Vue.$vToastify.success("You created your post! =)");
+                    })
+                    .catch(error => {
+                        console.log('submit-blog-post', error.response);
+
+                        this.$store.commit('setErrorsObject', error.response.data.errors)
+                    });
+                } else {
+                    this.error = true;
+                    this.errorMsg = "Please ensure you uploaded a cover photo";
+                    setTimeout(() =>
+                    {
+                        this.error = false
+                    }, 5000);
+                }
+            } else {
+                this.error = true;
+                this.errorMsg = "Please ensure blog title & blog post has been filled";
+                setTimeout(() =>
+                {
+                    this.error = false
+                }, 5000);
+            }
+            this.processing = false;
         },
 
         /**
@@ -197,6 +239,16 @@ export default {
         {
             this.$store.commit('openOrClosePhotoPreview');
         },
+
+        /**
+         * Clear an error with this key
+         */
+        clearError (key)
+        {
+            if (this.errors[key]) {
+                this.$store.commit('deleteError', key);
+            }
+        }
     }
 }
 </script>
@@ -260,7 +312,7 @@ export default {
         border-radius: 8px;
         color: #fff;
         margin-bottom: 10px;
-        background-color: #303030;
+        background-color: darkred;
         opacity: 1;
         transition: .5s ease all;
     }
@@ -294,10 +346,6 @@ export default {
        font-size: 14px;
     }
 
-    /*span {*/
-    /*    font-weight: 600;*/
-    /*}*/
-
     .blog-info {
         margin-bottom: 32px;
     }
@@ -326,8 +374,12 @@ export default {
         top: 152px;
 
     }
-
         .padding-15 {
         padding: 15px;
+    }
+
+    button:disabled {
+        cursor: not-allowed;
+        opacity: 0.8;
     }
 </style>

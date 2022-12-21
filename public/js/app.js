@@ -2246,7 +2246,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vue2_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue2-editor */ "./node_modules/vue2-editor/dist/vue2-editor.esm.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var quill_image_resize_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! quill-image-resize-vue */ "./node_modules/quill-image-resize-vue/image-resize-vue.min.js");
 /* harmony import */ var quill_image_resize_vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(quill_image_resize_vue__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var quill_image_drop_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! quill-image-drop-module */ "./node_modules/quill-image-drop-module/index.js");
@@ -2268,6 +2267,9 @@ vue2_editor__WEBPACK_IMPORTED_MODULE_0__.Quill.register("modules/imageResize", (
   data: function data() {
     return {
       loading: true,
+      processing: false,
+      // button
+
       // data
       file: null,
       // cover_photo
@@ -2306,31 +2308,76 @@ vue2_editor__WEBPACK_IMPORTED_MODULE_0__.Quill.register("modules/imageResize", (
       set: function set(payload) {
         this.$store.commit("updateBlogHTML", payload);
       }
+    },
+    /**
+     * Return errors
+     */
+    errors: function errors() {
+      return this.$store.state.errors.errorsObject;
     }
   },
   methods: {
     /**
-     *
+     * Submit cover_photo & blog post
      */
     submit: function submit() {
       var _this = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var formData;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return axios.post('/api/posts/submit-blog-post', {
-                  title: _this.blogTitle,
-                  description: _this.blogHTML,
-                  cover_photo: _this.file.name
+                _this.processing = true;
+                if (!(_this.blogTitle.length !== 0 && _this.blogHTML.length !== 0)) {
+                  _context.next = 16;
+                  break;
+                }
+                if (!_this.$store.state.posts.blogPhotoName) {
+                  _context.next = 11;
+                  break;
+                }
+                formData = new FormData();
+                formData.append('file', _this.$refs.blogPhoto.files[0]);
+                formData.append('title', _this.blogTitle);
+                formData.append('description', _this.blogHTML);
+                _context.next = 9;
+                return axios({
+                  url: "/api/posts/submit-blog-post",
+                  method: "POST",
+                  data: formData,
+                  headers: {
+                    'X-CSRF-TOKEN': window.axios.defaults.headers.common['X-CSRF-TOKEN']
+                  }
                 }).then(function (response) {
                   console.log('submit-blog-post', response);
-                  vue__WEBPACK_IMPORTED_MODULE_3__["default"].$vToastify.success("You created your post! =)");
+
+                  // Vue.$vToastify.success("You created your post! =)");
                 })["catch"](function (error) {
-                  console.log('submit-blog-post', error);
+                  console.log('submit-blog-post', error.response);
+                  _this.$store.commit('setErrorsObject', error.response.data.errors);
                 });
-              case 2:
+              case 9:
+                _context.next = 14;
+                break;
+              case 11:
+                _this.error = true;
+                _this.errorMsg = "Please ensure you uploaded a cover photo";
+                setTimeout(function () {
+                  _this.error = false;
+                }, 5000);
+              case 14:
+                _context.next = 19;
+                break;
+              case 16:
+                _this.error = true;
+                _this.errorMsg = "Please ensure blog title & blog post has been filled";
+                setTimeout(function () {
+                  _this.error = false;
+                }, 5000);
+              case 19:
+                _this.processing = false;
+              case 20:
               case "end":
                 return _context.stop();
             }
@@ -2375,6 +2422,14 @@ vue2_editor__WEBPACK_IMPORTED_MODULE_0__.Quill.register("modules/imageResize", (
      */
     openPreview: function openPreview() {
       this.$store.commit('openOrClosePhotoPreview');
+    },
+    /**
+     * Clear an error with this key
+     */
+    clearError: function clearError(key) {
+      if (this.errors[key]) {
+        this.$store.commit('deleteError', key);
+      }
     }
   }
 });
@@ -2872,9 +2927,11 @@ var render = function render() {
     "class": {
       invisible: !_vm.error
     }
-  }, [_c("p", [_c("span", [_vm._v("Error")]), _vm._v(_vm._s(this.errorMsg))])]), _vm._v(" "), _c("div", {
+  }, [_c("p", [_vm._v(_vm._s(this.errorMsg))])]), _vm._v(" "), _c("div", {
     staticClass: "blog-info"
-  }, [_c("form", {
+  }, [_vm.errors["title"] ? _c("p", {
+    staticClass: "error-message"
+  }, [_vm._v("\n                " + _vm._s(this.errors["title"][0]) + "\n            ")]) : _vm._e(), _vm._v(" "), _c("form", {
     on: {
       submit: function submit($event) {
         $event.preventDefault();
@@ -2897,6 +2954,9 @@ var render = function render() {
       value: _vm.blogTitle
     },
     on: {
+      keydown: function keydown($event) {
+        return _vm.clearError("title");
+      },
       input: function input($event) {
         if ($event.target.composing) return;
         _vm.blogTitle = $event.target.value;
@@ -2933,7 +2993,10 @@ var render = function render() {
   })]), _vm._v(" "), this.$store.state.posts.blogPhotoName ? _c("div", [_c("button", {
     staticClass: "preview-button mr-2",
     on: {
-      click: _vm.openPreview
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.openPreview.apply(null, arguments);
+      }
     }
   }, [_vm._v("\n                                Preview Photo\n                            ")]), _vm._v(" "), _c("span", {
     staticClass: "inline-flex-mob"
@@ -2956,12 +3019,16 @@ var render = function render() {
     }
   })], 1)]), _vm._v(" "), _c("div", {
     staticClass: "blog-actions pt-44-mob"
-  }, [_c("button", [_vm._v("Publish Blog")]), _vm._v(" "), _c("router-link", {
+  }, [_c("button", {
+    attrs: {
+      disabled: _vm.processing
+    }
+  }, [_vm._v("\n                        Publish Blog\n                    ")]), _vm._v(" "), _c("router-link", {
     staticClass: "preview-button padding-15",
     attrs: {
       to: "/blog-preview/admin"
     }
-  }, [_vm._v("Post Preview")])], 1)])])])]);
+  }, [_vm._v("\n                        Post Preview\n                    ")])], 1)])])])]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -2987,7 +3054,7 @@ var render = function render() {
   return _c("div", [_c("div", [_c("main", {
     staticClass: "container mx-auto flex flex-column-mob"
   }, [_vm._m(0), _vm._v(" "), _c("div", {
-    staticClass: "w-full px-2 md:px-0 md:w-175 padding-idea-on-mobile"
+    staticClass: "w-full md:w-175 padding-idea-on-mobile"
   }, [_c("div", {
     staticClass: "mt-16"
   }, [_vm._l(_vm.posts, function (post) {
@@ -3301,7 +3368,15 @@ var render = function render() {
     staticClass: "padding"
   }, [_c("div", [_c("p", {
     staticClass: "text-lg font-semibold"
-  }, [_vm._v("\n                " + _vm._s(_vm.post.title) + "\n            ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n            " + _vm._s(_vm.post.title) + "\n        ")])]), _vm._v(" "), _c("div", {
+    staticClass: "cover-photo"
+  }, [_c("img", {
+    staticClass: "cover-photo-mob",
+    attrs: {
+      src: _vm.post.cover_photo,
+      alt: ""
+    }
+  })]), _vm._v(" "), _c("div", {
     staticClass: "text-sm"
   }, [_c("div", [_c("p", {
     staticClass: "padding-top",
@@ -3795,26 +3870,101 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var vuex_persistedstate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex-persistedstate */ "./node_modules/vuex-persistedstate/dist/vuex-persistedstate.es.js");
-/* harmony import */ var _modules_user__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/user */ "./resources/js/store/modules/user/index.js");
-/* harmony import */ var _modules_posts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/posts */ "./resources/js/store/modules/posts/index.js");
+/* harmony import */ var _modules_errors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/errors */ "./resources/js/store/modules/errors/index.js");
+/* harmony import */ var _modules_user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/user */ "./resources/js/store/modules/user/index.js");
+/* harmony import */ var _modules_posts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/posts */ "./resources/js/store/modules/posts/index.js");
 
 
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_4__["default"]);
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
+
+vue__WEBPACK_IMPORTED_MODULE_4__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_5__["default"]);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new vuex__WEBPACK_IMPORTED_MODULE_5__["default"].Store({
   plugins: [(0,vuex_persistedstate__WEBPACK_IMPORTED_MODULE_0__["default"])({
     key: 'codewithsthef'
   })],
   modules: {
-    user: _modules_user__WEBPACK_IMPORTED_MODULE_1__.user,
-    posts: _modules_posts__WEBPACK_IMPORTED_MODULE_2__.posts
+    errors: _modules_errors__WEBPACK_IMPORTED_MODULE_1__.errors,
+    user: _modules_user__WEBPACK_IMPORTED_MODULE_2__.user,
+    posts: _modules_posts__WEBPACK_IMPORTED_MODULE_3__.posts
   }
 }));
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/errors/actions.js":
+/*!******************************************************!*\
+  !*** ./resources/js/store/modules/errors/actions.js ***!
+  \******************************************************/
+/***/ (() => {
+
+
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/errors/index.js":
+/*!****************************************************!*\
+  !*** ./resources/js/store/modules/errors/index.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "errors": () => (/* binding */ errors)
+/* harmony export */ });
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./actions */ "./resources/js/store/modules/errors/actions.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_actions__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _mutations__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mutations */ "./resources/js/store/modules/errors/mutations.js");
+
+
+var state = {
+  errorsObject: {}
+};
+var errors = {
+  state: state,
+  actions: _actions__WEBPACK_IMPORTED_MODULE_0__.actions,
+  mutations: _mutations__WEBPACK_IMPORTED_MODULE_1__.mutations
+};
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/errors/mutations.js":
+/*!********************************************************!*\
+  !*** ./resources/js/store/modules/errors/mutations.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "mutations": () => (/* binding */ mutations)
+/* harmony export */ });
+var mutations = {
+  /**
+   * Delete error
+   */
+  deleteError: function deleteError(state, payload) {
+    delete state.errorsObject[payload];
+  },
+  /**
+   * Reset the state to not be saved in the localstorage
+   * so the errors won't persist when the page is refreshed
+   */
+  resetState: function resetState(state) {
+    state.errorsObject = {};
+  },
+  /**
+   * Submit form failed.
+   */
+  setErrorsObject: function setErrorsObject(state, payload) {
+    state.errorsObject = payload;
+  }
+};
 
 /***/ }),
 
@@ -6383,7 +6533,7 @@ ___CSS_LOADER_EXPORT___.i(_node_modules_laravel_mix_node_modules_css_loader_dist
 ___CSS_LOADER_EXPORT___.i(_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_quill_dist_quill_bubble_css__WEBPACK_IMPORTED_MODULE_3__["default"]);
 ___CSS_LOADER_EXPORT___.i(_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_4__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n/* Import the Quill styles you want */\ninput[data-v-20838332]:focus:nth-child(1) {\n    outline: none;\n    --tw-ring-shadow: none;\n    border-color: inherit;\n    -webkit-box-shadow: none;\n}\n.create-post[data-v-20838332] {\n    position: relative;\n    height: 100%;\n    justify-content: center;\n    padding: 13px 23px 67px;\n}\n.preview-button[data-v-20838332] {\n    text-decoration: none;\n    color: white;\n    margin-top: 26px;\n}\nlabel[data-v-20838332],\nbutton[data-v-20838332],\n.preview-button[data-v-20838332] {\n    transition: 0.5s ease-in-out all;\n    align-self: center;\n    font-size: 14px;\n    cursor: pointer;\n    border-radius: 20px;\n    padding: 12px 24px;\n    color: #fff;\n    background-color: #303030;\n    text-decoration: none;\n}\nlabel[data-v-20838332]:hover,\nbutton[data-v-20838332]:hover,\n.preview-button[data-v-20838332]:hover {\n    background-color: rgb(48, 48, 48, 0.7);\n}\n\n/* Error Styling */\n.invisible[data-v-20838332] {\n    opacity: 0 !important;\n}\n.error-message[data-v-20838332] {\n    width: 100%;\n    padding: 12px;\n    border-radius: 8px;\n    color: #fff;\n    margin-bottom: 10px;\n    background-color: #303030;\n    opacity: 1;\n    transition: .5s ease all;\n}\n.editor[data-v-20838332] {\n    height: 73vh;\n    display: flex;\n    flex-direction: column;\n    margin-top: 43px;\n}\n.quillWrapper[data-v-20838332] {\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    height: 80%\n}\n.ql-container[data-v-20838332] {\n    display:flex;\n    flex-direction: column;\n    height: 50%;\n    overflow: scroll;\n}\n.margin-bottom[data-v-20838332] {\n    margin-bottom: 20px;\n}\np[data-v-20838332] {\n   font-size: 14px;\n}\n\n/*span {*/\n/*    font-weight: 600;*/\n/*}*/\n.blog-info[data-v-20838332] {\n    margin-bottom: 32px;\n}\ninput[data-v-20838332]:nth-child(1) {\n    min-width: 300px;\n    outline: none;\n}\ninput[data-v-20838332] {\n    transition: .5s ease-in-out all;\n    padding: 10px 4px;\n    border: none;\n    border-bottom: 1px solid #303030;\n}\n.buttons[data-v-20838332] {\n    margin: 20px 0;\n}\ninput[data-v-20838332]:nth-child(2) {\n    opacity: 0;\n    max-width: 165px;\n    position: absolute;\n    left: 313px;\n    top: 152px;\n}\n.padding-15[data-v-20838332] {\n    padding: 15px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n/* Import the Quill styles you want */\ninput[data-v-20838332]:focus:nth-child(1) {\n    outline: none;\n    --tw-ring-shadow: none;\n    border-color: inherit;\n    -webkit-box-shadow: none;\n}\n.create-post[data-v-20838332] {\n    position: relative;\n    height: 100%;\n    justify-content: center;\n    padding: 13px 23px 67px;\n}\n.preview-button[data-v-20838332] {\n    text-decoration: none;\n    color: white;\n    margin-top: 26px;\n}\nlabel[data-v-20838332],\nbutton[data-v-20838332],\n.preview-button[data-v-20838332] {\n    transition: 0.5s ease-in-out all;\n    align-self: center;\n    font-size: 14px;\n    cursor: pointer;\n    border-radius: 20px;\n    padding: 12px 24px;\n    color: #fff;\n    background-color: #303030;\n    text-decoration: none;\n}\nlabel[data-v-20838332]:hover,\nbutton[data-v-20838332]:hover,\n.preview-button[data-v-20838332]:hover {\n    background-color: rgb(48, 48, 48, 0.7);\n}\n\n/* Error Styling */\n.invisible[data-v-20838332] {\n    opacity: 0 !important;\n}\n.error-message[data-v-20838332] {\n    width: 100%;\n    padding: 12px;\n    border-radius: 8px;\n    color: #fff;\n    margin-bottom: 10px;\n    background-color: darkred;\n    opacity: 1;\n    transition: .5s ease all;\n}\n.editor[data-v-20838332] {\n    height: 73vh;\n    display: flex;\n    flex-direction: column;\n    margin-top: 43px;\n}\n.quillWrapper[data-v-20838332] {\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    height: 80%\n}\n.ql-container[data-v-20838332] {\n    display:flex;\n    flex-direction: column;\n    height: 50%;\n    overflow: scroll;\n}\n.margin-bottom[data-v-20838332] {\n    margin-bottom: 20px;\n}\np[data-v-20838332] {\n   font-size: 14px;\n}\n.blog-info[data-v-20838332] {\n    margin-bottom: 32px;\n}\ninput[data-v-20838332]:nth-child(1) {\n    min-width: 300px;\n    outline: none;\n}\ninput[data-v-20838332] {\n    transition: .5s ease-in-out all;\n    padding: 10px 4px;\n    border: none;\n    border-bottom: 1px solid #303030;\n}\n.buttons[data-v-20838332] {\n    margin: 20px 0;\n}\ninput[data-v-20838332]:nth-child(2) {\n    opacity: 0;\n    max-width: 165px;\n    position: absolute;\n    left: 313px;\n    top: 152px;\n}\n.padding-15[data-v-20838332] {\n    padding: 15px;\n}\nbutton[data-v-20838332]:disabled {\n    cursor: not-allowed;\n    opacity: 0.8;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -6455,7 +6605,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.padding-top[data-v-4ac4d2f8] {\n    padding-top: 44px;\n}\n.padding[data-v-4ac4d2f8] {\n    padding: 30px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.padding-top[data-v-4ac4d2f8] {\n    padding-top: 44px;\n}\n.padding[data-v-4ac4d2f8] {\n    padding: 30px;\n}\nimg[data-v-4ac4d2f8] {\n    max-width: 55%;\n    height: auto;\n    border-radius: 20px;\n}\n.cover-photo[data-v-4ac4d2f8] {\n    display: flex;\n    justify-content: center;\n    padding-top: 25px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

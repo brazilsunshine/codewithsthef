@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
 
+import { errors } from './modules/errors'
 import { user } from './modules/user'
 import { posts } from './modules/posts'
 
@@ -14,6 +15,7 @@ export default new Vuex.Store({
         })
     ],
     modules: {
+        errors,
         user,
         posts,
     }

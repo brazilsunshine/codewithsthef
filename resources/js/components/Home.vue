@@ -26,7 +26,7 @@
                     </div>
                 </div>
 
-                <div class="w-full px-2 md:px-0 md:w-175 padding-idea-on-mobile">
+                <div class="w-full md:w-175 padding-idea-on-mobile">
                     <div class="mt-16">
                         <div
                             v-for="post in posts"

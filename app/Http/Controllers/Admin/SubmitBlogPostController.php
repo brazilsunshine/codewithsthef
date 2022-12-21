@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class SubmitBlogPostController extends Controller
 {
@@ -12,9 +14,10 @@ class SubmitBlogPostController extends Controller
     {
         $request->validate([
             'title' => 'required|unique:posts|min:4',
-            'cover_photo' => 'required|min:5',
             'description' => 'required|min:5',
         ]);
+
+        \Log::info($request->all());
 
         if (!auth()->check()) {
             return [
@@ -23,6 +26,25 @@ class SubmitBlogPostController extends Controller
             ];
         }
 
+        $file = $request->file('file'); // /tmp/php7S8v..
+
+        $path = $file->hashName();
+
+        $image = Image::make($file)->fit(1000, 1000);
+
+        // Ternary operator: one line if else statement
+//        $disk = (app()->environment() === 'production')
+//            ? 's3'
+//            : 'local';
+
+        $disk = 'do';
+
+        $filesystem = Storage::disk($disk);
+        $filesystem->put($path, $image->stream(), 'public');
+
+        // our image will live here
+        $url = $filesystem->url($path);
+
         $userId = auth()->user()->id;
 
         try
@@ -30,7 +52,7 @@ class SubmitBlogPostController extends Controller
            $post = Post::create([
                'user_id' => $userId,
                'title' => $request->title,
-               'cover_photo' => $request->cover_photo,
+               'cover_photo' => $url,
                'description' => $request->description,
            ]);
         }

@@ -6,9 +6,9 @@
             </p>
         </div>
 
-<!--        <div>-->
-<!--            <img :src="post.cover_photo"/>-->
-<!--        </div>-->
+        <div class="cover-photo ">
+            <img :src="post.cover_photo" class="cover-photo-mob" alt=""/>
+        </div>
 
         <div class="text-sm">
             <div>
@@ -31,11 +31,23 @@ export default {
 </script>
 
 <style scoped>
-.padding-top {
-    padding-top: 44px;
-}
+    .padding-top {
+        padding-top: 44px;
+    }
 
-.padding {
-    padding: 30px;
-}
+    .padding {
+        padding: 30px;
+    }
+
+    img {
+        max-width: 55%;
+        height: auto;
+        border-radius: 20px;
+    }
+
+    .cover-photo {
+        display: flex;
+        justify-content: center;
+        padding-top: 25px;
+    }
 </style>
