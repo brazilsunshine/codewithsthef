@@ -2322,8 +2322,7 @@ vue2_editor__WEBPACK_IMPORTED_MODULE_0__.Quill.register("modules/imageResize", (
                 _context.next = 2;
                 return axios.post('/api/posts/submit-blog-post', {
                   title: _this.blogTitle,
-                  description: _this.blogHTML,
-                  cover_photo: _this.file.name
+                  description: _this.blogHTML
                 }).then(function (response) {
                   console.log('submit-blog-post', response);
                   vue__WEBPACK_IMPORTED_MODULE_3__["default"].$vToastify.success("You created your post! =)");

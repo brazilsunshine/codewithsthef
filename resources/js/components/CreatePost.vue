@@ -141,7 +141,6 @@ export default {
             await axios.post('/api/posts/submit-blog-post', {
                 title: this.blogTitle,
                 description: this.blogHTML,
-                cover_photo: this.file.name,
             })
 
             .then(response => {
