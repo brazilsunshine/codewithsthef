@@ -12,7 +12,6 @@ class SubmitBlogPostController extends Controller
     {
         $request->validate([
             'title' => 'required|min:4',
-            'cover_photo' => 'required',
             'description' => 'required|min:5',
         ]);
 
