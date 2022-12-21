@@ -18,8 +18,6 @@ class UploadImageBlogHtmlController extends Controller
 
     public function __invoke (Request $request)
     {
-        \Log::info($request->all());
-
         $request->validate([
             'file' => 'required|mimes:jpg,png,jpeg,heif,heic'
         ]);
@@ -31,9 +29,11 @@ class UploadImageBlogHtmlController extends Controller
         $image = Image::make($file)->fit(1000, 1000);
 
         // Ternary operator: one line if else statement
-        $disk = (app()->environment() === 'production')
-            ? 's3'
-            : 'local';
+//        $disk = (app()->environment() === 'production')
+//            ? 's3'
+//            : 'local';
+
+        $disk = 'do';
 
         $filesystem = Storage::disk($disk);
         $filesystem->put($path, $image->stream(), 'public');
