@@ -11,7 +11,7 @@ class GetPaginatedPostsController extends Controller
     public function __invoke ()
     {
         $posts = Post::orderBy('id', 'desc') // will order the ideas by the last post date
-        ->paginate(10);
+        ->paginate(5);
 
         return [
             'success' => true,

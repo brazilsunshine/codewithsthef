@@ -11,8 +11,9 @@ export const actions = {
 
             if (response.data.success)
             {
-                context.commit('setPaginatedPosts', response.data.posts);
+                context.commit('setPaginatedPosts', response.data.posts)
             }
+
          })
         .catch(error => {
             console.log('get-paginated-posts', error);

@@ -7,4 +7,13 @@ export const mutations = {
         state.auth = true;
         state.userObject = payload;
     },
+
+    /**
+     * A user has logged out
+     */
+    logout (state)
+    {
+        state.auth = false;
+        state.userObject = null;
+    },
 }

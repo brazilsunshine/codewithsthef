@@ -36,18 +36,17 @@
                                 :post="post"
                             />
                         </div>
-
-                        <PaginationButtons
-                            :current_page="this.$store.state.posts.paginated.current_page"
-                            :next_page_url="this.$store.state.posts.paginated.next_page_url"
-                            prev_page="PREVIOUS_IDEAS_PAGE"
-                            next_page="NEXT_IDEAS_PAGE"
-                        />
-
-
                     </div>
+                    <PaginationButtons
+                        :current_page="this.$store.state.posts.paginated.current_page"
+                        :next_page_url="this.$store.state.posts.paginated.next_page_url"
+                        prev_page="PREVIOUS_IDEAS_PAGE"
+                        next_page="NEXT_IDEAS_PAGE"
+                    />
                 </div>
+
             </main>
+
         </div>
     </div>
 </template>
@@ -62,6 +61,11 @@ export default {
         Posts
     },
 
+    async mounted()
+    {
+        await this.$store.dispatch('GET_PAGINATED_POSTS')
+    },
+
     computed: {
         /**
          * Return paginated posts from vuex store
@@ -70,12 +74,8 @@ export default {
         {
             return this.$store.state.posts.paginated.data;
         }
-    },
-
-    async mounted ()
-    {
-       await this.$store.dispatch('GET_PAGINATED_POSTS')
     }
+
 }
 </script>
 

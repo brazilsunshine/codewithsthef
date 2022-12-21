@@ -2461,14 +2461,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     PaginationButtons: _PaginationButtons__WEBPACK_IMPORTED_MODULE_1__["default"],
     Posts: _Posts__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  computed: {
-    /**
-     * Return paginated posts from vuex store
-     */
-    posts: function posts() {
-      return this.$store.state.posts.paginated.data;
-    }
-  },
   mounted: function mounted() {
     var _this = this;
     return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -2485,6 +2477,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
       }, _callee);
     }))();
+  },
+  computed: {
+    /**
+     * Return paginated posts from vuex store
+     */
+    posts: function posts() {
+      return this.$store.state.posts.paginated.data;
+    }
   }
 });
 
@@ -3057,7 +3057,7 @@ var render = function render() {
     staticClass: "w-full md:w-175 padding-idea-on-mobile"
   }, [_c("div", {
     staticClass: "mt-16"
-  }, [_vm._l(_vm.posts, function (post) {
+  }, _vm._l(_vm.posts, function (post) {
     return _c("div", {
       key: post.id
     }, [_c("Posts", {
@@ -3065,14 +3065,14 @@ var render = function render() {
         post: post
       }
     })], 1);
-  }), _vm._v(" "), _c("PaginationButtons", {
+  }), 0), _vm._v(" "), _c("PaginationButtons", {
     attrs: {
       current_page: this.$store.state.posts.paginated.current_page,
       next_page_url: this.$store.state.posts.paginated.next_page_url,
       prev_page: "PREVIOUS_IDEAS_PAGE",
       next_page: "NEXT_IDEAS_PAGE"
     }
-  })], 2)])])])]);
+  })], 1)])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -3760,6 +3760,25 @@ if (token) {
 
 /***/ }),
 
+/***/ "./resources/js/middleware/auth.js":
+/*!*****************************************!*\
+  !*** ./resources/js/middleware/auth.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ auth)
+/* harmony export */ });
+function auth(_ref) {
+  var next = _ref.next,
+    store = _ref.store;
+  if (store.state.user.auth) return next();else window.location.href = '/';
+}
+
+/***/ }),
+
 /***/ "./resources/js/middleware/middlewarePipeline.js":
 /*!*******************************************************!*\
   !*** ./resources/js/middleware/middlewarePipeline.js ***!
@@ -3801,9 +3820,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
-/* harmony import */ var _middleware_middlewarePipeline__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./middleware/middlewarePipeline */ "./resources/js/middleware/middlewarePipeline.js");
+/* harmony import */ var _middleware_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./middleware/auth */ "./resources/js/middleware/auth.js");
+/* harmony import */ var _middleware_middlewarePipeline__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./middleware/middlewarePipeline */ "./resources/js/middleware/middlewarePipeline.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -3814,9 +3834,10 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 
 
 // Middleware
-// import auth from './middleware/auth'
+// import admin from './middleware/admin'
 
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
+
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_3__["default"]({
   mode: "history",
   routes: [{
     path: '/',
@@ -3829,13 +3850,22 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
     component: (__webpack_require__(/*! ./components/Login */ "./resources/js/components/Login.vue")["default"])
   }, {
     path: '/create-post/admin',
-    component: (__webpack_require__(/*! ./components/CreatePost */ "./resources/js/components/CreatePost.vue")["default"])
+    component: (__webpack_require__(/*! ./components/CreatePost */ "./resources/js/components/CreatePost.vue")["default"]),
+    meta: {
+      middleware: [_middleware_auth__WEBPACK_IMPORTED_MODULE_1__["default"]]
+    }
   }, {
     path: '/blog-preview/admin',
-    component: (__webpack_require__(/*! ./components/BlogPreview */ "./resources/js/components/BlogPreview.vue")["default"])
+    component: (__webpack_require__(/*! ./components/BlogPreview */ "./resources/js/components/BlogPreview.vue")["default"]),
+    meta: {
+      middleware: [_middleware_auth__WEBPACK_IMPORTED_MODULE_1__["default"]]
+    }
   }, {
     path: '/admin',
-    component: (__webpack_require__(/*! ./components/Admin */ "./resources/js/components/Admin.vue")["default"])
+    component: (__webpack_require__(/*! ./components/Admin */ "./resources/js/components/Admin.vue")["default"]),
+    meta: {
+      middleware: [_middleware_auth__WEBPACK_IMPORTED_MODULE_1__["default"]]
+    }
   }]
 });
 
@@ -3852,7 +3882,7 @@ router.beforeEach(function (to, from, next) {
     store: _store__WEBPACK_IMPORTED_MODULE_0__["default"]
   };
   return middleware[0](_objectSpread(_objectSpread({}, context), {}, {
-    next: (0,_middleware_middlewarePipeline__WEBPACK_IMPORTED_MODULE_1__["default"])(context, middleware, 1)
+    next: (0,_middleware_middlewarePipeline__WEBPACK_IMPORTED_MODULE_2__["default"])(context, middleware, 1)
   }));
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (router);
@@ -4157,7 +4187,7 @@ var mutations = {
     state.blogHTML = payload;
   },
   /**
-   * Set paginated posts to become my payload;
+   *
    */
   setPaginatedPosts: function setPaginatedPosts(state, payload) {
     state.paginated = payload;
@@ -4185,7 +4215,7 @@ var actions = {
   /**
    *
    */
-  CHECK_AUTH: function CHECK_AUTH() {
+  CHECK_AUTH: function CHECK_AUTH(context) {
     return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) {
@@ -4193,18 +4223,15 @@ var actions = {
             case 0:
               _context.next = 2;
               return axios.get('/api/user/check-auth').then(function (response) {
-                console.log('check_auth', response);
                 if (response.data.auth)
                   // if response.data.auth is successful
                   {
                     // set user
-                    // context.commit('setUserObject', response.data.user);
-                  }
-                // else
-                // {
-                //     // log the user out
-                //     context.commit('logout');
-                // }
+                    context.commit('setUserObject', response.data.user);
+                  } else {
+                  // log the user out
+                  context.commit('logout');
+                }
               })["catch"](function (error) {
                 console.log('check_auth', error);
               });
@@ -4284,6 +4311,13 @@ var mutations = {
   setUserObject: function setUserObject(state, payload) {
     state.auth = true;
     state.userObject = payload;
+  },
+  /**
+   * A user has logged out
+   */
+  logout: function logout(state) {
+    state.auth = false;
+    state.userObject = null;
   }
 };
 

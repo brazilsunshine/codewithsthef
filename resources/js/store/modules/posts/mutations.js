@@ -53,7 +53,7 @@ export const mutations = {
     },
 
     /**
-     * Set paginated posts to become my payload;
+     *
      */
     setPaginatedPosts (state, payload)
     {
