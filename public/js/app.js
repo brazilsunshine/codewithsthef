@@ -3301,11 +3301,7 @@ var render = function render() {
     staticClass: "padding"
   }, [_c("div", [_c("p", {
     staticClass: "text-lg font-semibold"
-  }, [_vm._v("\n            " + _vm._s(_vm.post.title) + "\n        ")])]), _vm._v(" "), _c("div", [_c("img", {
-    attrs: {
-      src: _vm.post.cover_photo
-    }
-  })]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                " + _vm._s(_vm.post.title) + "\n            ")])]), _vm._v(" "), _c("div", {
     staticClass: "text-sm"
   }, [_c("div", [_c("p", {
     staticClass: "padding-top",
