@@ -6,9 +6,9 @@
             </p>
         </div>
 
-<!--        <div>-->
-<!--            <img :src="post.cover_photo"/>-->
-<!--        </div>-->
+        <div>
+            <img :src="post.cover_photo"/>
+        </div>
 
         <div class="text-sm">
             <div>
