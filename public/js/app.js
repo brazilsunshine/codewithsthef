@@ -3831,8 +3831,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ admin)
 /* harmony export */ });
 function admin(_ref) {
+  var _window$Laravel$jsPer;
   var next = _ref.next;
-  if (window.Laravel.jsPermissions.roles.includes('admin')) return next();else window.location.href = '/';
+  if ((_window$Laravel$jsPer = window.Laravel.jsPermissions) !== null && _window$Laravel$jsPer !== void 0 && _window$Laravel$jsPer.roles.includes('admin')) return next();
+  // the ? will stop the execution when a guest tries to visit the pages that are restricted to admin
+  else window.location.href = '/';
 }
 
 /***/ }),
@@ -3899,8 +3902,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
-/* harmony import */ var _middleware_admin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./middleware/admin */ "./resources/js/middleware/admin.js");
-/* harmony import */ var _middleware_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./middleware/auth */ "./resources/js/middleware/auth.js");
+/* harmony import */ var _middleware_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./middleware/auth */ "./resources/js/middleware/auth.js");
+/* harmony import */ var _middleware_admin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./middleware/admin */ "./resources/js/middleware/admin.js");
 /* harmony import */ var _middleware_middlewarePipeline__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./middleware/middlewarePipeline */ "./resources/js/middleware/middlewarePipeline.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -3910,8 +3913,6 @@ function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _ty
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
-
-// Middleware
 
 
 
@@ -3930,26 +3931,22 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_4__["default"]({
     path: '/create-post/admin',
     component: (__webpack_require__(/*! ./components/CreatePost */ "./resources/js/components/CreatePost.vue")["default"]),
     meta: {
-      middleware: [_middleware_admin__WEBPACK_IMPORTED_MODULE_1__["default"]]
+      middleware: [_middleware_admin__WEBPACK_IMPORTED_MODULE_2__["default"], _middleware_auth__WEBPACK_IMPORTED_MODULE_1__["default"]]
     }
   }, {
     path: '/blog-preview/admin',
     component: (__webpack_require__(/*! ./components/BlogPreview */ "./resources/js/components/BlogPreview.vue")["default"]),
     meta: {
-      middleware: [_middleware_admin__WEBPACK_IMPORTED_MODULE_1__["default"]]
+      middleware: [_middleware_admin__WEBPACK_IMPORTED_MODULE_2__["default"], _middleware_auth__WEBPACK_IMPORTED_MODULE_1__["default"]]
     }
   }, {
     path: '/admin',
     component: (__webpack_require__(/*! ./components/Admin */ "./resources/js/components/Admin.vue")["default"]),
     meta: {
-      middleware: [_middleware_admin__WEBPACK_IMPORTED_MODULE_1__["default"]]
+      middleware: [_middleware_admin__WEBPACK_IMPORTED_MODULE_2__["default"], _middleware_auth__WEBPACK_IMPORTED_MODULE_1__["default"]]
     }
   }]
 });
-
-/**
- * Pipeline for multiple middleware
- */
 router.beforeEach(function (to, from, next) {
   if (!to.meta.middleware) return next();
   var middleware = to.meta.middleware;

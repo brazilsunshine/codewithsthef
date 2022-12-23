@@ -1,11 +1,9 @@
 import VueRouter from "vue-router"
 import store from './store'
 
-// Middleware
-import admin from './middleware/admin'
 import auth from './middleware/auth'
+import admin from './middleware/admin'
 import middlewarePipeline from './middleware/middlewarePipeline'
-
 const router = new VueRouter({
     mode: "history",
     routes: [
@@ -25,29 +23,26 @@ const router = new VueRouter({
             path: '/create-post/admin',
             component: require('./components/CreatePost').default,
             meta: {
-                middleware: [ admin ]
+                middleware: [ admin, auth ],
             }
         },
         {
             path: '/blog-preview/admin',
             component: require('./components/BlogPreview').default,
             meta: {
-                middleware: [ admin ]
+                middleware: [ admin, auth ]
             }
         },
         {
             path: '/admin',
             component: require('./components/Admin').default,
             meta: {
-                middleware: [ admin ]
+                middleware: [ admin, auth]
             }
         },
     ]
 });
 
-/**
- * Pipeline for multiple middleware
- */
 router.beforeEach((to, from, next) => {
 
     if (! to.meta.middleware) return next();
@@ -62,6 +57,5 @@ router.beforeEach((to, from, next) => {
     });
 
 });
-
 
 export default router;
