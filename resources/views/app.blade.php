@@ -17,6 +17,17 @@
     @yield('content')
 </div>
 </body>
+<script>
+    <?php
+    $permissions = auth()->check()
+        ? auth()->user()->jsPermissions()
+        : 'null'
+    ?>
+
+        window.Laravel = {
+        jsPermissions: {!! $permissions !!}
+    }
+</script>
 <script src="/js/app.js"></script>
 <script src="https://kit.fontawesome.com/9552ebdda6.js" crossorigin="anonymous"></script>
 </html>

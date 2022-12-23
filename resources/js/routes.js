@@ -2,7 +2,7 @@ import VueRouter from "vue-router"
 import store from './store'
 
 // Middleware
-// import admin from './middleware/admin'
+import admin from './middleware/admin'
 import auth from './middleware/auth'
 import middlewarePipeline from './middleware/middlewarePipeline'
 
@@ -25,21 +25,21 @@ const router = new VueRouter({
             path: '/create-post/admin',
             component: require('./components/CreatePost').default,
             meta: {
-                middleware: [ auth ]
+                middleware: [ admin ]
             }
         },
         {
             path: '/blog-preview/admin',
             component: require('./components/BlogPreview').default,
             meta: {
-                middleware: [ auth ]
+                middleware: [ admin ]
             }
         },
         {
             path: '/admin',
             component: require('./components/Admin').default,
             meta: {
-                middleware: [ auth ]
+                middleware: [ admin ]
             }
         },
     ]

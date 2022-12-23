@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/register', 'Auth\RegisterController');
 Route::post('/login', 'Auth\LoginController');
+Route::post('/logout', 'Auth\LogoutController');
 
 Route::get('/user/check-auth', 'Auth\CheckAuthController');
 

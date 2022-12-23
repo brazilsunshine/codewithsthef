@@ -742,10 +742,6 @@ select {
   margin-right: 0.5rem;
 }
 
-.mr-1 {
-  margin-right: 0.25rem;
-}
-
 .mt-16 {
   margin-top: 4rem;
 }
@@ -756,6 +752,10 @@ select {
 
 .ml-2 {
   margin-left: 0.5rem;
+}
+
+.mr-1 {
+  margin-right: 0.25rem;
 }
 
 .block {
@@ -792,10 +792,6 @@ select {
 
 .flex-1 {
   flex: 1 1 0%;
-}
-
-.cursor-not-allowed {
-  cursor: not-allowed;
 }
 
 .flex-col {
@@ -911,6 +907,10 @@ select {
   padding-top: 1.5rem;
 }
 
+.pl-1 {
+  padding-left: 0.25rem;
+}
+
 .text-center {
   text-align: center;
 }
@@ -996,6 +996,15 @@ select {
 
 .not-allowed {
   cursor: not-allowed;
+}
+
+.hov i {
+  transition-duration: 0.5s;
+}
+
+.hov:hover i {
+  box-shadow: 0 20px 30px -11px rgba(31, 35, 65, 0.37);
+  transform: translate(8px, 0px);
 }
 
 .comments-container::before {

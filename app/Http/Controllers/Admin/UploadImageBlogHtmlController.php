@@ -10,10 +10,10 @@ use Intervention\Image\Facades\Image;
 class UploadImageBlogHtmlController extends Controller
 {
 
-//    public function __construct ()
-//    {
-//        $this->middleware('admin');
-//    }
+    public function __construct ()
+    {
+        $this->middleware('admin');
+    }
 
 
     public function __invoke (Request $request)

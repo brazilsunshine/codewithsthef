@@ -8,22 +8,25 @@
                     <div class="padding-mob-2">
                         <router-link to="/" class="text-xl p-2 font-size-mob">codewithsthef</router-link>
                     </div>
+                    <div v-if="auth" class="pointer hov" @click="logout">
+                        <p>Logout <span><i class="fa-solid fa-right-from-bracket" /></span></p>
+                    </div>
                 </div>
-                <div >
+                <div>
                     <ul class="flex padding-mob-1">
+
                         <li>
-                            <a href="https://www.instagram.com/codewithsthef/">
+                            <a href="https://www.instagram.com/codewithsthef/" target="_blank">
                                 <i class="fa-brands fa-instagram"></i>
                             </a>
-
                         </li>
                         <li>
-                            <a href="https://github.com/brazilsunshine">
+                            <a href="https://github.com/brazilsunshine" target="_blank">
                                 <i class="fa-brands fa-github"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.youtube.com/@codewithsthef">
+                            <a href="https://www.youtube.com/@codewithsthef" target="_blank">
                                 <i class="fa-brands fa-youtube"></i>
                             </a>
                         </li>
@@ -37,7 +40,43 @@
 
 <script>
 export default {
-    name: "Nav"
+    name: "Nav",
+    computed: {
+        /**
+         * Return True if the user is logged in.
+         */
+        auth ()
+        {
+            return this.$store.state.user.auth;
+        },
+    },
+    methods: {
+        /**
+         * Post request to logout
+         */
+        async logout ()
+        {
+            await axios.post('/api/logout')
+
+                .then(response => {
+                    console.log('logout', response);
+
+                    this.$store.commit('logout');
+
+                    // Push the user to the path /home
+                    if (this.$route.path !== '/')
+                    {
+                        this.$router.push("/");
+                    }
+
+                    alert('You have logged out!');
+
+                })
+                .catch(error => {
+                    console.log('logout', error);
+                });
+        },
+    },
 }
 </script>
 

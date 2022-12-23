@@ -10,6 +10,11 @@ use Intervention\Image\Facades\Image;
 
 class SubmitBlogPostController extends Controller
 {
+    public function __construct ()
+    {
+        $this->middleware('admin');
+    }
+
     public function __invoke (Request $request)
     {
         $request->validate([
@@ -33,11 +38,9 @@ class SubmitBlogPostController extends Controller
         $image = Image::make($file)->fit(1000, 1000);
 
         // Ternary operator: one line if else statement
-//        $disk = (app()->environment() === 'production')
-//            ? 's3'
-//            : 'local';
-
-        $disk = 'do';
+        $disk = (app()->environment() === 'production')
+            ? 'do'
+            : 'local';
 
         $filesystem = Storage::disk($disk);
         $filesystem->put($path, $image->stream(), 'public');
