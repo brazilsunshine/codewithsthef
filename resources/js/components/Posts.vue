@@ -2,7 +2,7 @@
     <div class="padding">
         <div>
             <p class="text-lg font-semibold">
-                {{ post.title }}
+                {{ getTitle }}
             </p>
         </div>
 
@@ -14,7 +14,7 @@
             <div>
                 <p
                     class="padding-top"
-                    v-html="post.description"
+                    v-html="getDescription"
                 />
             </div>
         </div>
@@ -27,6 +27,17 @@ export default {
     props: [
         'post'
     ],
+    computed: {
+        getTitle()
+        {
+            return this.post['title_' + this.$i18n.locale];
+        },
+
+        getDescription ()
+        {
+            return this.post['description_' + this.$i18n.locale];
+        }
+    },
 }
 </script>
 

@@ -6,7 +6,10 @@ import store from './store';
 
 import Vue from 'vue';
 import Vue2Editor from "vue2-editor";
-import LaravelPermissionToVuejs from "laravel-permission-to-vuejs";
+import VueLocalStorage from 'vue-localstorage';
+import VueI18n from 'vue-i18n';
+import i18n from './i18n';
+import LaravelPermissionToVueJS from 'laravel-permission-to-vuejs'
 import vClickOutside from 'v-click-outside';
 import VueRouter from 'vue-router';
 import VueToastify from 'vue-toastify';
@@ -18,7 +21,9 @@ import RootContainer from './components/RootContainer';
 window.axios = axios;
 
 Vue.use(Vue2Editor);
-Vue.use(LaravelPermissionToVuejs);
+Vue.use(VueLocalStorage);
+Vue.use(VueI18n);
+Vue.use(LaravelPermissionToVueJS)
 Vue.use(vClickOutside);
 Vue.use(VueRouter);
 Vue.use(VueXData);
@@ -33,6 +38,8 @@ let app = new Vue({
     el: '#app',
     router,
     store,
+    i18n,
+
     components: {
         RootContainer
     }

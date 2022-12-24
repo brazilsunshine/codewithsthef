@@ -6,20 +6,11 @@
                     <div class="bg-white md:sticky md:top-8 border-2 border-blue rounded-xl mt-16 gradient">
                         <div class="text-center px-6 py-2 pt-6">
                             <h1 class="font-semibold text-base">
-                                Oii! Eu sou a Sthefane!
+                                {{ this.$t('home.hello') }}
                             </h1>
                             <div>
                                 <p class="text-sm mt-4">
-                                    Eu tenho 23 anos e sou engenheira de software autodidata. Sou brasileira mas moro
-                                    na Irlanda. Eu trabalho com Laravel, Vue.js, TailwindCss e estou estudando Testing.
-                                    Criei esse Website com o intuito de postar blogs para dar dicas para quem tem
-                                    interesse em estudar web development.
-                                    Muitas vezes o termo "engenharia de software" pode parecer assustador, no entanto,
-                                    como tudo nessa vida, você so precisar estudar e ter interesse que com certeza você
-                                    vai conseguir!
-                                    A chave para alcancar seu objetivo é manter a sua motivação.
-                                    Pode demorar semanas, meses ou muito provavelmente anos, mas tudo é possível se
-                                    você sair da sua zona de conforto.
+                                    {{ this.$t('home.intro') }}
                                 </p>
                             </div>
                         </div>
@@ -73,6 +64,14 @@ export default {
         posts ()
         {
             return this.$store.state.posts.paginated.data;
+        }
+    },
+    methods: {
+        changeLang (lang)
+        {
+            this.$i18n.locale = lang;
+
+            this.$localStorage.set('codewithsthef.lang', lang);
         }
     }
 

@@ -30,6 +30,9 @@
                                 <i class="fa-brands fa-youtube"></i>
                             </a>
                         </li>
+                        <li class="p7">
+                            <Languages />
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -39,8 +42,10 @@
 </template>
 
 <script>
+import Languages from "./Languages";
 export default {
     name: "Nav",
+    components: {Languages},
     computed: {
         /**
          * Return True if the user is logged in.
@@ -81,18 +86,23 @@ export default {
 </script>
 
 <style scoped>
-.fa-instagram {
-    font-size: 36px;
-    padding-right: 20px;
-}
+    .fa-instagram {
+        font-size: 36px;
+        padding-right: 20px;
+    }
 
-.fa-github {
-    font-size: 33px;
-    padding-right: 20px;
-}
+    .fa-github {
+        font-size: 33px;
+        padding-right: 20px;
+    }
 
-.fa-youtube{
-    font-size: 33px;
-}
+    .fa-youtube{
+        font-size: 33px;
+        padding-right: 10px;
+    }
+
+    .p7 {
+        padding: 7px;
+    }
 
 </style>

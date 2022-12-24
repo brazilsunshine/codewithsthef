@@ -19,6 +19,11 @@ export default {
     },
     async mounted ()
     {
+        if (this.$localStorage.get('codewithsthef.lang'))
+        {
+            this.$i18n.locale = this.$localStorage.get('codewithsthef.lang');
+        }
+
         /**
          * Reset the state to not be saved in the localstorage
          */
