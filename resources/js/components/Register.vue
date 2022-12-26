@@ -36,7 +36,9 @@
                     <!-- USERNAME -->
                     <div class="md:flex">
                         <p class="font-semibold ml-2 flex-1">Username</p>
-
+                        <p v-if="errors['username']" class="show-error">
+                            {{ this.errors['username'][0] }}
+                        </p>
                     </div>
 
                     <div class="flex items-center w-full">
@@ -49,6 +51,7 @@
                                 placeholder="Your awesome username"
                                 required
                                 v-model="username"
+                                @keydown="clearError('username')"
                             >
                             <div class="absolute top-0 flex items-center h-full" style="margin-left: 14px;">
                                 <i class="fa-solid fa-at"></i>
@@ -62,6 +65,9 @@
 
                     <div class="md:flex">
                         <p class="font-semibold ml-2 flex-1">Email</p>
+                        <p v-if="errors['email']" class="show-error">
+                            {{ this.errors['email'][0] }}
+                        </p>
                     </div>
 
                     <div class="flex items-center w-full">
@@ -74,6 +80,7 @@
                                 placeholder="Email"
                                 required
                                 v-model="email"
+                                @keydown="clearError('email')"
                             >
                             <div class="absolute top-0 flex items-center h-full" style="margin-left: 14px;">
                                 <i class="fa-regular fa-envelope"></i>
@@ -157,8 +164,33 @@ export default {
             password_confirmation: '12345678',
         }
     },
+    computed: {
+        /**
+         * This returns a shortcut to the errorsObject on vuex
+         *
+         * This object will be an object containing all the errors we received from the request
+         * OR it can return null if there are no errors
+         */
+        errors ()
+        {
+            return this.$store.state.errors.errorsObject;
+        }
+    },
 
     methods: {
+        /**
+         * Clear an error with this key
+         */
+        clearError (key)
+        {
+            if (this.errors[key]) {
+                this.$store.commit('deleteError', key);
+            }
+        },
+
+        /**
+         * Submit register form
+         */
         async submit ()
         {
             this.processing = true;
@@ -183,21 +215,20 @@ export default {
                 .then(response => {
                     console.log('register', response);
 
-                    this.$store.commit('setUserObject', response.data.user);
+                    if (response.data.success)
+                    {
+                        this.$store.commit('setUserObject', response.data.user);
+                    }
 
                     alert('Congratulations! Your account has been created. Please verify your emails to activate login');
 
                     // Push the user to the path /home
-                    if (this.$route.path !== '/')
-                    {
-                        this.$router.push("/");
-                    }
-
+                    window.location.href = "/"
                 })
                 .catch(error => {
                     console.log('register', error.response.data);
 
-                   // this.$store.commit('setErrorsObject', error.response.data.errors);
+                    this.$store.commit('setErrorsObject', error.response.data.errors);
                 });
 
             this.processing = false;

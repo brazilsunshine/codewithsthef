@@ -66,7 +66,7 @@
 
 
 
-.is-admin {
+.post-border {
     border-width: 1px;
     border-image-source: linear-gradient(266deg, #21c8f6 98%, #637bff -52%);
     border-image-slice: 1;
@@ -75,7 +75,7 @@
     background-clip: content-box, border-box;
 }
 
-.is-admin::before {
+.post-border::before {
     position: absolute;
     width: 38px;
     height: 38px;

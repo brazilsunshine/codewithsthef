@@ -23,7 +23,7 @@
                             v-for="post in posts"
                             :key="post.id"
                         >
-                            <Posts
+                            <Post
                                 :post="post"
                             />
                         </div>
@@ -35,21 +35,19 @@
                         next_page="NEXT_IDEAS_PAGE"
                     />
                 </div>
-
             </main>
-
         </div>
     </div>
 </template>
 
 <script>
-import Posts from "./Posts";
+import Post from "./Post";
 import PaginationButtons from "./PaginationButtons";
 export default {
     name: "Home",
     components: {
         PaginationButtons,
-        Posts
+        Post
     },
 
     async mounted()

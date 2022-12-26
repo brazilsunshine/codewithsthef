@@ -100,14 +100,16 @@ export default {
             .then(response => {
                 console.log('login-success', response);
 
-                this.$store.commit('setUserObject', response.data.user);
+
+                if (response.data.success)
+                {
+                    this.$store.commit('setUserObject', response.data.user);
+                }
 
                 alert('You are logged in!');
 
-                if (this.$route.path !== '/')
-                {
-                    this.$router.push("/");
-                }
+                window.location.href = "/"
+
             })
             .catch(error => {
                 console.log('login', error);

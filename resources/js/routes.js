@@ -13,7 +13,7 @@ const router = new VueRouter({
         },
         {
             path: '/register',
-            component: require('./components/Register').default
+            component: require('./components/Register').default,
         },
         {
             path: '/login',
