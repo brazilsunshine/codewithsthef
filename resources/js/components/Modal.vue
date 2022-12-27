@@ -1,7 +1,7 @@
 <template>
     <transition name="modal">
         <div
-            @click="close"
+            @click.stop="close"
             class="modal-mask modal-flex"
         >
             <div
@@ -34,12 +34,14 @@
 
 <script>
 import OptionsModal from "./OptionsModal";
+import EditPostModal from "./EditPostModal";
 
 
 export default {
     name: 'Modal',
     components: {
         OptionsModal,
+        EditPostModal,
     },
     mounted () {
         // Close modal with 'esc' key

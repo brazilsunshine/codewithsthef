@@ -3,8 +3,8 @@
         <ul>
             <li>
                 <a
-                    href="#"
-                    class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3"
+                    @click.stop="loadEditPostModal"
+                    class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3 pointer"
                 >
                     Edit Post
                 </a>
@@ -23,7 +23,16 @@
 
 <script>
 export default {
-    name: "OptionsModal"
+    name: "OptionsModal",
+    methods: {
+        loadEditPostModal ()
+        {
+            this.$store.commit('showModal', {
+                title: 'Edit Post',
+                innerComponent: 'EditPostModal'
+            })
+        }
+    }
 }
 </script>
 

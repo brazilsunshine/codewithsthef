@@ -10,7 +10,7 @@
         </div>
         <div v-if="auth && is('admin')">
             <button
-                @click.stop="toggleSpamModal"
+                @click.stop="toggleOptionsModal"
                 class="relative bg-gray-100 hover:bg-gray-200 rounded-full
                             h-7 transition duration-150 ease-in px-3"
             >
@@ -54,7 +54,7 @@ export default {
         /**
          * Making a commit to update show and set it to true and hide show the modal;
          */
-        toggleSpamModal ()
+        toggleOptionsModal ()
         {
             // this.spamModal = !this.spamModal;
             this.$store.commit('showModal', {
