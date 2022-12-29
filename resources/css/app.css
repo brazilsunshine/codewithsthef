@@ -167,5 +167,13 @@
         max-width: 100% !important;
     }
 
+    .mt30-mob {
+        margin-top: 30px;
+    }
+
+    .maxw350-mob {
+        max-width: 350px;
+    }
+
 
 }

@@ -48,13 +48,18 @@ class SubmitBlogPostController extends Controller
 
         $userId = auth()->user()->id;
 
+        $title = 'title_' . $request->lang;
+
+        $description = 'description_' . $request->lang;
+
+
         try
         {
            $post = Post::create([
                'user_id' => $userId,
-               'title' => $request->title,
                'cover_photo' => $url,
-               'description' => $request->description,
+               $title => $request->title,
+               $description => $request->description,
            ]);
         }
         catch (\Exception $exception)

@@ -19,8 +19,12 @@
                 />
             </div>
             <div class="flex items-center justify between space-x-3">
-                <button>
+                <button class="publish-button">
                     Publish Post
+                </button>
+
+                <button @click.prevent="close" class="cancel-button">
+                    Cancel
                 </button>
             </div>
         </form> <!-- END FORM -->
@@ -34,7 +38,7 @@ export default {
     name: "EditPostModal",
     computed: {
         /**
-         * Return the post to get the post id
+         * Return the post from Post.vue
          */
         post () {
             return this.$store.state.posts.post;
@@ -75,14 +79,6 @@ export default {
         },
 
         /**
-         * Get the title with the current language. ex: this.post.description_pt or this.post.description_en
-         */
-        getSlug ()
-        {
-            return this.post['slug_' + this.$i18n.locale];
-        },
-
-        /**
          * Current locale
          */
         lang ()
@@ -98,7 +94,6 @@ export default {
                 title: this.$store.state.posts.editPostTitle,
                 description: this.$store.state.posts.editPostDescription,
                 lang: this.lang,
-                slug: this.getSlug,
             })
 
             .then(response => {
@@ -106,14 +101,28 @@ export default {
 
                 if (response.data.success)
                 {
+                    this.$store.commit('hideModal');
+
                     Vue.$vToastify.success("You edited your post! =)");
+
+                    window.location.href = "/"
                 }
              })
             .catch(error => {
                 console.log('submit-edited-post', error);
             });
+        },
+
+        /**
+         * Making a commit to update show and set it to false and hide the modal;
+         */
+        close ()
+        {
+            this.$store.commit('hideModal');
         }
     },
+
+
 }
 </script>
 
@@ -147,8 +156,7 @@ export default {
     }
 
     label,
-    button,
-    .preview-button {
+    .publish-button {
         transition: 0.5s ease-in-out all;
         align-self: center;
         font-size: 14px;
@@ -161,8 +169,23 @@ export default {
     }
 
     label:hover,
-    button:hover,
-    .preview-button:hover {
+    .publish-button:hover {
         background-color: rgb(48, 48, 48, 0.7);
+    }
+
+    .cancel-button {
+        transition: 0.5s ease-in-out all;
+        align-self: center;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 20px;
+        padding: 12px 24px;
+        color: #0a0909;
+        background-color: #DCDCDC;
+        text-decoration: none;
+    }
+
+    .cancel-button:hover {
+        background-color: #E8E8E8;
     }
 </style>

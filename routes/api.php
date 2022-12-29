@@ -23,4 +23,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/posts/upload-image-blog-html', 'Admin\UploadImageBlogHtmlController');
     Route::post('/posts/submit-blog-post', 'Admin\SubmitBlogPostController');
     Route::post('/posts/submit-edited-post', 'Admin\SubmitEditedPostController');
+    Route::post('/posts/delete-post', 'Admin\DeletePostController');
 });

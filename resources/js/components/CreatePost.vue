@@ -4,13 +4,7 @@
             Loading...
         </p>
         <div v-else class="post-container">
-            <div :class="{invisible: !error}" class="error-message">
-                <p>{{ this.errorMsg }}</p>
-            </div>
             <div class="blog-info">
-                <p v-if="errors['title']" class="error-message">
-                    {{ this.errors['title'][0] }}
-                </p>
                 <form @submit.prevent="submit">
                     <input
                         type="text"
@@ -56,6 +50,12 @@
                         </div>
                     </div>
                     <div class="blog-actions pt-44-mob">
+                        <div :class="{invisible: !error}" class="error-message">
+                            <p>{{ this.errorMsg }}</p>
+                        </div>
+                        <p v-if="errors['title']" class="error-message">
+                            {{ this.errors['title'][0] }}
+                        </p>
                         <button
                             :disabled="processing"
                         >
@@ -141,6 +141,14 @@ export default {
         {
             return this.$store.state.errors.errorsObject;
         },
+
+        /**
+         * Current locale
+         */
+        lang ()
+        {
+            return this.$i18n.locale;
+        },
     },
 
     methods: {
@@ -159,6 +167,7 @@ export default {
                     formData.append('file', this.$refs.blogPhoto.files[0]);
                     formData.append('title', this.blogTitle);
                     formData.append('description', this.blogHTML);
+                    formData.append('lang', this.lang);
 
                     await axios({
                         url: "/api/posts/submit-blog-post",
@@ -170,7 +179,12 @@ export default {
                     .then(response => {
                         console.log('submit-blog-post', response);
 
-                        Vue.$vToastify.success("You created your post! =)");
+                        if (response.data.success)
+                        {
+                            Vue.$vToastify.success("You created your post! =)");
+
+                            window.location.href = "/"
+                        }
                     })
                     .catch(error => {
                         console.log('submit-blog-post', error.response);

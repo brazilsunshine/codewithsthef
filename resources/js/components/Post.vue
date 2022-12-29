@@ -12,7 +12,7 @@
             <button
                 @click.stop="toggleOptionsModal"
                 class="relative bg-gray-100 hover:bg-gray-200 rounded-full
-                            h-7 transition duration-150 ease-in px-3"
+                            h-7 transition duration-150 ease-in px-3 mt30-mob"
             >
                 <i class="fa-solid fa-plus in-button"></i>
             </button>
@@ -61,13 +61,13 @@ export default {
     },
     methods: {
         /**
-         * Making a commit to make this post available in Vuex so I can use in EditPostModal.vue
+         * Making a commit to make this post available in Vuex so I can use on others components
          *
          * Making a commit to update show and set it to true and hide show the modal;
          */
         toggleOptionsModal ()
         {
-            this.$store.commit('setEditedPost', this.post);
+            this.$store.commit('setPost', this.post);
 
             this.$store.commit('showModal', {
                 innerComponent: 'OptionsModal', // inner component is the component 'inside the model'

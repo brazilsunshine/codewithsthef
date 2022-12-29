@@ -6,6 +6,7 @@
         >
             <div
                 :class="container"
+                class="maxw350-mob"
             >
 
                 <!-- Header -->
@@ -36,6 +37,7 @@
 <script>
 import OptionsModal from "./OptionsModal";
 import EditPostModal from "./EditPostModal";
+import DeletePostModal from "./DeletePostModal";
 
 
 export default {
@@ -43,6 +45,7 @@ export default {
     components: {
         OptionsModal,
         EditPostModal,
+        DeletePostModal,
     },
     mounted () {
         // Close modal with 'esc' key

@@ -61,9 +61,9 @@ export const mutations = {
     },
 
     /**
-     * Admin clicked to edit the post
+     * Admin clicked on the OptionsModal.vue
      */
-    setEditedPost (state, payload)
+    setPost (state, payload)
     {
         state.post = payload;
     },

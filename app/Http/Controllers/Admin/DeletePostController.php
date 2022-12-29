@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
-class SubmitEditedPostController extends Controller
+class DeletePostController extends Controller
 {
     public function __construct ()
     {
@@ -15,35 +15,24 @@ class SubmitEditedPostController extends Controller
 
     public function __invoke (Request $request)
     {
-        $request->validate([
-            'title' => 'min:4',
-            'description' => 'required|min:5',
-        ]);
-
         if (!auth()->check()) {
             return [
                 'success' => false,
                 'msg' => 'user not authenticated'
             ];
         }
+        \Log::info($request);
 
         try
         {
             $post = Post::where('id', $request->postId)->first();
 
-            $title = 'title_' . $request->lang;
+            $post->delete();
 
-            $description = 'description_' . $request->lang;
-
-            $post->$title = $request->title;
-
-            $post->$description = $request->description;
-
-            $post->save();
         }
         catch (\Exception $exception)
         {
-            \Log::info(['SubmitEditedPostController', $exception->getMessage()]);
+            \Log::info(['DeletePostController', $exception->getMessage()]);
 
             return [
                 'success' => false,
@@ -53,8 +42,7 @@ class SubmitEditedPostController extends Controller
 
         return [
             'success' => true,
-            'editedPost' => $post
+            'msg' => 'post deleted successfully'
         ];
     }
-
 }
