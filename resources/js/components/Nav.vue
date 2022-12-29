@@ -45,7 +45,9 @@
 import Languages from "./Languages";
 export default {
     name: "Nav",
-    components: {Languages},
+    components: {
+        Languages
+    },
     computed: {
         /**
          * Return True if the user is logged in.

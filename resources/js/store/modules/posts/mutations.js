@@ -58,5 +58,30 @@ export const mutations = {
     setPaginatedPosts (state, payload)
     {
         state.paginated = payload;
-    }
+    },
+
+    /**
+     * Admin clicked to edit the post
+     */
+    setEditedPost (state, payload)
+    {
+        state.post = payload;
+    },
+
+    /**
+     * Admin edited post title
+     */
+    setEditedPostTitle (state, payload)
+    {
+        state.editPostTitle = payload;
+    },
+
+    /**
+     * Admin edited post description
+     */
+    setEditedPostDescription (state, payload)
+    {
+        state.editPostDescription = payload;
+    },
 }
+

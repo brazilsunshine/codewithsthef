@@ -57,7 +57,7 @@ export default {
     },
     methods: {
         /**
-         * We need it on vuex to close it whenever we click outside of this component
+         * We need it on vuex to close it whenever we click outside this component
          */
         checkOpen ()
         {

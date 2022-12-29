@@ -17,10 +17,10 @@ Route::post('/logout', 'Auth\LogoutController');
 
 Route::get('/user/check-auth', 'Auth\CheckAuthController');
 
-Route::post('/posts/upload-image-blog-html', 'Admin\UploadImageBlogHtmlController');
-Route::post('/posts/submit-blog-post', 'Admin\SubmitBlogPostController');
 Route::get('/posts/get-paginated-posts', 'Posts\GetPaginatedPostsController');
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-
+    Route::post('/posts/upload-image-blog-html', 'Admin\UploadImageBlogHtmlController');
+    Route::post('/posts/submit-blog-post', 'Admin\SubmitBlogPostController');
+    Route::post('/posts/submit-edited-post', 'Admin\SubmitEditedPostController');
 });

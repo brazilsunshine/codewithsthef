@@ -18,11 +18,9 @@ class SubmitBlogPostController extends Controller
     public function __invoke (Request $request)
     {
         $request->validate([
-            'title' => 'required|unique:posts|min:4',
+            'title' => 'required|min:4',
             'description' => 'required|min:5',
         ]);
-
-        \Log::info($request->all());
 
         if (!auth()->check()) {
             return [

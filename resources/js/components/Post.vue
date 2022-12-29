@@ -31,20 +31,29 @@
 
 <script>
 export default {
-    name: "Posts",
+    name: "Post",
     props: [
         'post'
     ],
     computed: {
+        /**
+         * Return the authenticated user
+         */
         auth () {
             return this.$store.state.user.auth;
         },
 
+        /**
+         * Get the title with the current language. ex: this.post.title_pt or this.post.title_en
+         */
         getTitle()
         {
             return this.post['title_' + this.$i18n.locale];
         },
 
+        /**
+         * Get the title with the current language. ex: this.post.description_pt or this.post.description_en
+         */
         getDescription ()
         {
             return this.post['description_' + this.$i18n.locale];
@@ -52,11 +61,14 @@ export default {
     },
     methods: {
         /**
+         * Making a commit to make this post available in Vuex so I can use in EditPostModal.vue
+         *
          * Making a commit to update show and set it to true and hide show the modal;
          */
         toggleOptionsModal ()
         {
-            // this.spamModal = !this.spamModal;
+            this.$store.commit('setEditedPost', this.post);
+
             this.$store.commit('showModal', {
                 innerComponent: 'OptionsModal', // inner component is the component 'inside the model'
                 title: 'Options'

@@ -10,6 +10,7 @@
 
                 <!-- Header -->
                 <header
+                    @click.stop
                     class="md:flex header"
                 >
                     <p class="modal-title">
