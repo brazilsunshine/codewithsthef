@@ -170,7 +170,7 @@ export default {
                     .then(response => {
                         console.log('submit-blog-post', response);
 
-                        // Vue.$vToastify.success("You created your post! =)");
+                        Vue.$vToastify.success("You created your post! =)");
                     })
                     .catch(error => {
                         console.log('submit-blog-post', error.response);

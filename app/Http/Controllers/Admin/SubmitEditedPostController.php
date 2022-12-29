@@ -16,8 +16,8 @@ class SubmitEditedPostController extends Controller
     public function __invoke (Request $request)
     {
         $request->validate([
-            'title' => 'required|min:4',
-            'description' => 'required|min:5',
+            'title' => 'min:4',
+            'description' => 'min:5',
         ]);
 
         if (!auth()->check()) {

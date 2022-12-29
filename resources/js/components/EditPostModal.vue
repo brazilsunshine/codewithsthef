@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import Vue from "vue";
+
 export default {
     name: "EditPostModal",
     computed: {
@@ -101,6 +103,11 @@ export default {
 
             .then(response => {
                 console.log('submit-edited-post', response);
+
+                if (response.data.success)
+                {
+                    Vue.$vToastify.success("You edited your post! =)");
+                }
              })
             .catch(error => {
                 console.log('submit-edited-post', error);
