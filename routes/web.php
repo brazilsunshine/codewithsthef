@@ -25,14 +25,14 @@ Route::get('/login', function () {
     return view('root');
 });
 
-Route::get('/create-post/admin', function () {
+Route::get('/admin/create-post', function () {
     return view('root');
 });
 
-Route::get('/blog-preview/admin', function () {
+Route::get('/admin/blog-preview', function () {
     return view('root');
 });
 
-Route::get('/admin', function () {
+Route::get('/admin/add-admin', function () {
     return view('root');
 });

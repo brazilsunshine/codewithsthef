@@ -17,7 +17,8 @@
                         class="br"
                         type="text"
                         id="addAdmins"
-                        v-model="adminEmail" />
+                        v-model="adminEmail"
+                    />
                 </div>
                 <span>
                     {{ this.functionMsg }}
@@ -30,7 +31,7 @@
 
 <script>
 export default {
-    name: "Admin",
+    name: "AddAdmin",
     data ()
     {
         return {

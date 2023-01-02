@@ -103,7 +103,7 @@ export default {
                 {
                     this.$store.commit('hideModal');
 
-                    Vue.$vToastify.success("You edited your post! =)");
+                    alert("You edited your post! =)");
 
                     window.location.href = "/"
                 }

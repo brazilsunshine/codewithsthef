@@ -20,22 +20,22 @@ const router = new VueRouter({
             component: require('./components/Login').default
         },
         {
-            path: '/create-post/admin',
+            path: '/admin/create-post',
             component: require('./components/CreatePost').default,
             meta: {
                 middleware: [ admin, auth ],
             }
         },
         {
-            path: '/blog-preview/admin',
+            path: '/admin/blog-preview',
             component: require('./components/BlogPreview').default,
             meta: {
                 middleware: [ admin, auth ]
             }
         },
         {
-            path: '/admin',
-            component: require('./components/Admin').default,
+            path: '/admin/add-admin',
+            component: require('./components/AddAdmin').default,
             meta: {
                 middleware: [ admin, auth]
             }
