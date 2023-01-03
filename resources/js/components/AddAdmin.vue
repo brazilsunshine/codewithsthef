@@ -23,13 +23,15 @@
                 <span>
                     {{ this.functionMsg }}
                 </span>
-                <button class="button button-mobile-mt">Submit</button>
+                <button @click="addAdmin" class="button button-mobile-mt">Add admin</button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import Vue from "vue";
+
 export default {
     name: "AddAdmin",
     data ()
@@ -37,6 +39,29 @@ export default {
         return {
             adminEmail: '',
             functionMsg: null,
+        }
+    },
+    methods: {
+        /**
+         * Add an admin on the backend
+         */
+        async addAdmin ()
+        {
+            await axios.post('/api/admin/add-admin', {
+                email: this.adminEmail
+            })
+
+            .then(response => {
+                console.log('add-admin', response);
+
+                if (response.data.success)
+                {
+                    Vue.$vToastify.success(`You added ${response.data.user.name} as an admin =)`);
+                }
+             })
+            .catch(error => {
+                console.log('add-admin', error);
+            });
         }
     },
 }
