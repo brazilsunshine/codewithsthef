@@ -35,10 +35,14 @@ export default {
         background: #211a2f;
     }
 
+    .dark .footer-basic {
+        color: white;
+    }
+
     .footer-basic {
-        padding:40px 0;
-        background-color:#ffffff;
-        color:#4b4c4d;
+        padding: 40px 0;
+        background-color: #ffffff;
+        color: #4b4c4d;
     }
 
     .footer-basic ul {
