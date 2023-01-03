@@ -3880,7 +3880,7 @@ var staticRenderFns = [function () {
     staticClass: "fa-brands fa-twitter"
   })])]), _vm._v(" "), _c("p", {
     staticClass: "copyright"
-  }, [_vm._v("codewithsthef © 2022")])])])]);
+  }, [_vm._v("codewithsthef © 2023")])])])]);
 }];
 render._withStripped = true;
 

@@ -17,7 +17,7 @@
                     <i class="fa-brands fa-twitter"></i>
                 </a>
             </div>
-            <p class="copyright">codewithsthef © 2022</p>
+            <p class="copyright">codewithsthef © 2023</p>
         </footer>
     </div>
     </div>
