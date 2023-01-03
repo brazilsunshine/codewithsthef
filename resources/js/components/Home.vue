@@ -77,8 +77,12 @@ export default {
 </script>
 
 <style scoped>
-.container {
-    width: 71%;
-    padding-bottom: 28px;
-}
+    .container {
+        width: 71%;
+        padding-bottom: 28px;
+    }
+
+    .dark .bg-white {
+        background: #211a2f;
+    }
 </style>

@@ -179,5 +179,14 @@
         flex-direction: column;
     }
 
+    .ptr-mob {
+        padding-top: 24px;
+        padding-right: 2px;
+    }
+
+    .pt28-mob {
+        padding-top: 28px;
+    }
+
 
 }

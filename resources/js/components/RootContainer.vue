@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <Nav />
+    <div :class="(mode === 'dark') ? 'dark' : ''">
+        <Nav :mode="mode" @toggle="toggle" />
 
         <BlogCoverPreviewModal v-show="this.$store.state.posts.blogPhotoPreview" />
 
@@ -21,6 +21,13 @@ import Modal from "./Modal";
 import Footer from "./Footer";
 export default {
     name: "RootContainer",
+    data()
+    {
+        return {
+            mode: 'dark',
+        }
+    },
+
     components: {
         Footer,
         Modal,
@@ -44,6 +51,7 @@ export default {
          */
         await this.$store.dispatch('CHECK_AUTH');
     },
+
     computed: {
         /**
          * Return True to show the modal
@@ -52,10 +60,31 @@ export default {
         {
             return this.$store.state.modal.show;
         }
-    }
+    },
+
+    methods: {
+        toggle ()
+        {
+            if (this.mode === "dark")
+            {
+                this.mode = "light"
+            }
+            else
+            {
+                this.mode = "dark"
+            }
+        }
+    },
 }
 </script>
 
 <style scoped>
+    * {
+        transition: background 0.3s ease-in-out;
+    }
 
+    .dark {
+        background: #242333;
+        color: white;
+    }
 </style>
