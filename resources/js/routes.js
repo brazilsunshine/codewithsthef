@@ -1,8 +1,9 @@
 import VueRouter from "vue-router"
 import store from './store'
 
-import auth from './middleware/auth'
 import admin from './middleware/admin'
+import auth from './middleware/auth'
+import superAdmin from './middleware/superAdmin'
 import middlewarePipeline from './middleware/middlewarePipeline'
 const router = new VueRouter({
     mode: "history",
@@ -37,7 +38,7 @@ const router = new VueRouter({
             path: '/admin/add-admin',
             component: require('./components/AddAdmin').default,
             meta: {
-                middleware: [ admin, auth]
+                middleware: [ auth, superAdmin ]
             }
         },
     ]

@@ -126,8 +126,8 @@
         padding: 4px;
     }
 
-    .padding-mob-2 {
-        padding: 20px;
+    .pt-mob-6 {
+        padding-top: 1.5rem;
     }
 
     .font-size-mob {
@@ -173,6 +173,10 @@
 
     .maxw350-mob {
         max-width: 350px;
+    }
+
+    .flex-col-mob {
+        flex-direction: column;
     }
 
 

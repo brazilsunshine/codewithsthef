@@ -952,6 +952,10 @@ select {
   padding: 0.5rem;
 }
 
+.p-1 {
+  padding: 0.25rem;
+}
+
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -1221,8 +1225,8 @@ select {
     padding: 4px;
   }
 
-  .padding-mob-2 {
-    padding: 20px;
+  .pt-mob-6 {
+    padding-top: 1.5rem;
   }
 
   .font-size-mob {
@@ -1268,6 +1272,10 @@ select {
 
   .maxw350-mob {
     max-width: 350px;
+  }
+
+  .flex-col-mob {
+    flex-direction: column;
   }
 }
 

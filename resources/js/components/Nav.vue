@@ -4,32 +4,31 @@
             <nav
                 class="flex flex-col md:flex-row items-center justify-between px-4 py-3"
             >
-                <div class="flex items-center space-x-4">
-                    <div class="padding-mob-2">
-                        <router-link to="/" class="text-xl p-2 font-size-mob">codewithsthef</router-link>
+                <div class="flex flex-col-mob items-center space-x-4">
+                    <div class="pt-mob-6 ">
+                        <router-link to="/" class="text-xl p-2 font-size-mob">
+                            codewithsthef
+                        </router-link>
                     </div>
-                    <div v-if="auth" class="pointer hov" @click="logout">
+                    <div v-if="auth && is('superadmin')" class="pt-mob-6 hov hover:bg-gray-200 rounded-full
+                            h-7 transition duration-150 ease-in p2-15">
+                        <router-link to="/admin/add-admin">
+                            Add admin <i class="fa-solid fa-user-plus" />
+                        </router-link>
+                    </div>
+                    <div v-if="auth && is('admin')" class="pt-mob-6 hov hover:bg-gray-200 rounded-full
+                            h-7 transition duration-150 ease-in p2-15">
+                        <router-link to="/admin/create-post">
+                            Create a blog <i class="fa-solid fa-plus" />
+                        </router-link>
+                    </div>
+                    <div v-if="auth" class="pointer hov hover:bg-gray-200 rounded-full
+                            h-7 transition duration-150 ease-in p2-15" @click="logout">
                         <p>Logout <span><i class="fa-solid fa-right-from-bracket" /></span></p>
                     </div>
                 </div>
                 <div>
                     <ul class="flex padding-mob-1">
-
-                        <li>
-                            <a href="https://www.instagram.com/codewithsthef/" target="_blank">
-                                <i class="fa-brands fa-instagram"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/brazilsunshine" target="_blank">
-                                <i class="fa-brands fa-github"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.youtube.com/@codewithsthef" target="_blank">
-                                <i class="fa-brands fa-youtube"></i>
-                            </a>
-                        </li>
                         <li class="p7">
                             <Languages />
                         </li>
@@ -105,6 +104,13 @@ export default {
 
     .p7 {
         padding: 7px;
+    }
+    .p2-15 {
+        padding: 2px 15px;
+    }
+
+    .p2 {
+        padding: 2px;
     }
 
 </style>

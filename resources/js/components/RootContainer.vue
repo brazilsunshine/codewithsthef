@@ -9,6 +9,8 @@
         />
 
         <router-view />
+
+        <Footer />
     </div>
 </template>
 
@@ -16,9 +18,11 @@
 import Nav from './Nav'
 import BlogCoverPreviewModal from "./BlogCoverPreviewModal";
 import Modal from "./Modal";
+import Footer from "./Footer";
 export default {
     name: "RootContainer",
     components: {
+        Footer,
         Modal,
         BlogCoverPreviewModal,
         Nav
