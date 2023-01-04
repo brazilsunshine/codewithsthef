@@ -130,6 +130,39 @@ export default {
         -webkit-text-fill-color: transparent;
     }
 
+    hr{
+        height: 1px;
+        background-image: linear-gradient(to right, #ff0084 0%, #33001b  51%, #ff0084  100%);
+        border: none;
+    }
+
+    .name {
+        background-image: linear-gradient(to right, #ff0084 0%, #33001b  51%, #ff0084  100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .btn-grad {
+        margin: 10px;
+        padding: 15px 45px;
+        text-align: center;
+        text-transform: uppercase;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: white;
+        box-shadow: 0 0 20px #eee;
+        border-radius: 10px;
+        display: block;
+    }
+
+    .btn-grad:hover {
+        background-position: right center; /* change the direction of the change here */
+        color: #fff;
+        text-decoration: none;
+    }
+
+
+
     .fa-instagram {
         font-size: 36px;
         padding-right: 20px;

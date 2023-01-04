@@ -45,6 +45,12 @@ export default {
         color: white;
     }
 
+    hr {
+        height: 1px;
+        background-image: linear-gradient(to right, #ff0084 0%, #33001b  51%, #ff0084  100%);
+        border: none;
+    }
+
     .footer-basic {
         padding: 40px 0;
         background-color: #ffffff;

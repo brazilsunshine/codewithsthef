@@ -3,7 +3,7 @@
         <div>
             <main class="container mx-auto flex flex-column-mob">
                 <div class="w-70 mx-auto">
-                    <div class="bg-white md:sticky md:top-8 border-2 border-blue rounded-xl mt-16 gradient">
+                    <div class="bg-white md:sticky md:top-8 border-2 br4 mt-16 gradient">
                         <div class="text-center px-6 py-2 pt-6">
                             <h1 class="font-semibold text-base">
                                 {{ this.$t('home.hello') }}
@@ -91,5 +91,9 @@ export default {
         border-image-slice: 1;
         background-origin: border-box;
         background-clip: content-box, border-box;
+    }
+
+    .br4 {
+        border-radius: 4px;
     }
 </style>
