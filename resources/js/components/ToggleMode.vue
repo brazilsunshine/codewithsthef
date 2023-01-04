@@ -1,14 +1,12 @@
 <template>
-    <div class="toggle-wrapper">
-        <label class="toggle">
-            <input
-                type="checkbox"
-                :checked="(mode === 'dark') ? 'checked' : false"
-                @change="$emit('toggle')"
-            />
-            <!-- Emit an event to the wrapper/parent component which is Nav.vue -->
-            <span class="toggler round"></span>
-        </label>
+    <div class="pointer">
+        <input
+            id="theme-toggle"
+            type="checkbox"
+            :checked="(mode === 'dark') ? 'checked' : false"
+            @change="$emit('toggle')"
+        />
+        <label class="pointer" for="theme-toggle"><span></span></label>
     </div>
 </template>
 
@@ -21,63 +19,49 @@ export default {
 }
 </script>
 
-<style scoped>
-    .toggle {
-        position: relative;
-        display: inline-block;
-        width: 60px;
-        height: 34px;
-    }
+<style lang="scss" scoped>
+    #theme-toggle {
+        display: none;
 
-    .toggle input {
-        opacity: 0;
-        width: 0;
-        height: 0;
-    }
+        & + label {
+            font-size: 1rem;
+            display: flex;
+            height: 2em;
+            width: 4em;
+            border-radius: calc(2em / 2);
+            background-size: auto 8em;
+            background-position: bottom;
+            background-image: linear-gradient(180deg, #021037 0%, #20206A 19%, #4184B1 66%, #62E7F7 100%);
+            transition: 0.2s;
+            border: .125em solid hsl(207, 30%, 95%);
+            overflow: hidden;
 
-    .toggler {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: black;
-        -webkit-transition: 0.4s;
-        transition: 0.4s;
-    }
+            span {
+                background: #fffad8;
+                border-radius: 50%;
+                height: 2em;
+                width: 2em;
+                transform: translateX(-0.125em) scale(.65);
+                transition: 0.2s;
+                cursor: pointer;
+                box-shadow: 0 0 .25em .0625em #fbee8d, 0 0 2em 0 #FFEB3B, inset -.25em -.25em 0 0 #fbee8e, inset -.3125em -.3125em 0 .625em #fff5b2;
+                margin-top: -0.125em;
+            }
+        }
 
-    .toggler:before {
-        position: absolute;
-        content: "";
-        height: 26px;
-        width: 26px;
-        left: 4px;
-        bottom: 4px;
-        background: white;
-        -webkit-transition: 0.4s;
-        transition: 0.4s;
-    }
+        &:checked {
+            font-size: 1rem;
 
-    input:checked + .toggler {
-        background: #8c4bff;
-    }
+            & + label {
+                background-position: top;
+                border-color: hsl(207, 30%, 50%);
 
-    input:focus + .toggler {
-        box-shadow: 0 0 2px #2196F3;
-    }
-
-    input:checked + .toggler:before {
-        -webkit-transform: translateX(26px);
-        -ms-transform: translateX(26px);
-        transform: translateX(26px);
-    }
-
-    .toggler.round {
-        border-radius: 34px;
-    }
-
-    .toggler.round:before {
-        border-radius: 50%;
+                span {
+                    background: transparent;
+                    transform: translateX(calc(100% - .125em)) scale(.65);
+                    box-shadow: inset -.1875em -.1875em 0 0 #fbe7ef, inset -.5625em -.5625em 0 0 #fffff7;
+                }
+            }
+        }
     }
 </style>
