@@ -315,6 +315,32 @@ export default {
         background-color: rgb(48, 48, 48, 0.7);
     }
 
+
+    /* gradient */
+    .dark label,
+    button,
+    .preview-button  {
+        background-image: linear-gradient(to right, #614385 0%, #516395  51%, #614385  100%);
+        align-self: center;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 20px;
+        padding: 12px 24px;
+        text-align: center;
+        text-transform: uppercase;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: white;
+    }
+
+    .dark label:hover,
+    button:hover,
+    .preview-button:hover {
+        background-position: right center; /* change the direction of the change here */
+        color: #fff;
+        text-decoration: none;
+    }
+
     /* Error Styling */
     .invisible {
         opacity: 0 !important;
@@ -376,6 +402,14 @@ export default {
         border-bottom: 1px solid #303030;
     }
 
+    .dark input {
+        transition: .5s ease-in-out all;
+        padding: 10px 4px;
+        border: none;
+        border-bottom: 1px solid #614385;
+        background: transparent;
+    }
+
     .buttons {
         margin: 20px 0;
     }
@@ -396,4 +430,9 @@ export default {
         cursor: not-allowed;
         opacity: 0.8;
     }
+
+
+
+
+
 </style>

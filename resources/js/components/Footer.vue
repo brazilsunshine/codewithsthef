@@ -1,7 +1,7 @@
 <template>
     <div>
         <hr />
-        <div class="footer-basic">
+        <div class="footer-basic py103">
         <footer>
             <div class="social">
                 <a href="https://github.com/brazilsunshine" target="_blank">
@@ -33,6 +33,12 @@ export default {
 
     .dark div {
         background: #211a2f;
+    }
+
+    .dark hr{
+        height: 1px;
+        background-image: linear-gradient(to right, #614385 0%, #516395  51%, #614385  100%);
+        border: none;
     }
 
     .dark .footer-basic {
@@ -97,5 +103,9 @@ export default {
         font-size:13px;
         color:#aaa;
         margin-bottom:0;
+    }
+
+    .py103 {
+        padding: 103px 0;
     }
 </style>

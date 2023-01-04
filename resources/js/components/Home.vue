@@ -85,4 +85,11 @@ export default {
     .dark .bg-white {
         background: #211a2f;
     }
+
+    .dark .gradient {
+        border-image-source: linear-gradient(to right, #614385 0%, #516395  51%, #614385  100%);
+        border-image-slice: 1;
+        background-origin: border-box;
+        background-clip: content-box, border-box;
+    }
 </style>

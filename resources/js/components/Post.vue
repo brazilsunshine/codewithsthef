@@ -14,7 +14,7 @@
                 class="relative bg-gray-100 hover:bg-gray-200 rounded-full
                             h-7 transition duration-150 ease-in px-3 mt30-mob"
             >
-                <i class="fa-solid fa-plus in-button"></i>
+                <i class="fa-solid fa-ellipsis in-button"></i>
             </button>
         </div>
 
@@ -79,6 +79,10 @@ export default {
 </script>
 
 <style scoped>
+
+    .dark i {
+        color: black;
+    }
     .padding-top {
         padding-top: 44px;
     }

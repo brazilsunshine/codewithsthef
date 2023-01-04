@@ -1,6 +1,6 @@
 <template>
-    <div class="signup-container padding-bottom">
-        <div class="bg-white border-2 border-blue rounded-xl mt-16 ">
+    <div class="signup-container maxw350-mob">
+        <div class="bg-white border-2 border-blue rounded-xl">
             <div class="text-center px-6 py-2 pt-6">
                 <h3 class="font-semibold text-base">
                     Register
@@ -18,7 +18,7 @@
                         <div class="relative w-full">
                             <input
                                 class="w-full bg-gray-100 border-none rounded-xl placeholder-gray-400 px-4 py-2"
-                                style="padding-left: 2.5em"
+                                style="padding-left: 2.5em; color: #443467"
                                 id="name"
                                 type="text"
                                 placeholder="Your full name"
@@ -45,7 +45,7 @@
                         <div class="relative w-full">
                             <input
                                 class="w-full bg-gray-100 border-none rounded-xl placeholder-gray-400 px-4 py-2"
-                                style="padding-left: 2.5em"
+                                style="padding-left: 2.5em; color: #443467"
                                 id="username"
                                 type="text"
                                 placeholder="Your awesome username"
@@ -74,7 +74,7 @@
                         <div class="relative w-full">
                             <input
                                 class="w-full bg-gray-100 border-none rounded-xl placeholder-gray-400 px-4 py-2"
-                                style="padding-left: 2.5em"
+                                style="padding-left: 2.5em; color: #443467"
                                 id="email"
                                 type="email"
                                 placeholder="Email"
@@ -96,7 +96,7 @@
                         <div class="relative w-full">
                             <input
                                 class="w-full bg-gray-100 border-none rounded-xl placeholder-gray-400 px-4 py-2"
-                                style="padding-left: 2.5em"
+                                style="padding-left: 2.5em; color: #443467"
                                 id="password"
                                 type="password"
                                 placeholder="Password"
@@ -116,7 +116,7 @@
                         <div class="relative w-full">
                             <input
                                 class="w-full bg-gray-100 border-none rounded-xl placeholder-gray-400 px-4 py-2"
-                                style="padding-left: 2.5em"
+                                style="padding-left: 2.5em; color: #443467"
                                 id="password_confirmation"
                                 type="password"
                                 placeholder="Password Confirmation"
@@ -239,12 +239,21 @@ export default {
 </script>
 
 <style scoped>
-.signup-container {
-    margin: auto;
-    width: 35em;
-}
 
-.padding-bottom {
-    padding-bottom: 50px;
-}
+    .dark .bg-white {
+        background-image: linear-gradient(to right, #614385 0%, #516395  51%, #614385  100%);
+    }
+
+    .dark i {
+        color: #443467;
+    }
+
+    .dark .border-blue {
+        border: none;
+    }
+
+    .signup-container {
+        padding: 63px 0;
+    }
+
 </style>

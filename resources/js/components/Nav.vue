@@ -6,7 +6,7 @@
             >
                 <div class="flex flex-col-mob items-center space-x-4">
                     <div class="pt-mob-6 ">
-                        <router-link to="/" class="text-xl p-2 font-size-mob">
+                        <router-link to="/" class="name text-xl p-2 font-size-mob">
                             codewithsthef
                         </router-link>
                     </div>
@@ -118,8 +118,16 @@ export default {
         background-color: #8c4bff;
     }
 
-    .dark hr {
-        background-color: #8c4bff;
+    .dark hr{
+        height: 1px;
+        background-image: linear-gradient(to right, #614385 0%, #516395  51%, #614385  100%);
+        border: none;
+    }
+
+    .dark .name {
+        background: linear-gradient(to right, #614385 0%, #516395  51%, #614385  100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
 
     .fa-instagram {

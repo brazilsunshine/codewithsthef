@@ -1,6 +1,6 @@
 <template>
-    <div class="signup-container">
-        <div class="bg-white border-2 border-blue rounded-xl mt-16">
+    <div class="signup-container maxw350-mob">
+        <div class="bg-white border-2 border-blue rounded-xl">
             <div class="text-center px-6 py-2 pt-6">
                 <h3 class="font-semibold text-base">
                     Login
@@ -21,14 +21,17 @@
                         <div class="relative w-full">
                             <input
                                 class="w-full bg-gray-100 border-none rounded-xl placeholder-gray-400 px-4 py-2"
-                                style="padding-left: 2.5em"
+                                style="padding-left: 2.5em; color: #443467"
                                 id="username"
                                 type="text"
                                 placeholder="Your awesome username"
                                 required
                                 v-model="username"
                             >
-                            <div class="absolute top-0 flex items-center h-full" style="margin-left: 14px;">
+                            <div
+                                class="absolute top-0 flex items-center h-full"
+                                 style="margin-left: 14px;"
+                            >
                                 <i class="fa-solid fa-at"></i>
                             </div>
                         </div>
@@ -42,7 +45,7 @@
                         <div class="relative w-full">
                             <input
                                 class="w-full bg-gray-100 border-none rounded-xl placeholder-gray-400 px-4 py-2"
-                                style="padding-left: 2.5em"
+                                style="padding-left: 2.5em; color: #443467"
                                 id="password"
                                 type="password"
                                 placeholder="Password"
@@ -121,3 +124,23 @@ export default {
 }
 </script>
 
+<style scoped>
+
+    .dark .bg-white {
+        background-image: linear-gradient(to right, #614385 0%, #516395  51%, #614385  100%);
+    }
+
+    .dark i {
+        color: #443467;
+    }
+
+    .dark .border-blue {
+        border: none;
+    }
+
+    .signup-container {
+        padding: 63px 0;
+    }
+
+
+</style>
