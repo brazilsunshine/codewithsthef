@@ -2,7 +2,7 @@
     <div>
         <div class="text-gray-900">
             <nav
-                class="flex flex-col md:flex-row items-center justify-between px-4 py-3"
+                class="flex flex-col md:flex-row items-center justify-between px6 py-3"
             >
                 <div class="flex flex-col-mob items-center">
                     <div class="py30">
@@ -192,5 +192,12 @@ export default {
     .pl9 {
         padding-left: 9px;
     }
+
+    .px6 {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+
+
 
 </style>
