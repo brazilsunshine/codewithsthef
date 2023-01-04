@@ -4229,16 +4229,16 @@ var render = function render() {
   }, [_c("nav", {
     staticClass: "flex flex-col md:flex-row items-center justify-between px-4 py-3"
   }, [_c("div", {
-    staticClass: "flex flex-col-mob items-center space-x-4"
+    staticClass: "flex flex-col-mob items-center"
   }, [_c("div", {
-    staticClass: "pt-mob-6"
+    staticClass: "py30"
   }, [_c("router-link", {
     staticClass: "name text-xl p-2 font-size-mob",
     attrs: {
       to: "/"
     }
   }, [_vm._v("\n                        codewithsthef\n                    ")])], 1), _vm._v(" "), _vm.auth && _vm.is("superadmin") ? _c("div", {
-    staticClass: "pt-mob-6 hov hover:bg-gray-200 rounded-full h-7 transition duration-150 ease-in p2-15"
+    staticClass: "hov hover:bg-gray-200 rounded-full h-7 transition duration-150 ease-in p2-15"
   }, [_c("router-link", {
     attrs: {
       to: "/admin/add-admin"
@@ -4246,7 +4246,7 @@ var render = function render() {
   }, [_vm._v("\n                        Add admin "), _c("i", {
     staticClass: "fa-solid fa-user-plus"
   })])], 1) : _vm._e(), _vm._v(" "), _vm.auth && _vm.is("admin") ? _c("div", {
-    staticClass: "pt-mob-6 hov hover:bg-gray-200 rounded-full h-7 transition duration-150 ease-in p2-15"
+    staticClass: "hov hover:bg-gray-200 rounded-full h-7 transition duration-150 ease-in p2-15"
   }, [_c("router-link", {
     attrs: {
       to: "/admin/create-post"
@@ -4258,9 +4258,7 @@ var render = function render() {
     on: {
       click: _vm.logout
     }
-  }, [_vm._m(0)]) : _vm._e()]), _vm._v(" "), _c("div", {
-    staticClass: "pt28-mob"
-  }, [_c("ul", {
+  }, [_vm._m(0)]) : _vm._e()]), _vm._v(" "), _c("div", [_c("ul", {
     staticClass: "flex padding-mob-1"
   }, [_c("li", {
     staticClass: "p7"
@@ -4280,9 +4278,7 @@ var render = function render() {
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("p", {
-    staticClass: "ptr-mob"
-  }, [_vm._v("\n                        Logout"), _c("span", [_c("i", {
+  return _c("p", [_vm._v("\n                        Logout"), _c("span", [_c("i", {
     staticClass: "fa-solid fa-right-from-bracket pl9"
   })])]);
 }];

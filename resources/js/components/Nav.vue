@@ -4,15 +4,15 @@
             <nav
                 class="flex flex-col md:flex-row items-center justify-between px-4 py-3"
             >
-                <div class="flex flex-col-mob items-center space-x-4">
-                    <div class="pt-mob-6 ">
+                <div class="flex flex-col-mob items-center">
+                    <div class="py30">
                         <router-link to="/" class="name text-xl p-2 font-size-mob">
                             codewithsthef
                         </router-link>
                     </div>
                     <div
                         v-if="auth && is('superadmin')"
-                        class="pt-mob-6 hov hover:bg-gray-200 rounded-full
+                        class="hov hover:bg-gray-200 rounded-full
                             h-7 transition duration-150 ease-in p2-15"
                     >
                         <router-link to="/admin/add-admin">
@@ -21,7 +21,7 @@
                     </div>
                     <div
                         v-if="auth && is('admin')"
-                        class="pt-mob-6 hov hover:bg-gray-200 rounded-full
+                        class="hov hover:bg-gray-200 rounded-full
                             h-7 transition duration-150 ease-in p2-15"
                     >
                         <router-link to="/admin/create-post">
@@ -34,12 +34,12 @@
                             h-7 transition duration-150 ease-in p2-15"
                         @click="logout"
                     >
-                        <p class="ptr-mob">
+                        <p>
                             Logout<span><i class="fa-solid fa-right-from-bracket pl9" /></span>
                         </p>
                     </div>
                 </div>
-                <div class="pt28-mob">
+                <div>
                     <ul class="flex padding-mob-1">
                         <li class="p7">
                             <ToggleMode :mode="mode" @toggle="$emit('toggle')"/>
