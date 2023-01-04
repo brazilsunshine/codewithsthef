@@ -41,6 +41,11 @@ export default {
             this.$i18n.locale = this.$localStorage.get('codewithsthef.lang');
         }
 
+        if (this.$localStorage.get('theme'))
+        {
+            this.mode = this.$localStorage.get('theme');
+        }
+
         /**
          * Reset the state to not be saved in the localstorage
          */
@@ -73,6 +78,8 @@ export default {
             {
                 this.mode = "dark"
             }
+
+            this.$localStorage.set('theme', this.mode);
         }
     },
 }

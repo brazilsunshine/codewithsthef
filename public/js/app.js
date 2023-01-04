@@ -3327,6 +3327,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               if (_this.$localStorage.get('codewithsthef.lang')) {
                 _this.$i18n.locale = _this.$localStorage.get('codewithsthef.lang');
               }
+              if (_this.$localStorage.get('theme')) {
+                _this.mode = _this.$localStorage.get('theme');
+              }
 
               /**
                * Reset the state to not be saved in the localstorage
@@ -3336,9 +3339,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               /**
                * Check auth on the backend before doing anything else
                */
-              _context.next = 4;
+              _context.next = 5;
               return _this.$store.dispatch('CHECK_AUTH');
-            case 4:
+            case 5:
             case "end":
               return _context.stop();
           }
@@ -3361,6 +3364,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       } else {
         this.mode = "dark";
       }
+      this.$localStorage.set('theme', this.mode);
     }
   }
 });
