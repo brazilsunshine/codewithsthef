@@ -4026,7 +4026,7 @@ var render = function render() {
   return _c("div", {
     staticClass: "signup-container maxw350-mob"
   }, [_c("div", {
-    staticClass: "bg-white border-2 border-blue rounded-xl"
+    staticClass: "bg-white border-2 rounded-xl gradient"
   }, [_vm._m(0), _vm._v(" "), _c("form", {
     staticClass: "text-sm space-y-4 px-4 py-6",
     attrs: {
@@ -4447,7 +4447,7 @@ var render = function render() {
   return _c("div", {
     staticClass: "signup-container maxw350-mob"
   }, [_c("div", {
-    staticClass: "bg-white border-2 gradient"
+    staticClass: "bg-white border-2 rounded-xl gradient"
   }, [_vm._m(0), _vm._v(" "), _c("form", {
     staticClass: "text-sm space-y-4 px-4 py-6",
     attrs: {
@@ -7983,7 +7983,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.container[data-v-f2b6376c] {\n    width: 71%;\n    padding-bottom: 28px;\n}\n.dark .bg-white[data-v-f2b6376c] {\n    background: #211a2f;\n}\n.dark .gradient[data-v-f2b6376c] {\n    border-image-source: linear-gradient(to right, #614385 0%, #516395  51%, #614385  100%);\n    border-image-slice: 1;\n    background-origin: border-box;\n    background-clip: content-box, border-box;\n}\n.br4[data-v-f2b6376c] {\n    border-radius: 4px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.container[data-v-f2b6376c] {\n    width: 71%;\n    padding-bottom: 28px;\n}\n.dark .bg-white[data-v-f2b6376c] {\n    background: #211a2f;\n}\n.dark .gradient[data-v-f2b6376c] {\n    border-image-source: linear-gradient(to bottom, rgb(68, 52, 103), rgba(42, 9, 15, 0));\n    border-image-slice: 1;\n    background-origin: border-box;\n    background-clip: content-box, border-box;\n}\n.br4[data-v-f2b6376c] {\n    border-radius: 4px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -8031,7 +8031,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.dark .bg-white[data-v-6bdc8b8e] {\n    background-image: linear-gradient(to right, #614385 0%, #516395  51%, #614385  100%);\n}\n.dark i[data-v-6bdc8b8e] {\n    color: #443467;\n}\n.dark .border-blue[data-v-6bdc8b8e] {\n    border: none;\n}\n.signup-container[data-v-6bdc8b8e] {\n    padding: 63px 0;\n}\n\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.dark .bg-white[data-v-6bdc8b8e] {\n    background-image: linear-gradient(to right, #614385 0%, #516395  51%, #614385  100%);\n}\n.dark i[data-v-6bdc8b8e] {\n    color: #443467;\n}\n.dark .border-2[data-v-6bdc8b8e] {\n    border: none;\n}\n.signup-container[data-v-6bdc8b8e] {\n    padding: 63px 0;\n}\n\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

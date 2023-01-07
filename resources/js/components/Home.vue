@@ -87,7 +87,7 @@ export default {
     }
 
     .dark .gradient {
-        border-image-source: linear-gradient(to right, #614385 0%, #516395  51%, #614385  100%);
+        border-image-source: linear-gradient(to bottom, rgb(68, 52, 103), rgba(42, 9, 15, 0));
         border-image-slice: 1;
         background-origin: border-box;
         background-clip: content-box, border-box;
