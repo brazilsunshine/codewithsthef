@@ -1,6 +1,6 @@
 <template>
     <div class="signup-container maxw350-mob">
-        <div class="bg-white border-2 border-blue rounded-xl">
+        <div class="bg-white border-2 gradient">
             <div class="text-center px-6 py-2 pt-6">
                 <h3 class="font-semibold text-base">
                     Register
@@ -160,8 +160,8 @@ export default {
             name: '',
             username: '',
             email: '',
-            password: '12345678',
-            password_confirmation: '12345678',
+            password: '',
+            password_confirmation: '',
         }
     },
     computed: {
@@ -248,7 +248,7 @@ export default {
         color: #443467;
     }
 
-    .dark .border-blue {
+    .dark .border-2 {
         border: none;
     }
 

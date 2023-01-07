@@ -3203,8 +3203,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       name: '',
       username: '',
       email: '',
-      password: '12345678',
-      password_confirmation: '12345678'
+      password: '',
+      password_confirmation: ''
     };
   },
   computed: {
@@ -4447,7 +4447,7 @@ var render = function render() {
   return _c("div", {
     staticClass: "signup-container maxw350-mob"
   }, [_c("div", {
-    staticClass: "bg-white border-2 border-blue rounded-xl"
+    staticClass: "bg-white border-2 gradient"
   }, [_vm._m(0), _vm._v(" "), _c("form", {
     staticClass: "text-sm space-y-4 px-4 py-6",
     attrs: {
@@ -8127,7 +8127,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.dark .bg-white[data-v-97358ae4] {\n    background-image: linear-gradient(to right, #614385 0%, #516395  51%, #614385  100%);\n}\n.dark i[data-v-97358ae4] {\n    color: #443467;\n}\n.dark .border-blue[data-v-97358ae4] {\n    border: none;\n}\n.signup-container[data-v-97358ae4] {\n    padding: 63px 0;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.dark .bg-white[data-v-97358ae4] {\n    background-image: linear-gradient(to right, #614385 0%, #516395  51%, #614385  100%);\n}\n.dark i[data-v-97358ae4] {\n    color: #443467;\n}\n.dark .border-2[data-v-97358ae4] {\n    border: none;\n}\n.signup-container[data-v-97358ae4] {\n    padding: 63px 0;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
