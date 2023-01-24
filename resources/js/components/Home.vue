@@ -83,7 +83,7 @@ export default {
     }
 
     .dark .bg-white {
-        background: #211a2f;
+        background: #242333;
     }
 
     .dark .gradient {

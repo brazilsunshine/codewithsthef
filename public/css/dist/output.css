@@ -903,11 +903,6 @@ select {
   border-color: rgb(212 212 212 / var(--tw-border-opacity));
 }
 
-.border-blue {
-  --tw-border-opacity: 1;
-  border-color: rgb(50 138 241 / var(--tw-border-opacity));
-}
-
 .border-gray-200 {
   --tw-border-opacity: 1;
   border-color: rgb(229 229 229 / var(--tw-border-opacity));
