@@ -36,9 +36,9 @@ export default {
     },
     async mounted ()
     {
-        if (this.$localStorage.get('codewithsthef.lang'))
+        if (this.$localStorage.get('lang'))
         {
-            this.$i18n.locale = this.$localStorage.get('codewithsthef.lang');
+            this.$i18n.locale = this.$localStorage.get('lang');
         }
 
         if (this.$localStorage.get('theme'))

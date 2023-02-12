@@ -2744,7 +2744,7 @@ __webpack_require__.r(__webpack_exports__);
       button: 'dropdown navbar-item pointer',
       langsOpen: false,
       dir: '/img/flags/',
-      langs: ['en', 'pt']
+      langs: ['en', 'es', 'pt']
     };
   },
   computed: {
@@ -2781,6 +2781,9 @@ __webpack_require__.r(__webpack_exports__);
      * Change the currently active language
      */
     language: function language(lang) {
+      console.log({
+        lang: lang
+      });
       this.$i18n.locale = lang;
       this.$localStorage.set('lang', lang);
       this.langsOpen = false;
@@ -3324,8 +3327,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              if (_this.$localStorage.get('codewithsthef.lang')) {
-                _this.$i18n.locale = _this.$localStorage.get('codewithsthef.lang');
+              if (_this.$localStorage.get('lang')) {
+                _this.$i18n.locale = _this.$localStorage.get('lang');
               }
               if (_this.$localStorage.get('theme')) {
                 _this.mode = _this.$localStorage.get('theme');
@@ -4913,6 +4916,25 @@ var en = {
 
 /***/ }),
 
+/***/ "./resources/js/langs/es/index.js":
+/*!****************************************!*\
+  !*** ./resources/js/langs/es/index.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "es": () => (/* binding */ es)
+/* harmony export */ });
+/* harmony import */ var _home_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./home.json */ "./resources/js/langs/es/home.json");
+
+var es = {
+  home: _home_json__WEBPACK_IMPORTED_MODULE_0__
+};
+
+/***/ }),
+
 /***/ "./resources/js/langs/index.js":
 /*!*************************************!*\
   !*** ./resources/js/langs/index.js ***!
@@ -4925,12 +4947,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "langs": () => (/* binding */ langs)
 /* harmony export */ });
 /* harmony import */ var _en__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./en */ "./resources/js/langs/en/index.js");
-/* harmony import */ var _pt__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pt */ "./resources/js/langs/pt/index.js");
+/* harmony import */ var _es__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./es */ "./resources/js/langs/es/index.js");
+/* harmony import */ var _pt__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pt */ "./resources/js/langs/pt/index.js");
+
 
 
 var langs = {
   'en': _en__WEBPACK_IMPORTED_MODULE_0__.en,
-  'pt': _pt__WEBPACK_IMPORTED_MODULE_1__.pt
+  'es': _es__WEBPACK_IMPORTED_MODULE_1__.es,
+  'pt': _pt__WEBPACK_IMPORTED_MODULE_2__.pt
 };
 
 /***/ }),
@@ -77305,6 +77330,17 @@ var index = {
 
 "use strict";
 module.exports = JSON.parse('{"hello":"Hello! I\'m Sthefane","intro":"I\'m 23 years old and a self-taught software engineer. I\'m Brazilian but I live in Ireland. I work with Laravel, Vue.js, TailwindCss and I\'m studying Testing. I created this website with the intention of posting blogs to give tips to those who have interest in studying web development. The term \\"software engineering\\" can often seem daunting, however, like everything in this life, you just need to study and be interested that you will surely will make it! The key to reaching your goal is to maintain your motivation. It may take weeks, months or most likely years, but anything is possible if you get out of your comfort zone."}');
+
+/***/ }),
+
+/***/ "./resources/js/langs/es/home.json":
+/*!*****************************************!*\
+  !*** ./resources/js/langs/es/home.json ***!
+  \*****************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = JSON.parse('{"hello":"¡Hola! Soy Sthefane","intro":"Tengo 23 años y soy ingeniero de software autodidacta. Soy brasileño pero vivo en Irlanda. Trabajo con Laravel, Vue.js, TailwindCss y estoy estudiando Testing. Creé este sitio web con la intención de publicar blogs para dar consejos a aquellos que tienen interés en estudiar desarrollo web. El término \\"ingeniería de software\\" a menudo puede parecer desalentador, sin embargo, como todo en esta vida, ¡solo necesita estudiar e interesarse que seguramente lo logrará! La clave para alcanzar tu meta es mantener tu motivación. Puede llevar semanas, meses o probablemente años, pero todo es posible si sales de tu zona de confort.\\n"}');
 
 /***/ }),
 

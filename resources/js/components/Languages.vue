@@ -35,6 +35,7 @@ export default {
             dir: '/img/flags/',
             langs: [
                 'en',
+                'es',
                 'pt',
             ],
         };
@@ -47,6 +48,7 @@ export default {
         {
             return this.langs.filter(lang => lang !== this.$i18n.locale); // this.$i18n is the active language
         },
+
         /**
          * Current locale
          */
@@ -63,6 +65,7 @@ export default {
         {
             return this.$store.state.languages.langsOpen ? this.button + ' is-active' : this.button;
         },
+
         /**
          * Return filepath for country flag
          */
@@ -70,12 +73,16 @@ export default {
         {
             return this.dir + lang.toLowerCase() + '.png';
         },
+
         /**
          * Change the currently active language
          */
         language (lang)
         {
+            console.log({lang});
+
             this.$i18n.locale = lang;
+
             this.$localStorage.set('lang', lang);
 
             this.langsOpen = false;
