@@ -136,11 +136,11 @@ export default {
         border: none;
     }
 
-    .name {
-        background-image: linear-gradient(to right, #ff0084 0%, #33001b  51%, #ff0084  100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
+    /*.name {*/
+    /*    background-image: linear-gradient(to right, #ff0084 0%, #33001b  51%, #ff0084  100%);*/
+    /*    -webkit-background-clip: text;*/
+    /*    -webkit-text-fill-color: transparent;*/
+    /*}*/
 
     .btn-grad {
         margin: 10px;

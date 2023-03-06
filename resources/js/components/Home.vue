@@ -1,6 +1,9 @@
 <template>
     <div>
-        <div>
+        <div v-if="loading">
+            Loading...
+        </div>
+        <div v-else>
             <main class="container mx-auto flex flex-column-mob">
                 <div class="w-70 mx-auto">
                     <div class="bg-white md:sticky md:top-8 border-2 br4 mt-16 gradient">
@@ -16,7 +19,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="w-full md:w-175 padding-idea-on-mobile">
                     <div class="mt-16">
                         <div
@@ -49,10 +51,17 @@ export default {
         PaginationButtons,
         Post
     },
-
+    data ()
+    {
+        return {
+            loading: true,
+        }
+    },
     async mounted()
     {
-        await this.$store.dispatch('GET_PAGINATED_POSTS')
+        await this.$store.dispatch('GET_PAGINATED_POSTS');
+
+        this.loading = false;
     },
 
     computed: {

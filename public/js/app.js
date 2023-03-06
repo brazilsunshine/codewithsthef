@@ -2691,6 +2691,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     PaginationButtons: _PaginationButtons__WEBPACK_IMPORTED_MODULE_1__["default"],
     Post: _Post__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
+  data: function data() {
+    return {
+      loading: true
+    };
+  },
   mounted: function mounted() {
     var _this = this;
     return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -2701,6 +2706,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               _context.next = 2;
               return _this.$store.dispatch('GET_PAGINATED_POSTS');
             case 2:
+              _this.loading = false;
+            case 3:
             case "end":
               return _context.stop();
           }
@@ -3909,7 +3916,7 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_c("div", [_c("main", {
+  return _c("div", [_vm.loading ? _c("div", [_vm._v("\n        Loading...\n    ")]) : _c("div", [_c("main", {
     staticClass: "container mx-auto flex flex-column-mob"
   }, [_c("div", {
     staticClass: "w-70 mx-auto"
@@ -8104,7 +8111,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.dark nav[data-v-7cd4f788] {\n    background: #211a2f;\n    color: white;\n}\n.dark .hov[data-v-7cd4f788]:hover {\n    background-color: #8c4bff;\n}\n.dark hr[data-v-7cd4f788]{\n    height: 1px;\n    background-image: linear-gradient(to right, #614385 0%, #516395  51%, #614385  100%);\n    border: none;\n}\n.dark .name[data-v-7cd4f788] {\n    background: linear-gradient(to right, #614385 0%, #516395  51%, #614385  100%);\n    -webkit-background-clip: text;\n    -webkit-text-fill-color: transparent;\n}\nhr[data-v-7cd4f788]{\n    height: 1px;\n    background-image: linear-gradient(to right, #ff0084 0%, #33001b  51%, #ff0084  100%);\n    border: none;\n}\n.name[data-v-7cd4f788] {\n    background-image: linear-gradient(to right, #ff0084 0%, #33001b  51%, #ff0084  100%);\n    -webkit-background-clip: text;\n    -webkit-text-fill-color: transparent;\n}\n.btn-grad[data-v-7cd4f788] {\n    margin: 10px;\n    padding: 15px 45px;\n    text-align: center;\n    text-transform: uppercase;\n    transition: 0.5s;\n    background-size: 200% auto;\n    color: white;\n    box-shadow: 0 0 20px #eee;\n    border-radius: 10px;\n    display: block;\n}\n.btn-grad[data-v-7cd4f788]:hover {\n    background-position: right center; /* change the direction of the change here */\n    color: #fff;\n    text-decoration: none;\n}\n.fa-instagram[data-v-7cd4f788] {\n    font-size: 36px;\n    padding-right: 20px;\n}\n.fa-github[data-v-7cd4f788] {\n    font-size: 33px;\n    padding-right: 20px;\n}\n.fa-youtube[data-v-7cd4f788]{\n    font-size: 33px;\n    padding-right: 10px;\n}\n.p7[data-v-7cd4f788] {\n    padding: 7px;\n}\n.p2-15[data-v-7cd4f788] {\n    padding: 2px 15px;\n}\n.pt-13[data-v-7cd4f788] {\n    padding-top: 13px;\n}\n.pl9[data-v-7cd4f788] {\n    padding-left: 9px;\n}\n.px6[data-v-7cd4f788] {\n    padding-left: 3rem;\n    padding-right: 3rem;\n}\n\n\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.dark nav[data-v-7cd4f788] {\n    background: #211a2f;\n    color: white;\n}\n.dark .hov[data-v-7cd4f788]:hover {\n    background-color: #8c4bff;\n}\n.dark hr[data-v-7cd4f788]{\n    height: 1px;\n    background-image: linear-gradient(to right, #614385 0%, #516395  51%, #614385  100%);\n    border: none;\n}\n.dark .name[data-v-7cd4f788] {\n    background: linear-gradient(to right, #614385 0%, #516395  51%, #614385  100%);\n    -webkit-background-clip: text;\n    -webkit-text-fill-color: transparent;\n}\nhr[data-v-7cd4f788]{\n    height: 1px;\n    background-image: linear-gradient(to right, #ff0084 0%, #33001b  51%, #ff0084  100%);\n    border: none;\n}\n\n/*.name {*/\n/*    background-image: linear-gradient(to right, #ff0084 0%, #33001b  51%, #ff0084  100%);*/\n/*    -webkit-background-clip: text;*/\n/*    -webkit-text-fill-color: transparent;*/\n/*}*/\n.btn-grad[data-v-7cd4f788] {\n    margin: 10px;\n    padding: 15px 45px;\n    text-align: center;\n    text-transform: uppercase;\n    transition: 0.5s;\n    background-size: 200% auto;\n    color: white;\n    box-shadow: 0 0 20px #eee;\n    border-radius: 10px;\n    display: block;\n}\n.btn-grad[data-v-7cd4f788]:hover {\n    background-position: right center; /* change the direction of the change here */\n    color: #fff;\n    text-decoration: none;\n}\n.fa-instagram[data-v-7cd4f788] {\n    font-size: 36px;\n    padding-right: 20px;\n}\n.fa-github[data-v-7cd4f788] {\n    font-size: 33px;\n    padding-right: 20px;\n}\n.fa-youtube[data-v-7cd4f788]{\n    font-size: 33px;\n    padding-right: 10px;\n}\n.p7[data-v-7cd4f788] {\n    padding: 7px;\n}\n.p2-15[data-v-7cd4f788] {\n    padding: 2px 15px;\n}\n.pt-13[data-v-7cd4f788] {\n    padding-top: 13px;\n}\n.pl9[data-v-7cd4f788] {\n    padding-left: 9px;\n}\n.px6[data-v-7cd4f788] {\n    padding-left: 3rem;\n    padding-right: 3rem;\n}\n\n\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
