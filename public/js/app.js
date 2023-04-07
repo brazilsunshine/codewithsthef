@@ -3873,7 +3873,7 @@ var staticRenderFns = [function () {
     staticClass: "fa-brands fa-github"
   })]), _vm._v(" "), _c("a", {
     attrs: {
-      href: "https://www.instagram.com/codewithsthef/",
+      href: "https://www.instagram.com/sthefanesoliveira/",
       target: "_blank"
     }
   }, [_c("i", {

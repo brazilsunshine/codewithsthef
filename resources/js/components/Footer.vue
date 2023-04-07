@@ -7,7 +7,7 @@
                 <a href="https://github.com/brazilsunshine" target="_blank">
                     <i class="fa-brands fa-github"></i>
                 </a>
-                <a href="https://www.instagram.com/codewithsthef/" target="_blank">
+                <a href="https://www.instagram.com/sthefanesoliveira/" target="_blank">
                     <i class="fa-brands fa-instagram"></i>
                 </a>
                 <a href="https://www.youtube.com/@codewithsthef" target="_blank">
