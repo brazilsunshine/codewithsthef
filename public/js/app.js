@@ -77342,7 +77342,7 @@ var index = {
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"hello":"Hello! I\'m Sthefane","intro":"I\'m 23 years old and a self-taught software engineer. I\'m Brazilian but I live in Ireland. I work with Laravel, Vue.js, TailwindCss and I\'m studying Testing. I created this website with the intention of posting blogs to give tips to those who have interest in studying web development. The term \\"software engineering\\" can often seem daunting, however, like everything in this life, you just need to study and be interested that you will surely will make it! The key to reaching your goal is to maintain your motivation. It may take weeks, months or most likely years, but anything is possible if you get out of your comfort zone."}');
+module.exports = JSON.parse('{"hello":"Hello! I\'m Sthefane","intro":"I\'m 24 years old and a self-taught software engineer. I\'m Brazilian but I live in Ireland. I work with Laravel, Vue.js, TailwindCss and I\'m studying Testing. I created this website with the intention of posting blogs to give tips to those who have interest in studying web development. The term \\"software engineering\\" can often seem daunting, however, like everything in this life, you just need to study and be interested that you will surely will make it! The key to reaching your goal is to maintain your motivation. It may take weeks, months or most likely years, but anything is possible if you get out of your comfort zone."}');
 
 /***/ }),
 
@@ -77353,7 +77353,7 @@ module.exports = JSON.parse('{"hello":"Hello! I\'m Sthefane","intro":"I\'m 23 ye
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"hello":"¡Hola! Soy Sthefane","intro":"Tengo 23 años y soy ingeniero de software autodidacta. Soy brasileño pero vivo en Irlanda. Trabajo con Laravel, Vue.js, TailwindCss y estoy estudiando Testing. Creé este sitio web con la intención de publicar blogs para dar consejos a aquellos que tienen interés en estudiar desarrollo web. El término \\"ingeniería de software\\" a menudo puede parecer desalentador, sin embargo, como todo en esta vida, ¡solo necesita estudiar e interesarse que seguramente lo logrará! La clave para alcanzar tu meta es mantener tu motivación. Puede llevar semanas, meses o probablemente años, pero todo es posible si sales de tu zona de confort.\\n"}');
+module.exports = JSON.parse('{"hello":"¡Hola! Soy Sthefane","intro":"Tengo 24 años y soy ingeniero de software autodidacta. Soy brasileño pero vivo en Irlanda. Trabajo con Laravel, Vue.js, TailwindCss y estoy estudiando Testing. Creé este sitio web con la intención de publicar blogs para dar consejos a aquellos que tienen interés en estudiar desarrollo web. El término \\"ingeniería de software\\" a menudo puede parecer desalentador, sin embargo, como todo en esta vida, ¡solo necesita estudiar e interesarse que seguramente lo logrará! La clave para alcanzar tu meta es mantener tu motivación. Puede llevar semanas, meses o probablemente años, pero todo es posible si sales de tu zona de confort.\\n"}');
 
 /***/ }),
 
@@ -77364,7 +77364,7 @@ module.exports = JSON.parse('{"hello":"¡Hola! Soy Sthefane","intro":"Tengo 23 a
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"hello":"Oii! Eu sou a Sthefane!","intro":"Eu tenho 23 anos e sou engenheira de software autodidata. Sou brasileira mas moro na Irlanda. Eu trabalho com Laravel, Vue.js, TailwindCss e estou estudando Testing. Criei esse Website com o intuito de postar blogs para dar dicas para quem tem interesse em estudar web development. Muitas vezes o termo \\"engenharia de software\\" pode parecer assustador, no entanto, como tudo nessa vida, você so precisar estudar e ter interesse que com certeza você vai conseguir! A chave para alcancar seu objetivo é manter a sua motivação. Pode demorar semanas, meses ou muito provavelmente anos, mas tudo é possível se você sair da sua zona de conforto."}');
+module.exports = JSON.parse('{"hello":"Oii! Eu sou a Sthefane!","intro":"Eu tenho 24 anos e sou engenheira de software autodidata. Sou brasileira mas moro na Irlanda. Eu trabalho com Laravel, Vue.js, TailwindCss e estou estudando Testing. Criei esse Website com o intuito de postar blogs para dar dicas para quem tem interesse em estudar web development. Muitas vezes o termo \\"engenharia de software\\" pode parecer assustador, no entanto, como tudo nessa vida, você so precisar estudar e ter interesse que com certeza você vai conseguir! A chave para alcancar seu objetivo é manter a sua motivação. Pode demorar semanas, meses ou muito provavelmente anos, mas tudo é possível se você sair da sua zona de conforto."}');
 
 /***/ })
 
