@@ -430,9 +430,4 @@ export default {
         cursor: not-allowed;
         opacity: 0.8;
     }
-
-
-
-
-
 </style>

@@ -22,9 +22,16 @@ const router = new VueRouter({
         {
             path: '/login',
             component: require('./components/Login').default,
-            meta: {
-                middleware: [ admin, auth ],
-            }
+            // meta: {
+            //     middleware: [ admin, auth ],
+            // }
+        },
+        {
+            path: '/contact',
+            component: require('./components/Contact').default,
+            // meta: {
+            //     middleware: [ admin, auth ],
+            // }
         },
         {
             path: '/admin/create-post',

@@ -10,6 +10,18 @@
                             codewithsthef
                         </router-link>
                     </div>
+
+                    <div
+                        class="hov hover:bg-blue-200 rounded-full
+                            h-7 transition duration-150 ease-in p2-15"
+                    >
+                        <router-link
+                            to="/contact"
+                        >
+                            Contact <i class="fa-regular fa-envelope"></i>
+                        </router-link>
+                    </div>
+
                     <div
                         v-if="auth && is('superadmin')"
                         class="hov hover:bg-gray-200 rounded-full
@@ -19,6 +31,7 @@
                             Add admin <i class="fa-solid fa-user-plus" />
                         </router-link>
                     </div>
+
                     <div
                         v-if="auth && is('admin')"
                         class="hov hover:bg-gray-200 rounded-full
@@ -28,6 +41,7 @@
                             Create a blog <i class="fa-solid fa-plus" />
                         </router-link>
                     </div>
+
                     <div
                         v-if="auth"
                         class="pointer hov hover:bg-gray-200 rounded-full
@@ -39,6 +53,7 @@
                         </p>
                     </div>
                 </div>
+
                 <div>
                     <ul class="flex padding-mob-1">
                         <li class="p7">
@@ -49,6 +64,7 @@
                         </li>
                     </ul>
                 </div>
+
             </nav>
             <hr />
         </div>
@@ -114,11 +130,15 @@ export default {
         color: white;
     }
 
-    .dark .hov:hover {
-        background-color: #8c4bff;
+    .hov:hover {
+        background-color: rgba(218, 99, 182, 0.67);
     }
 
-    .dark hr{
+    .dark .hov:hover {
+        background-color: #614385;
+    }
+
+    .dark hr {
         height: 1px;
         background-image: linear-gradient(to right, #614385 0%, #516395  51%, #614385  100%);
         border: none;
@@ -130,17 +150,17 @@ export default {
         -webkit-text-fill-color: transparent;
     }
 
-    hr{
+    hr {
         height: 1px;
         background-image: linear-gradient(to right, #ff0084 0%, #33001b  51%, #ff0084  100%);
         border: none;
     }
 
-    /*.name {*/
-    /*    background-image: linear-gradient(to right, #ff0084 0%, #33001b  51%, #ff0084  100%);*/
-    /*    -webkit-background-clip: text;*/
-    /*    -webkit-text-fill-color: transparent;*/
-    /*}*/
+    .name {
+        background-image: linear-gradient(to right, rgba(100, 9, 76, 0.87) 0%, rgb(255, 121, 198) 51%, rgba(100, 9, 76, 0.87) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
 
     .btn-grad {
         margin: 10px;
