@@ -1,7 +1,7 @@
 <template>
     <div>
         <hr />
-        <div class="footer-basic py103">
+        <div class="footer-basic">
         <footer>
             <div class="social">
                 <a href="https://github.com/brazilsunshine" target="_blank">
@@ -109,9 +109,5 @@ export default {
         font-size:13px;
         color:#aaa;
         margin-bottom:0;
-    }
-
-    .py103 {
-        padding: 103px 0;
     }
 </style>
