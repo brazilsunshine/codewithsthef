@@ -2,10 +2,10 @@
     <div>
         <div class="text-gray-900">
             <nav
-                class="flex flex-col md:flex-row items-center justify-between px6 py-3"
+                class="p-none flex flex-col md:flex-row items-center justify-between px6 py-3"
             >
                 <div class="flex flex-col-mob items-center">
-                    <div class="py30">
+                    <div class="m1-mob ">
                         <router-link to="/" class="name text-xl p-2 font-size-mob">
                             codewithsthef
                         </router-link>
@@ -218,6 +218,14 @@ export default {
         padding-right: 3rem;
     }
 
+    @media screen and (max-width: 687px) {
+        .m1-mob {
+            margin: 1em !important;
+        }
 
+        .p-none {
+            padding: 0;
+        }
+    }
 
 </style>

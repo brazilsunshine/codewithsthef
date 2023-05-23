@@ -1,6 +1,6 @@
 <template>
     <div class="contact-us">
-        <p class="name fs5em fs3em">{{ this.$t('contact.get-in-touch')}}</p>
+        <p class="fs3em name fs5em ">{{ this.$t('contact.get-in-touch')}}</p>
         <p class="text">/* {{ this.$t('contact.description')}} */</p>
         <form @submit.prevent="submitForm" class="contact-form">
             <div class="form-group">
@@ -168,5 +168,15 @@ export default {
         background-position: right center; /* change the direction of the change here */
         color: #fff;
         text-decoration: none;
+    }
+
+    @media screen and (max-width: 687px) {
+        .fs3em {
+            font-size: 3rem !important;
+        }
+
+        .m1-mob {
+            margin: 1em !important;
+        }
     }
 </style>

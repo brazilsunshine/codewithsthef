@@ -14,7 +14,7 @@
                         v-for="lang in availableLanguages"
                         v-show="langsOpen"
                         @click="language(lang)"
-                        class="dropdown-item hoverable flex"
+                        class="hoverable flex"
                     >
                         <img :src="getFlag(lang)" class="lang-flag" />
                     </div>
@@ -100,25 +100,24 @@ export default {
 </script>
 
 <style scoped>
-.flex {
-    display: flex;
-}
+    .flex {
+        display: flex;
+    }
 
-.hoverable {
-    cursor: pointer;
-}
+    .hoverable {
+        cursor: pointer;
+    }
 
-.hoverable:hover {
-    background-color: whitesmoke;
-}
 
-.lang-flag {
-    max-height: 28px;
-    max-width: 30px;
-}
 
-.lang-flag-small {
-    max-height: 21px !important;
-    max-width: 31px;
-}
+    .lang-flag {
+        max-height: 28px;
+        max-width: 30px;
+        margin-bottom: 1px;
+    }
+
+    .lang-flag-small {
+        max-height: 21px !important;
+        max-width: 31px;
+    }
 </style>
