@@ -3610,7 +3610,7 @@ var render = function render() {
     }
   }, [_vm.messageSent ? _c("div", [_c("p", {
     staticClass: "has-text-centered text"
-  }, [_vm._v("Thank you for contacting us! 💌")])]) : _vm._e()]), _vm._v(" "), !_vm.messageSent ? _c("form", {
+  }, [_vm._v(_vm._s(this.$t("contact.thank-you")) + " 💌")])]) : _vm._e()]), _vm._v(" "), !_vm.messageSent ? _c("form", {
     staticClass: "contact-form",
     on: {
       submit: function submit($event) {
@@ -77679,7 +77679,7 @@ var index = {
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"get-in-touch":"Get in touch!","description":"I\'m always open to discussing about development or partnerships"}');
+module.exports = JSON.parse('{"get-in-touch":"Get in touch!","description":"I\'m always open to discussing about development or partnerships","thank-you":"Thank you for contacting us!"}');
 
 /***/ }),
 
@@ -77701,7 +77701,7 @@ module.exports = JSON.parse('{"hello":"Hello! I\'m Sthefane","intro":"I\'m 24 ye
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"get-in-touch":"Ponerse en contacto!","description":"Siempre estoy abierto a discutir sobre desarrollo o asociaciones."}');
+module.exports = JSON.parse('{"get-in-touch":"Ponerse en contacto!","description":"Siempre estoy abierto a discutir sobre desarrollo o asociaciones.","thank-you":"Gracias por contactar con nosotros!"}');
 
 /***/ }),
 
@@ -77723,7 +77723,7 @@ module.exports = JSON.parse('{"hello":"¡Hola! Soy Sthefane","intro":"Tengo 24 a
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"get-in-touch":"Entre em contato!!","description":"Estou sempre aberta a discutir sobre desenvolvimento ou parcerias."}');
+module.exports = JSON.parse('{"get-in-touch":"Entre em contato!!","description":"Estou sempre aberta a discutir sobre desenvolvimento ou parcerias.","thank-you":"Obrigada por nos contactar!"}');
 
 /***/ }),
 

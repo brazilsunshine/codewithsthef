@@ -5,7 +5,7 @@
 
         <transition name="fade">
             <div v-if="messageSent">
-                <p class="has-text-centered text">Thank you for contacting us! 💌</p>
+                <p class="has-text-centered text">{{ this.$t('contact.thank-you')}} 💌</p>
             </div>
         </transition>
 
