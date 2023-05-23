@@ -2,7 +2,14 @@
     <div class="contact-us">
         <p class="fs3em name fs5em ">{{ this.$t('contact.get-in-touch')}}</p>
         <p class="text">/* {{ this.$t('contact.description')}} */</p>
-        <form @submit.prevent="submitForm" class="contact-form">
+
+        <transition name="fade">
+            <div v-if="messageSent">
+                <p class="has-text-centered text">Thank you for contacting us! 💌</p>
+            </div>
+        </transition>
+
+        <form v-if="!messageSent" @submit.prevent="submitForm" class="contact-form">
             <div class="form-group">
                 <input placeholder="Name" style="font-size: 0.85rem" type="text" id="name" v-model="formData.name" required>
             </div>
@@ -30,15 +37,16 @@ export default {
                 name: '',
                 email: '',
                 message: ''
-            }
+            },
+            messageSent: false,
         };
     },
     methods: {
         submitForm() {
-            // Send the form data to the Laravel backend
+            this.messageSent = true;
+
             axios.post('/api/contact', this.formData)
                 .then(response => {
-                    // Handle the successful response here
                     console.log(response.data);
 
                     // Reset the form after successful submission
@@ -170,13 +178,19 @@ export default {
         text-decoration: none;
     }
 
+    .fade-enter-active,
+    .fade-leave-active {
+        transition: opacity 0.5s;
+    }
+
+    .fade-enter,
+    .fade-leave-to {
+        opacity: 0;
+    }
+
     @media screen and (max-width: 687px) {
         .fs3em {
             font-size: 3rem !important;
-        }
-
-        .m1-mob {
-            margin: 1em !important;
         }
     }
 </style>
