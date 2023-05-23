@@ -55,11 +55,11 @@
                 </div>
 
                 <div>
-                    <ul class="flex padding-mob-1">
+                    <ul class="flex padding-mob-1 mr-1-mob">
                         <li class="p7">
                             <ToggleMode :mode="mode" @toggle="$emit('toggle')"/>
                         </li>
-                        <li class="p7 pt-13">
+                        <li class="absolute flag-des flag-mob">
                             <Languages />
                         </li>
                     </ul>
@@ -198,15 +198,8 @@ export default {
         padding-right: 10px;
     }
 
-    .p7 {
-        padding: 7px;
-    }
     .p2-15 {
         padding: 2px 15px;
-    }
-
-    .pt-13 {
-        padding-top: 13px;
     }
 
     .pl9 {
@@ -218,13 +211,27 @@ export default {
         padding-right: 3rem;
     }
 
+    .flag-des {
+        left: 89%;
+        padding: 7px;
+    }
+
     @media screen and (max-width: 687px) {
         .m1-mob {
             margin: 1em !important;
         }
 
+        .mr-1-mob {
+            margin-right: 3em;
+        }
+
         .p-none {
             padding: 0;
+        }
+
+        .flag-mob {
+            left: 55%;
+            padding: 4px;
         }
     }
 
