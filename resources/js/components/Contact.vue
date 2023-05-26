@@ -46,21 +46,21 @@ export default {
             this.messageSent = true;
 
             axios.post('/api/contact', this.formData)
-                .then(response => {
-                    console.log(response.data);
+            .then(response => {
+                console.log(response.data);
 
-                    // Reset the form after successful submission
-                    this.formData = {
-                        name: '',
-                        email: '',
-                        message: ''
-                    };
-                })
-                .catch(error => {
-                    // Handle the error response here
-                    console.error(error);
-                });
-        }
+                // Reset the form after successful submission
+                this.formData = {
+                    name: '',
+                    email: '',
+                    message: ''
+                };
+            })
+            .catch(error => {
+                // Handle the error response here
+                console.error(error);
+            });
+        },
     }
 };
 </script>
@@ -120,6 +120,17 @@ export default {
         border: 1px solid #ccc;
         border-radius: 15px;
         font-size: 1rem;
+    }
+
+    .dark input[type="text"],
+    input[type="email"],
+    textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 15px;
+        font-size: 1rem;
+        color: black;
     }
 
     button {
