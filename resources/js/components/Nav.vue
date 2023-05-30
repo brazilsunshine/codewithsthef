@@ -11,27 +11,30 @@
                         </router-link>
                     </div>
 
-                    <div
-                        class="hov hover:bg-blue-200 rounded-full
+                    <div class="flex">
+                        <div
+                            class="hov rounded-full
                             h-7 transition duration-150 ease-in p2-15"
-                    >
-                        <router-link
-                            to="/contact"
                         >
-                            Contact <i class="far fa-envelope"></i>
-                        </router-link>
+                            <router-link
+                                to="/contact"
+                            >
+                                Contact <i class="far fa-envelope"></i>
+                            </router-link>
+                        </div>
+
+                        <div
+                            class="hov rounded-full
+                            h-7 transition duration-150 ease-in p2-15"
+                        >
+                            <router-link
+                                to="/projects"
+                            >
+                                Projects <i class="fas fa-chevron-right"></i>
+                            </router-link>
+                        </div>
                     </div>
 
-                    <div
-                        class="hov hover:bg-blue-200 rounded-full
-                            h-7 transition duration-150 ease-in p2-15"
-                    >
-                        <router-link
-                            to="/projects"
-                        >
-                            Projects <i class="fas fa-chevron-right"></i>
-                        </router-link>
-                    </div>
 
                     <div
                         v-if="auth && is('superadmin')"
@@ -194,23 +197,6 @@ export default {
         text-decoration: none;
     }
 
-
-
-    .fa-instagram {
-        font-size: 36px;
-        padding-right: 20px;
-    }
-
-    .fa-github {
-        font-size: 33px;
-        padding-right: 20px;
-    }
-
-    .fa-youtube{
-        font-size: 33px;
-        padding-right: 10px;
-    }
-
     .p2-15 {
         padding: 2px 15px;
     }
@@ -244,7 +230,6 @@ export default {
 
         .flag-mob {
             left: 55%;
-            padding: 4px;
         }
     }
 

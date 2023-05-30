@@ -19,7 +19,6 @@ export default {
     name: "Projects",
     data() {
         return {
-            isFlipped: false,
             websites: [
                 {
                     id: 1,
