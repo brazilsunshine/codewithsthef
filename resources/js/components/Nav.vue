@@ -18,7 +18,18 @@
                         <router-link
                             to="/contact"
                         >
-                            Contact <i class="fa-regular fa-envelope"></i>
+                            Contact <i class="far fa-envelope"></i>
+                        </router-link>
+                    </div>
+
+                    <div
+                        class="hov hover:bg-blue-200 rounded-full
+                            h-7 transition duration-150 ease-in p2-15"
+                    >
+                        <router-link
+                            to="/projects"
+                        >
+                            Projects <i class="fas fa-chevron-right"></i>
                         </router-link>
                     </div>
 
@@ -59,7 +70,9 @@
                         <li class="p7">
                             <ToggleMode :mode="mode" @toggle="$emit('toggle')"/>
                         </li>
-                        <li class="absolute flag-des flag-mob">
+                        <li
+                            class="absolute flag-des flag-mob"
+                        >
                             <Languages />
                         </li>
                     </ul>

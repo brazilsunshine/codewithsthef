@@ -108,8 +108,6 @@ export default {
         cursor: pointer;
     }
 
-
-
     .lang-flag {
         max-height: 28px;
         max-width: 30px;
@@ -119,5 +117,9 @@ export default {
     .lang-flag-small {
         max-height: 21px !important;
         max-width: 31px;
+    }
+
+    img {
+        border-radius: 30px;
     }
 </style>

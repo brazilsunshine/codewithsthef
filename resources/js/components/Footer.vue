@@ -5,16 +5,16 @@
         <footer>
             <div class="social">
                 <a href="https://github.com/brazilsunshine" target="_blank">
-                    <i class="fa-brands fa-github"></i>
+                    <i class="fab fa-github"></i>
                 </a>
                 <a href="https://www.instagram.com/sthefanesoliveira/" target="_blank">
-                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fab fa-instagram"></i>
                 </a>
                 <a href="https://www.youtube.com/@codewithsthef" target="_blank">
-                    <i class="fa-brands fa-youtube"></i>
+                    <i class="fab fa-youtube"></i>
                 </a>
                 <a href="https://twitter.com/codewithsthef" target="_blank">
-                    <i class="fa-brands fa-twitter"></i>
+                    <i class="fab fa-twitter"></i>
                 </a>
             </div>
             <p class="copyright">codewithsthef © 2023</p>

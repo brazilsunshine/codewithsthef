@@ -29,6 +29,10 @@ Route::get('/contact', function () {
     return view('root');
 });
 
+Route::get('/projects', function () {
+    return view('root');
+});
+
 Route::get('/admin/create-post', function () {
     return view('root');
 });
