@@ -1,16 +1,24 @@
 <template>
-    <div :class="(mode === 'dark') ? 'dark' : ''">
+    <div
+        :class="(mode === 'dark') ? 'dark' : ''"
+        style="display: grid; flex: auto;"
+    >
+
         <Nav :mode="mode" @toggle="toggle" />
 
-        <BlogCoverPreviewModal v-show="this.$store.state.posts.blogPhotoPreview" />
+        <div >
 
-        <Modal
-            v-show="showModal"
-        />
+            <BlogCoverPreviewModal v-show="this.$store.state.posts.blogPhotoPreview" />
 
-        <router-view />
+            <Modal
+                v-show="showModal"
+            />
+
+            <router-view />
+        </div>
 
         <Footer />
+
     </div>
 </template>
 

@@ -26,7 +26,11 @@
 
 
 <body>
-<div id="app" v-cloak>
+<div
+    id="app"
+    style="display: flex; flex-direction: column; min-height: 100vh;"
+    v-cloak
+>
     @yield('content')
 </div>
 </body>

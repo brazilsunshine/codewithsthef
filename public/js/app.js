@@ -5013,7 +5013,11 @@ var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    "class": _vm.mode === "dark" ? "dark" : ""
+    "class": _vm.mode === "dark" ? "dark" : "",
+    staticStyle: {
+      display: "grid",
+      flex: "auto"
+    }
   }, [_c("Nav", {
     attrs: {
       mode: _vm.mode
@@ -5021,7 +5025,7 @@ var render = function render() {
     on: {
       toggle: _vm.toggle
     }
-  }), _vm._v(" "), _c("BlogCoverPreviewModal", {
+  }), _vm._v(" "), _c("div", [_c("BlogCoverPreviewModal", {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -5035,7 +5039,7 @@ var render = function render() {
       value: _vm.showModal,
       expression: "showModal"
     }]
-  }), _vm._v(" "), _c("router-view"), _vm._v(" "), _c("Footer")], 1);
+  }), _vm._v(" "), _c("router-view")], 1), _vm._v(" "), _c("Footer")], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;
