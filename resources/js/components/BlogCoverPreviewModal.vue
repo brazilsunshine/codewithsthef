@@ -3,7 +3,7 @@
         <div class="modal-content">
             <i
                 @click="closePreview"
-                class="icon fa-solid fa-x"
+                class="fas fa-times icon"
             />
             <img :src="this.blogCoverPhoto" alt="" />
         </div>
@@ -49,20 +49,18 @@ export default {
     position: relative;
     border-radius: 12px;
     background-color: #fff;
-    height: 60%;
     width: 38%;
-    padding: 24px;
+    padding: 1em;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.6);
 }
 
 .icon {
-    width: 24px;
     height: auto;
     cursor: pointer;
     font-size: 13px;
     position: absolute;
     top: 9px;
-    right: -5px;
+    right: 4px;
     color: #303030;
 }
 

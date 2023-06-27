@@ -183,7 +183,8 @@ export default {
                         {
                             Vue.$vToastify.success("You created your post! =)");
 
-                            window.location.href = "/"
+                            this.blogTitle = ''
+                            this.blogHTML = ''
                         }
                     })
                     .catch(error => {
@@ -262,7 +263,7 @@ export default {
             if (this.errors[key]) {
                 this.$store.commit('deleteError', key);
             }
-        }
+        },
     }
 }
 </script>

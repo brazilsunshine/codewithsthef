@@ -2443,7 +2443,8 @@ vue2_editor__WEBPACK_IMPORTED_MODULE_0__.Quill.register("modules/imageResize", (
                   console.log('submit-blog-post', response);
                   if (response.data.success) {
                     vue__WEBPACK_IMPORTED_MODULE_3__["default"].$vToastify.success("You created your post! =)");
-                    window.location.href = "/";
+                    _this.blogTitle = '';
+                    _this.blogHTML = '';
                   }
                 })["catch"](function (error) {
                   console.log('submit-blog-post', error.response);
@@ -3562,7 +3563,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "modal-content"
   }, [_c("i", {
-    staticClass: "icon fa-solid fa-x",
+    staticClass: "fas fa-times icon",
     on: {
       click: _vm.closePreview
     }
@@ -5393,16 +5394,16 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_5__["default"]({
     component: (__webpack_require__(/*! ./components/Home */ "./resources/js/components/Home.vue")["default"])
   }, {
     path: '/register',
-    component: (__webpack_require__(/*! ./components/Register */ "./resources/js/components/Register.vue")["default"]),
-    meta: {
-      middleware: [_middleware_admin__WEBPACK_IMPORTED_MODULE_1__["default"], _middleware_auth__WEBPACK_IMPORTED_MODULE_2__["default"]]
-    }
+    component: (__webpack_require__(/*! ./components/Register */ "./resources/js/components/Register.vue")["default"])
+    // meta: {
+    //     middleware: [ admin, auth ],
+    // }
   }, {
     path: '/login',
-    component: (__webpack_require__(/*! ./components/Login */ "./resources/js/components/Login.vue")["default"]),
-    meta: {
-      middleware: [_middleware_admin__WEBPACK_IMPORTED_MODULE_1__["default"], _middleware_auth__WEBPACK_IMPORTED_MODULE_2__["default"]]
-    }
+    component: (__webpack_require__(/*! ./components/Login */ "./resources/js/components/Login.vue")["default"])
+    // meta: {
+    //     middleware: [ admin, auth ],
+    // }
   }, {
     path: '/contact',
     component: (__webpack_require__(/*! ./components/Contact */ "./resources/js/components/Contact.vue")["default"])
@@ -5799,6 +5800,7 @@ var mutations = {
     state.blogPhotoName = '';
     state.blogPhotoPreview = '';
     state.blogPhotoFileURL = '';
+    state.blogTitle = '';
     state.blogHTML = '';
   },
   /**
@@ -8175,7 +8177,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.modal[data-v-5d7b0982] {\n    top: 0;\n    background-color: rgba(0, 0, 0, 0.5);\n    z-index: 99;\n    position: fixed;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    height: 100%;\n    width: 100%;\n}\n.modal-content[data-v-5d7b0982] {\n    display: flex;\n    justify-content: center;\n    position: relative;\n    border-radius: 12px;\n    background-color: #fff;\n    height: 60%;\n    width: 38%;\n    padding: 24px;\n    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.6);\n}\n.icon[data-v-5d7b0982] {\n    width: 24px;\n    height: auto;\n    cursor: pointer;\n    font-size: 13px;\n    position: absolute;\n    top: 9px;\n    right: -5px;\n    color: #303030;\n}\nimg[data-v-5d7b0982] {\n    display: block;\n    width: auto;\n    height: 100%;\n    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.6);\n}\n\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.modal[data-v-5d7b0982] {\n    top: 0;\n    background-color: rgba(0, 0, 0, 0.5);\n    z-index: 99;\n    position: fixed;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    height: 100%;\n    width: 100%;\n}\n.modal-content[data-v-5d7b0982] {\n    display: flex;\n    justify-content: center;\n    position: relative;\n    border-radius: 12px;\n    background-color: #fff;\n    width: 38%;\n    padding: 1em;\n    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.6);\n}\n.icon[data-v-5d7b0982] {\n    height: auto;\n    cursor: pointer;\n    font-size: 13px;\n    position: absolute;\n    top: 9px;\n    right: 4px;\n    color: #303030;\n}\nimg[data-v-5d7b0982] {\n    display: block;\n    width: auto;\n    height: 100%;\n    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.6);\n}\n\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -77921,7 +77923,7 @@ module.exports = JSON.parse('{"get-in-touch":"Get in touch!","description":"I\'m
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"hello":"Hello! I\'m Sthefane","intro":"I\'m 24 years old and a self-taught software engineer. I\'m Brazilian but I live in Ireland. I work with Laravel, Vue.js, TailwindCss and I\'m studying Testing. I created this website with the intention of posting blogs to give tips to those who have interest in studying web development. The term \\"software engineering\\" can often seem daunting, however, like everything in this life, you just need to study and be interested that you will surely will make it! The key to reaching your goal is to maintain your motivation. It may take weeks, months or most likely years, but anything is possible if you get out of your comfort zone."}');
+module.exports = JSON.parse('{"hello":"Hello! I\'m Sthefane","intro":"I\'m a junior full stack developer that likes to create and share content about computer science and Harry Potter when I\'m somehow not reading, studying or writing code because I have no life whatsoever. :)"}');
 
 /***/ }),
 
@@ -77943,7 +77945,7 @@ module.exports = JSON.parse('{"get-in-touch":"Ponerse en contacto!","description
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"hello":"¡Hola! Soy Sthefane","intro":"Tengo 24 años y soy ingeniero de software autodidacta. Soy brasileño pero vivo en Irlanda. Trabajo con Laravel, Vue.js, TailwindCss y estoy estudiando Testing. Creé este sitio web con la intención de publicar blogs para dar consejos a aquellos que tienen interés en estudiar desarrollo web. El término \\"ingeniería de software\\" a menudo puede parecer desalentador, sin embargo, como todo en esta vida, ¡solo necesita estudiar e interesarse que seguramente lo logrará! La clave para alcanzar tu meta es mantener tu motivación. Puede llevar semanas, meses o probablemente años, pero todo es posible si sales de tu zona de confort.\\n"}');
+module.exports = JSON.parse('{"hello":"¡Hola! Soy Sthefane","intro":"Soy un desarrollador junior completo al que le encanta crear y compartir contenido sobre informática y Harry Potter cuando, de alguna manera, no estoy leyendo, estudiando o programando porque no tengo vida. :)"}');
 
 /***/ }),
 
@@ -77965,7 +77967,7 @@ module.exports = JSON.parse('{"get-in-touch":"Entre em contato!!","description":
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"hello":"Oii! Eu sou a Sthefane!","intro":"Eu tenho 24 anos e sou engenheira de software autodidata. Sou brasileira mas moro na Irlanda. Eu trabalho com Laravel, Vue.js, TailwindCss e estou estudando Testing. Criei esse Website com o intuito de postar blogs para dar dicas para quem tem interesse em estudar web development. Muitas vezes o termo \\"engenharia de software\\" pode parecer assustador, no entanto, como tudo nessa vida, você so precisar estudar e ter interesse que com certeza você vai conseguir! A chave para alcancar seu objetivo é manter a sua motivação. Pode demorar semanas, meses ou muito provavelmente anos, mas tudo é possível se você sair da sua zona de conforto."}');
+module.exports = JSON.parse('{"hello":"Oii! Eu sou a Sthefane!","intro":"Sou desenvolvedora full stack júnior que adora criar e compartilhar conteúdo sobre ciência da computação e Harry Potter quando, de alguma forma, não estou lendo, estudando ou escrevendo código porque não tenho vida alguma. :)"}');
 
 /***/ })
 

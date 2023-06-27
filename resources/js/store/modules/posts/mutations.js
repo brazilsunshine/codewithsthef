@@ -33,6 +33,7 @@ export const mutations = {
         state.blogPhotoName = '';
         state.blogPhotoPreview = '';
         state.blogPhotoFileURL = '';
+        state.blogTitle = '';
         state.blogHTML = '';
     },
 
