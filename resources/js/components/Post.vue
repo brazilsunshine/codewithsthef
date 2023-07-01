@@ -1,7 +1,7 @@
 <template>
     <div class="p30">
         <div>
-            <p class="text-lg font-semibold">
+            <p class="text-lg font-semibold" style="text-align: center;">
                 {{ getTitle }}
             </p>
         </div>

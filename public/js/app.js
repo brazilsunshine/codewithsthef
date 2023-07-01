@@ -4630,7 +4630,10 @@ var render = function render() {
   return _c("div", {
     staticClass: "p30"
   }, [_c("div", [_c("p", {
-    staticClass: "text-lg font-semibold"
+    staticClass: "text-lg font-semibold",
+    staticStyle: {
+      "text-align": "center"
+    }
   }, [_vm._v("\n            " + _vm._s(_vm.getTitle) + "\n        ")])]), _vm._v(" "), _c("div", {
     staticClass: "cover-photo"
   }, [_c("img", {
