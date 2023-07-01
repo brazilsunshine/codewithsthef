@@ -69,7 +69,7 @@
                 </div>
 
                 <div>
-                    <ul class="flex padding-mob-1 mr-1-mob">
+                    <ul class="flex padding-mob-1 mr-1-mob" style="position:relative;">
                         <li class="p7">
                             <ToggleMode :mode="mode" @toggle="$emit('toggle')"/>
                         </li>
@@ -211,7 +211,7 @@ export default {
     }
 
     .flag-des {
-        left: 89%;
+        left: -3em;
         padding: 7px;
     }
 
@@ -229,7 +229,7 @@ export default {
         }
 
         .flag-mob {
-            left: 55%;
+            left: 80px;
         }
     }
 
