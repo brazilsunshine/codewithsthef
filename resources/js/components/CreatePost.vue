@@ -380,6 +380,12 @@ export default {
         overflow: scroll;
     }
 
+    .ql-snow .ql-editor pre.ql-syntax {
+        background-color: #23241f;
+        color: #f8f8f2;
+        overflow: visible;
+    }
+
     .margin-bottom {
         margin-bottom: 20px;
     }
