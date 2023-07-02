@@ -369,7 +369,8 @@ export default {
         position: relative;
         display: flex;
         flex-direction: column;
-        height: 80%
+        height: 80%;
+        max-width: 50em;
     }
 
     .ql-container {
