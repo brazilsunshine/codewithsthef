@@ -12,6 +12,10 @@ class Post extends Model
 
     protected $guarded = [];
 
+    public $appends = [
+        'diffForHumans',
+    ];
+
     /**
      * Return the sluggable configuration array for this model.
      */
@@ -22,5 +26,21 @@ class Post extends Model
                 'source' => 'title'
             ]
         ];
+    }
+
+    /**
+     * Here I am making the diffForHumans available in my Vue
+     */
+    public function getDiffForHumansAttribute ()
+    {
+        return $this->created_at->diffForHumans();
+    }
+
+
+    /**   RELATIONSHIPS   */
+    // post belongs to user
+    public function user ()
+    {
+        return $this->belongsTo(User::class);
     }
 }

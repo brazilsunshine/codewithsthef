@@ -14,7 +14,7 @@
                 class="relative bg-gray-100 hover:bg-gray-200 rounded-full
                             h-7 transition duration-150 ease-in px-3 mt30-mob"
             >
-                <i class="fa-solid fa-ellipsis in-button"></i>
+                <i class="fas fa-plus in-button"></i>
             </button>
         </div>
 
@@ -24,6 +24,20 @@
                     class="padding-top"
                     v-html="getDescription"
                 />
+            </div>
+        </div>
+
+        <div class="mt-6">
+            <div class="flex items-center text-xs text-gray-400 space-x-2" style="justify-content: center;">
+                <div class="mobile-right-182 text-blue">
+                    Sthefane Oliveira
+                </div>
+                <div>
+                    &bull;
+                </div>
+                <div>
+                    {{ post.diffForHumans }}
+                </div>
             </div>
         </div>
     </div>

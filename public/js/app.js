@@ -4654,7 +4654,7 @@ var render = function render() {
       }
     }
   }, [_c("i", {
-    staticClass: "fa-solid fa-ellipsis in-button"
+    staticClass: "fas fa-plus in-button"
   })])]) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "text-sm"
   }, [_c("div", [_c("p", {
@@ -4662,7 +4662,16 @@ var render = function render() {
     domProps: {
       innerHTML: _vm._s(_vm.getDescription)
     }
-  })])])]);
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "mt-6"
+  }, [_c("div", {
+    staticClass: "flex items-center text-xs text-gray-400 space-x-2",
+    staticStyle: {
+      "justify-content": "center"
+    }
+  }, [_c("div", {
+    staticClass: "mobile-right-182 text-blue"
+  }, [_vm._v("\n                Sthefane Oliveira\n            ")]), _vm._v(" "), _c("div", [_vm._v("\n                •\n            ")]), _vm._v(" "), _c("div", [_vm._v("\n                " + _vm._s(_vm.post.diffForHumans) + "\n            ")])])])]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -5400,16 +5409,16 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_5__["default"]({
     component: (__webpack_require__(/*! ./components/Home */ "./resources/js/components/Home.vue")["default"])
   }, {
     path: '/register',
-    component: (__webpack_require__(/*! ./components/Register */ "./resources/js/components/Register.vue")["default"]),
-    meta: {
-      middleware: [_middleware_admin__WEBPACK_IMPORTED_MODULE_1__["default"], _middleware_auth__WEBPACK_IMPORTED_MODULE_2__["default"]]
-    }
+    component: (__webpack_require__(/*! ./components/Register */ "./resources/js/components/Register.vue")["default"])
+    // meta: {
+    //     middleware: [ admin, auth ],
+    // }
   }, {
     path: '/login',
-    component: (__webpack_require__(/*! ./components/Login */ "./resources/js/components/Login.vue")["default"]),
-    meta: {
-      middleware: [_middleware_admin__WEBPACK_IMPORTED_MODULE_1__["default"], _middleware_auth__WEBPACK_IMPORTED_MODULE_2__["default"]]
-    }
+    component: (__webpack_require__(/*! ./components/Login */ "./resources/js/components/Login.vue")["default"])
+    // meta: {
+    //     middleware: [ admin, auth ],
+    // }
   }, {
     path: '/contact',
     component: (__webpack_require__(/*! ./components/Contact */ "./resources/js/components/Contact.vue")["default"])
