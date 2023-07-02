@@ -3196,6 +3196,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Post",
   props: ['post'],
+  data: function data() {
+    return {
+      showFullDescription: false,
+      maxLength: 200
+    };
+  },
   computed: {
     /**
      * Return the authenticated user
@@ -3214,6 +3220,21 @@ __webpack_require__.r(__webpack_exports__);
      */
     getDescription: function getDescription() {
       return this.post['description_' + this.$i18n.locale];
+    },
+    /**
+     * Use a computed property to calculate the truncated or expanded content based on the current state
+     */
+    processedContent: function processedContent() {
+      if (this.getDescription && this.getDescription.length > this.maxLength && !this.showFullDescription) {
+        return this.getDescription.substring(0, this.maxLength) + '...';
+      }
+      return this.getDescription;
+    },
+    /**
+     * ensure that the substring and length methods are only called when this.getDescription is not null.
+     */
+    showReadMore: function showReadMore() {
+      return this.getDescription && this.getDescription.length > this.maxLength;
     }
   },
   methods: {
@@ -3229,6 +3250,9 @@ __webpack_require__.r(__webpack_exports__);
         // inner component is the component 'inside the model'
         title: 'Options'
       });
+    },
+    toggleDescription: function toggleDescription() {
+      this.showFullDescription = !this.showFullDescription;
     }
   }
 });
@@ -4655,14 +4679,17 @@ var render = function render() {
     }
   }, [_c("i", {
     staticClass: "fas fa-plus in-button"
-  })])]) : _vm._e(), _vm._v(" "), _c("div", {
-    staticClass: "text-sm"
-  }, [_c("div", [_c("p", {
+  })])]) : _vm._e(), _vm._v(" "), _c("div", [_c("div", [_c("p", {
     staticClass: "padding-top",
     domProps: {
-      innerHTML: _vm._s(_vm.getDescription)
+      innerHTML: _vm._s(_vm.processedContent)
     }
-  })])]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _vm.showReadMore ? _c("button", {
+    staticClass: "read-more-btn",
+    on: {
+      click: _vm.toggleDescription
+    }
+  }, [_vm._v("\n                " + _vm._s(_vm.showFullDescription ? "Read Less" : "Read More") + "\n            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "mt-6"
   }, [_c("div", {
     staticClass: "flex items-center text-xs text-gray-400 space-x-2",
@@ -8468,7 +8495,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.dark i[data-v-5e8280ea] {\n    color: black;\n}\n.padding-top[data-v-5e8280ea] {\n    padding-top: 44px;\n}\n.p30[data-v-5e8280ea] {\n    padding: 30px;\n}\nimg[data-v-5e8280ea] {\n    max-width: 55%;\n    height: auto;\n    border-radius: 20px;\n}\n.cover-photo[data-v-5e8280ea] {\n    display: flex;\n    justify-content: center;\n    padding-top: 25px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.dark i[data-v-5e8280ea] {\n    color: black;\n}\n.padding-top[data-v-5e8280ea] {\n    padding-top: 44px;\n}\n.p30[data-v-5e8280ea] {\n    padding: 30px;\n}\nimg[data-v-5e8280ea] {\n    max-width: 55%;\n    height: auto;\n    border-radius: 20px;\n}\n.cover-photo[data-v-5e8280ea] {\n    display: flex;\n    justify-content: center;\n    padding-top: 25px;\n}\n.read-more-btn[data-v-5e8280ea] {\n    margin-top: 1em;\n    background-image: linear-gradient(to right, #614385 0%, #516395  51%, #614385  100%);\n    align-self: center;\n    font-size: 14px;\n    cursor: pointer;\n    border-radius: 20px;\n    padding: 12px 24px;\n    text-align: center;\n    text-transform: uppercase;\n    transition: 0.5s;\n    background-size: 200% auto;\n    color: white;\n}\n.read-more-btn[data-v-5e8280ea]:hover {\n    background-position: right center; /* change the direction of the change here */\n    color: #fff;\n    text-decoration: none;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

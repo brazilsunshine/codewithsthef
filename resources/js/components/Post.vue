@@ -18,12 +18,19 @@
             </button>
         </div>
 
-        <div class="text-sm">
+        <div>
             <div>
                 <p
                     class="padding-top"
-                    v-html="getDescription"
+                    v-html="processedContent"
                 />
+                <button
+                    v-if="showReadMore"
+                    @click="toggleDescription"
+                    class="read-more-btn"
+                >
+                    {{ showFullDescription ? 'Read Less' : 'Read More' }}
+                </button>
             </div>
         </div>
 
@@ -49,6 +56,13 @@ export default {
     props: [
         'post'
     ],
+    data ()
+    {
+        return {
+            showFullDescription: false,
+            maxLength: 200,
+        };
+    },
     computed: {
         /**
          * Return the authenticated user
@@ -71,6 +85,24 @@ export default {
         getDescription ()
         {
             return this.post['description_' + this.$i18n.locale];
+        },
+
+        /**
+         * Use a computed property to calculate the truncated or expanded content based on the current state
+         */
+        processedContent () {
+            if (this.getDescription && this.getDescription.length > this.maxLength && !this.showFullDescription)
+            {
+                return this.getDescription.substring(0, this.maxLength) + '...';
+            }
+            return this.getDescription;
+        },
+
+        /**
+         * ensure that the substring and length methods are only called when this.getDescription is not null.
+         */
+        showReadMore() {
+            return this.getDescription && this.getDescription.length > this.maxLength;
         }
     },
     methods: {
@@ -87,6 +119,11 @@ export default {
                 innerComponent: 'OptionsModal', // inner component is the component 'inside the model'
                 title: 'Options'
             });
+        },
+
+        toggleDescription()
+        {
+            this.showFullDescription = !this.showFullDescription;
         },
     },
 }
@@ -115,5 +152,26 @@ export default {
         display: flex;
         justify-content: center;
         padding-top: 25px;
+    }
+
+    .read-more-btn {
+        margin-top: 1em;
+        background-image: linear-gradient(to right, #614385 0%, #516395  51%, #614385  100%);
+        align-self: center;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 20px;
+        padding: 12px 24px;
+        text-align: center;
+        text-transform: uppercase;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: white;
+    }
+
+    .read-more-btn:hover {
+        background-position: right center; /* change the direction of the change here */
+        color: #fff;
+        text-decoration: none;
     }
 </style>

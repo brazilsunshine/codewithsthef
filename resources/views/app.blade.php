@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style="width: 101%;" class="mob-110-w">
+<html lang="en" style="width: 101%;" class="mob-124-w">
 <head>
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -28,8 +28,8 @@
 <body>
 <style>
     @media screen and (max-width: 687px) {
-        .mob-110-w {
-            width: 110% !important;
+        .mob-124-w {
+            width: 124% !important;
         }
     }
 </style>
