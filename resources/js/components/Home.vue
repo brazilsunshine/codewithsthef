@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="loading">
-            Loading...
+            .
         </div>
         <div v-else>
             <main class="container mx-auto flex flex-column-mob">

@@ -4123,7 +4123,7 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_vm.loading ? _c("div", [_vm._v("\n        Loading...\n    ")]) : _c("div", [_c("main", {
+  return _c("div", [_vm.loading ? _c("div", [_vm._v("\n        .\n    ")]) : _c("div", [_c("main", {
     staticClass: "container mx-auto flex flex-column-mob"
   }, [_c("div", {
     staticClass: "w-70 mx-auto"
