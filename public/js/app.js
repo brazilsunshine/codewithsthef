@@ -4671,7 +4671,7 @@ var render = function render() {
     }
   }, [_c("div", {
     staticClass: "mobile-right-182 text-blue"
-  }, [_vm._v("\n                Sthefane Oliveira\n            ")]), _vm._v(" "), _c("div", [_vm._v("\n                •\n            ")]), _vm._v(" "), _c("div", [_vm._v("\n                " + _vm._s(_vm.post.diffForHumans) + "\n            ")])])])]);
+  }, [_vm._v("\n                " + _vm._s(_vm.post.user.username) + "\n            ")]), _vm._v(" "), _c("div", [_vm._v("\n                •\n            ")]), _vm._v(" "), _c("div", [_vm._v("\n                " + _vm._s(_vm.post.diffForHumans) + "\n            ")])])])]);
 };
 var staticRenderFns = [];
 render._withStripped = true;

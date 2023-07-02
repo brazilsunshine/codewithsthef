@@ -10,8 +10,8 @@ class GetPaginatedPostsController extends Controller
 {
     public function __invoke ()
     {
-        $posts = Post::orderBy('id', 'desc') // will order the ideas by the last post date
-        ->paginate(5);
+        $posts = Post::with('user')->orderBy('id', 'desc') // will order the ideas by the last post date
+            ->paginate(5);
 
         return [
             'success' => true,

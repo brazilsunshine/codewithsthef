@@ -30,7 +30,7 @@
         <div class="mt-6">
             <div class="flex items-center text-xs text-gray-400 space-x-2" style="justify-content: center;">
                 <div class="mobile-right-182 text-blue">
-                    Sthefane Oliveira
+                    {{ post.user.username }}
                 </div>
                 <div>
                     &bull;

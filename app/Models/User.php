@@ -61,6 +61,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**   RELATIONSHIPS   */
+    // one user has many ideas
+    public function posts ()
+    {
+        return $this->hasMany(Post::class);
+    }
 //
 //    /**
 //     * Get the registered user to confirm their email
