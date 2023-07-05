@@ -44,11 +44,17 @@ export default {
     },
     async mounted ()
     {
+        /**
+         * Get current language from localStorage
+         */
         if (this.$localStorage.get('lang'))
         {
             this.$i18n.locale = this.$localStorage.get('lang');
         }
 
+        /**
+         * Get current theme from localStorage
+         */
         if (this.$localStorage.get('theme'))
         {
             this.mode = this.$localStorage.get('theme');

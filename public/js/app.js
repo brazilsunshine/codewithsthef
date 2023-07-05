@@ -3462,9 +3462,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              /**
+               * Get current language from localStorage
+               */
               if (_this.$localStorage.get('lang')) {
                 _this.$i18n.locale = _this.$localStorage.get('lang');
               }
+
+              /**
+               * Get current theme from localStorage
+               */
               if (_this.$localStorage.get('theme')) {
                 _this.mode = _this.$localStorage.get('theme');
               }
