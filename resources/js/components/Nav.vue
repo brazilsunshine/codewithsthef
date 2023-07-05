@@ -91,8 +91,10 @@
 import Languages from "./Languages";
 import ToggleMode from "./ToggleMode";
 
+
 export default {
     name: "Nav",
+
     props: [
         'mode',
     ],
@@ -117,23 +119,31 @@ export default {
         {
             await axios.post('/api/logout')
 
-                .then(response => {
-                    console.log('logout', response);
+            .then(response => {
+                console.log('logout', response);
 
-                    this.$store.commit('logout');
+                this.$store.commit('logout');
 
-                    // Push the user to the path /home
-                    if (this.$route.path !== '/')
-                    {
-                        this.$router.push("/");
-                    }
+                // Push the user to the path /home
+                if (this.$route.path !== '/')
+                {
+                    this.$router.push("/");
+                }
 
-                    alert('You have logged out!');
+                alert('You have logged out!');
 
-                })
-                .catch(error => {
-                    console.log('logout', error);
-                });
+            })
+            .catch(error => {
+                console.log('logout', error);
+            });
+        },
+
+        toggleDropdown() {
+            this.isDropdownOpen = !this.isDropdownOpen;
+        },
+
+        closeDropdown() {
+            this.isDropdownOpen = false;
         },
     },
 }

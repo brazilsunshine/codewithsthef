@@ -1,10 +1,19 @@
 <template>
     <div>
-        <div :class="checkOpen">
-            <div class="dropdown-trigger" @click.prevent="langsOpen = !langsOpen">
-                <button class="button is-small" aria-haspopup="true">
+        <div>
+            <div
+                @click.prevent="langsOpen = !langsOpen"
+                ref="elementToMonitor"
+                v-click-outside="handleClickOutside"
+            >
+                <button
+                    class="button is-small" aria-haspopup="true"
+                >
                     <!-- Current Language -->
-                    <img :src="getFlag(this.$i18n.locale)" class="lang-flag-small" />
+                    <img
+                        :src="getFlag(this.$i18n.locale)"
+                        class="lang-flag-small"
+                    />
                 </button>
             </div>
 
@@ -25,12 +34,33 @@
 </template>
 
 <script>
+
 export default {
     name: "Languages",
+    directives: {
+        'click-outside': {
+            bind: function (el, binding, vnode) {
+                el.clickOutsideEvent = function (event) {
+                    // Check if clicked element is outside the bound element and its children
+                    if (!(el === event.target || el.contains(event.target))) {
+                        // Call the provided method when a click outside occurs
+                        vnode.context[binding.expression](event);
+                    }
+                };
+                // Attach the event listener
+                document.addEventListener('click', el.clickOutsideEvent);
+            },
+            unbind: function (el) {
+                // Remove the event listener when the directive is unbound
+                document.removeEventListener('click', el.clickOutsideEvent);
+            }
+        }
+    },
     data ()
     {
         return {
             button: 'dropdown navbar-item pointer',
+            isDropdownOpen: true,
             langsOpen: false,
             dir: '/img/flags/',
             langs: [
@@ -88,12 +118,20 @@ export default {
             this.langsOpen = false;
         },
 
-        /**
-         *
-         */
-        toggleOpen ()
+        // /**
+        //  *
+        //  */
+        // toggleOpen ()
+        // {
+        //     this.$store.commit('toggleLangsButton');
+        // },
+
+        handleClickOutside(event)
         {
-            this.$store.commit('toggleLangsButton');
+            if (!this.$refs.elementToMonitor.contains(event.target))
+            {
+                this.isDropdownOpen = false;
+            }
         }
     },
 }
@@ -111,7 +149,7 @@ export default {
     .lang-flag {
         max-height: 28px;
         max-width: 30px;
-        margin-bottom: 1px;
+        margin-bottom: 3px;
     }
 
     .lang-flag-small {

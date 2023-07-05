@@ -2792,9 +2792,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Languages",
+  directives: {
+    'click-outside': {
+      bind: function bind(el, binding, vnode) {
+        el.clickOutsideEvent = function (event) {
+          // Check if clicked element is outside the bound element and its children
+          if (!(el === event.target || el.contains(event.target))) {
+            // Call the provided method when a click outside occurs
+            vnode.context[binding.expression](event);
+          }
+        };
+        // Attach the event listener
+        document.addEventListener('click', el.clickOutsideEvent);
+      },
+      unbind: function unbind(el) {
+        // Remove the event listener when the directive is unbound
+        document.removeEventListener('click', el.clickOutsideEvent);
+      }
+    }
+  },
   data: function data() {
     return {
       button: 'dropdown navbar-item pointer',
+      isDropdownOpen: true,
       langsOpen: false,
       dir: '/img/flags/',
       langs: ['en', 'es', 'pt']
@@ -2841,11 +2861,17 @@ __webpack_require__.r(__webpack_exports__);
       this.$localStorage.set('lang', lang);
       this.langsOpen = false;
     },
-    /**
-     *
-     */
-    toggleOpen: function toggleOpen() {
-      this.$store.commit('toggleLangsButton');
+    // /**
+    //  *
+    //  */
+    // toggleOpen ()
+    // {
+    //     this.$store.commit('toggleLangsButton');
+    // },
+    handleClickOutside: function handleClickOutside(event) {
+      if (!this.$refs.elementToMonitor.contains(event.target)) {
+        this.isDropdownOpen = false;
+      }
     }
   }
 });
@@ -3097,6 +3123,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    },
+    toggleDropdown: function toggleDropdown() {
+      this.isDropdownOpen = !this.isDropdownOpen;
+    },
+    closeDropdown: function closeDropdown() {
+      this.isDropdownOpen = false;
     }
   }
 });
@@ -4201,10 +4233,14 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_c("div", {
-    "class": _vm.checkOpen
-  }, [_c("div", {
-    staticClass: "dropdown-trigger",
+  return _c("div", [_c("div", [_c("div", {
+    directives: [{
+      name: "click-outside",
+      rawName: "v-click-outside",
+      value: _vm.handleClickOutside,
+      expression: "handleClickOutside"
+    }],
+    ref: "elementToMonitor",
     on: {
       click: function click($event) {
         $event.preventDefault();
@@ -8407,7 +8443,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.flex[data-v-1632fcc0] {\n    display: flex;\n}\n.hoverable[data-v-1632fcc0] {\n    cursor: pointer;\n}\n.lang-flag[data-v-1632fcc0] {\n    max-height: 28px;\n    max-width: 30px;\n    margin-bottom: 1px;\n}\n.lang-flag-small[data-v-1632fcc0] {\n    max-height: 21px !important;\n    max-width: 31px;\n}\nimg[data-v-1632fcc0] {\n    border-radius: 30px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.flex[data-v-1632fcc0] {\n    display: flex;\n}\n.hoverable[data-v-1632fcc0] {\n    cursor: pointer;\n}\n.lang-flag[data-v-1632fcc0] {\n    max-height: 28px;\n    max-width: 30px;\n    margin-bottom: 3px;\n}\n.lang-flag-small[data-v-1632fcc0] {\n    max-height: 21px !important;\n    max-width: 31px;\n}\nimg[data-v-1632fcc0] {\n    border-radius: 30px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
