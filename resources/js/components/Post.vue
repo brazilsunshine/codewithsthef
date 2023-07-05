@@ -35,11 +35,14 @@
         </div>
 
         <div class="mt-6">
-            <div class="flex items-center text-xs text-gray-400 space-x-2" style="justify-content: center;">
-                <div class="mobile-right-182 text-blue">
+            <div class="flex text-xs text-gray-400" style="justify-content: center;">
+                <div
+                    class="mobile-right-182"
+                    style="color: cornflowerblue; margin-right: 8px;"
+                >
                     {{ post.user.name }}
                 </div>
-                <div>
+                <div style="margin-right: 8px;">
                     &bull;
                 </div>
                 <div>

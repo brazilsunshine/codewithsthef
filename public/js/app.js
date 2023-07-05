@@ -4692,13 +4692,21 @@ var render = function render() {
   }, [_vm._v("\n                " + _vm._s(_vm.showFullDescription ? "Read Less" : "Read More") + "\n            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "mt-6"
   }, [_c("div", {
-    staticClass: "flex items-center text-xs text-gray-400 space-x-2",
+    staticClass: "flex text-xs text-gray-400",
     staticStyle: {
       "justify-content": "center"
     }
   }, [_c("div", {
-    staticClass: "mobile-right-182 text-blue"
-  }, [_vm._v("\n                " + _vm._s(_vm.post.user.name) + "\n            ")]), _vm._v(" "), _c("div", [_vm._v("\n                •\n            ")]), _vm._v(" "), _c("div", [_vm._v("\n                " + _vm._s(_vm.post.diffForHumans) + "\n            ")])])])]);
+    staticClass: "mobile-right-182",
+    staticStyle: {
+      color: "cornflowerblue",
+      "margin-right": "8px"
+    }
+  }, [_vm._v("\n                " + _vm._s(_vm.post.user.name) + "\n            ")]), _vm._v(" "), _c("div", {
+    staticStyle: {
+      "margin-right": "8px"
+    }
+  }, [_vm._v("\n                •\n            ")]), _vm._v(" "), _c("div", [_vm._v("\n                " + _vm._s(_vm.post.diffForHumans) + "\n            ")])])])]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
