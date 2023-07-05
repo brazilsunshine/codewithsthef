@@ -138,7 +138,7 @@ export default {
         color: black;
     }
     .padding-top {
-        padding-top: 44px;
+        padding-top: 3em;
     }
 
     .p30 {
@@ -159,8 +159,7 @@ export default {
 
     .read-more-btn {
         margin-top: 1em;
-        background-image: linear-gradient(to right, #614385 0%, #516395  51%, #614385  100%);
-        align-self: center;
+        background-image: linear-gradient(to right, rgba(100, 9, 76, 0.87) 0%, rgb(255, 121, 198) 51%, rgba(100, 9, 76, 0.87) 100%);
         font-size: 14px;
         cursor: pointer;
         border-radius: 20px;
@@ -173,6 +172,26 @@ export default {
     }
 
     .read-more-btn:hover {
+        background-position: right center; /* change the direction of the change here */
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .dark .read-more-btn {
+        margin-top: 1em;
+        background-image: linear-gradient(to right, #614385 0%, #516395  51%, #614385  100%);
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 20px;
+        padding: 12px 24px;
+        text-align: center;
+        text-transform: uppercase;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: white;
+    }
+
+    .dark .read-more-btn:hover {
         background-position: right center; /* change the direction of the change here */
         color: #fff;
         text-decoration: none;
