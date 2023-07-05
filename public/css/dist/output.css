@@ -882,12 +882,6 @@ select {
   margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
-.space-x-2 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
-  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
-}
-
 .rounded-full {
   border-radius: 9999px;
 }
@@ -946,9 +940,9 @@ select {
   background-color: rgb(229 229 229 / var(--tw-bg-opacity));
 }
 
-.bg-blue {
+.bg-purple {
   --tw-bg-opacity: 1;
-  background-color: rgb(50 138 241 / var(--tw-bg-opacity));
+  background-color: rgb(97 67 133 / var(--tw-bg-opacity));
 }
 
 .fill-current {
@@ -1065,6 +1059,11 @@ select {
 .text-gray-900 {
   --tw-text-opacity: 1;
   color: rgb(23 23 23 / var(--tw-text-opacity));
+}
+
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
 .text-gray-400 {
@@ -1193,7 +1192,7 @@ select {
   border: 7px solid white;
   box-shadow: 4px 4px 15px 0 rgba(36, 37, 38, 0.08);
   left: -58px;
-  background: #8b60ed;
+  background: #614385;
   opacity: 1;
 }
 
@@ -1312,9 +1311,8 @@ select {
   background-color: rgb(245 245 245 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-blue-hover:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(40 121 189 / var(--tw-bg-opacity));
+.hover\:bg-purple-hover:hover {
+  background-color: rgba(97,67,133,0.69);
 }
 
 .focus\:outline-none:focus {

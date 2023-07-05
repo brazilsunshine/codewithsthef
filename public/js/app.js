@@ -2861,13 +2861,6 @@ __webpack_require__.r(__webpack_exports__);
       this.$localStorage.set('lang', lang);
       this.langsOpen = false;
     },
-    // /**
-    //  *
-    //  */
-    // toggleOpen ()
-    // {
-    //     this.$store.commit('toggleLangsButton');
-    // },
     handleClickOutside: function handleClickOutside(event) {
       if (!this.$refs.elementToMonitor.contains(event.target)) {
         this.isDropdownOpen = false;
@@ -4652,7 +4645,7 @@ var render = function render() {
       value: this.current_page > 1,
       expression: "this.current_page > 1"
     }],
-    staticClass: "w-44 bg-gray-200 border border-gray-200 hover:border-gray-400 font-semibold text-xs rounded-xl transition duration-150 ease-in px-4 py-3",
+    staticClass: "previous-btn",
     on: {
       click: _vm.previousPage
     }
@@ -4663,7 +4656,7 @@ var render = function render() {
       value: this.next_page_url,
       expression: "this.next_page_url"
     }],
-    staticClass: "w-44 bg-blue text-white border border-gray-200 hover:bg-blue-hover font-semibold text-xs rounded-xl transition duration-150 ease-in px-4 py-3",
+    staticClass: "next-btn",
     on: {
       click: _vm.nextPage
     }
@@ -5480,16 +5473,16 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_5__["default"]({
     component: (__webpack_require__(/*! ./components/Home */ "./resources/js/components/Home.vue")["default"])
   }, {
     path: '/register',
-    component: (__webpack_require__(/*! ./components/Register */ "./resources/js/components/Register.vue")["default"]),
-    meta: {
-      middleware: [_middleware_admin__WEBPACK_IMPORTED_MODULE_1__["default"], _middleware_auth__WEBPACK_IMPORTED_MODULE_2__["default"]]
-    }
+    component: (__webpack_require__(/*! ./components/Register */ "./resources/js/components/Register.vue")["default"])
+    // meta: {
+    //     middleware: [ admin, auth ],
+    // }
   }, {
     path: '/login',
-    component: (__webpack_require__(/*! ./components/Login */ "./resources/js/components/Login.vue")["default"]),
-    meta: {
-      middleware: [_middleware_admin__WEBPACK_IMPORTED_MODULE_1__["default"], _middleware_auth__WEBPACK_IMPORTED_MODULE_2__["default"]]
-    }
+    component: (__webpack_require__(/*! ./components/Login */ "./resources/js/components/Login.vue")["default"])
+    // meta: {
+    //     middleware: [ admin, auth ],
+    // }
   }, {
     path: '/contact',
     component: (__webpack_require__(/*! ./components/Contact */ "./resources/js/components/Contact.vue")["default"])
@@ -8522,6 +8515,30 @@ ___CSS_LOADER_EXPORT___.push([module.id, "\n.dark nav[data-v-7cd4f788] {\n    ba
 
 /***/ }),
 
+/***/ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PaginationButtons.vue?vue&type=style&index=0&id=88f11fa8&scoped=true&lang=css&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PaginationButtons.vue?vue&type=style&index=0&id=88f11fa8&scoped=true&lang=css& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/laravel-mix/node_modules/css-loader/dist/runtime/api.js */ "./node_modules/laravel-mix/node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.previous-btn[data-v-88f11fa8] {\n    width: 11rem;\n    background-color: rgba(229, 229, 229, 0.99);\n    color: black;\n    border-width: 1px;\n    border-color: rgb(229 229 229 / var(--tw-border-opacity));\n    transition-property: border;\n    transition-duration: 150ms;\n    transition-timing-function: ease-in;\n    font-weight: 600;\n    font-size: 12px;\n    border-radius: 16px;\n    padding: 0.75em 1em;\n}\n.previous-btn[data-v-88f11fa8]:hover {\n    border-width: 1px;\n    --tw-border-opacity: 1;\n    border-color: rgb(163 163 163 / var(--tw-border-opacity));\n}\n.next-btn[data-v-88f11fa8] {\n    width: 11rem;\n    background-color: rgb(174 80 134);\n    color: #FFFFFF;\n    border: none;\n    transition-property: background-color;\n    transition-duration: 150ms;\n    transition-timing-function: ease-in;\n    font-weight: 600;\n    font-size: 12px;\n    border-radius: 16px;\n    padding: 0.75em 1em;\n}\n.next-btn[data-v-88f11fa8]:hover {\n    background-color: rgb(159 71 136 / 84%);\n}\n.dark .previous-btn[data-v-88f11fa8] {\n    width: 11rem;\n    background-color: rgba(229, 229, 229, 0.99);\n    color: black;\n    border-width: 1px;\n    border-color: rgb(229 229 229 / var(--tw-border-opacity));\n    transition-property: border;\n    transition-duration: 150ms;\n    transition-timing-function: ease-in;\n    font-weight: 600;\n    font-size: 12px;\n    border-radius: 16px;\n    padding: 0.75em 1em;\n}\n.dark .previous-btn[data-v-88f11fa8]:hover {\n    background-color: #d7dbdd;\n}\n.dark .next-btn[data-v-88f11fa8] {\n    width: 11rem;\n    background-color: #614385;\n    color: #FFFFFF;\n    border: none;\n    transition-property: background-color;\n    transition-duration: 150ms;\n    transition-timing-function: ease-in;\n    font-weight: 600;\n    font-size: 12px;\n    border-radius: 16px;\n    padding: 0.75em 1em;\n}\n.dark .next-btn[data-v-88f11fa8]:hover {\n    background-color: rgba(97,67,133,0.69);\n}\n\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Post.vue?vue&type=style&index=0&id=5e8280ea&scoped=true&lang=css&":
 /*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Post.vue?vue&type=style&index=0&id=5e8280ea&scoped=true&lang=css& ***!
@@ -9105,6 +9122,36 @@ var update = _node_modules_laravel_mix_node_modules_style_loader_dist_runtime_in
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Nav_vue_vue_type_style_index_0_id_7cd4f788_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./node_modules/laravel-mix/node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PaginationButtons.vue?vue&type=style&index=0&id=88f11fa8&scoped=true&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/laravel-mix/node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PaginationButtons.vue?vue&type=style&index=0&id=88f11fa8&scoped=true&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_laravel_mix_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/laravel-mix/node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/laravel-mix/node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_laravel_mix_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_laravel_mix_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PaginationButtons_vue_vue_type_style_index_0_id_88f11fa8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PaginationButtons.vue?vue&type=style&index=0&id=88f11fa8&scoped=true&lang=css& */ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PaginationButtons.vue?vue&type=style&index=0&id=88f11fa8&scoped=true&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_laravel_mix_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PaginationButtons_vue_vue_type_style_index_0_id_88f11fa8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PaginationButtons_vue_vue_type_style_index_0_id_88f11fa8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 
@@ -59058,15 +59105,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _PaginationButtons_vue_vue_type_template_id_88f11fa8_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PaginationButtons.vue?vue&type=template&id=88f11fa8&scoped=true& */ "./resources/js/components/PaginationButtons.vue?vue&type=template&id=88f11fa8&scoped=true&");
 /* harmony import */ var _PaginationButtons_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PaginationButtons.vue?vue&type=script&lang=js& */ "./resources/js/components/PaginationButtons.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _PaginationButtons_vue_vue_type_style_index_0_id_88f11fa8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PaginationButtons.vue?vue&type=style&index=0&id=88f11fa8&scoped=true&lang=css& */ "./resources/js/components/PaginationButtons.vue?vue&type=style&index=0&id=88f11fa8&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
+;
 
 
 /* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _PaginationButtons_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _PaginationButtons_vue_vue_type_template_id_88f11fa8_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
   _PaginationButtons_vue_vue_type_template_id_88f11fa8_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
@@ -60114,6 +60163,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_laravel_mix_node_modules_style_loader_dist_cjs_js_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Nav_vue_vue_type_style_index_0_id_7cd4f788_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/laravel-mix/node_modules/style-loader/dist/cjs.js!../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Nav.vue?vue&type=style&index=0&id=7cd4f788&scoped=true&lang=css& */ "./node_modules/laravel-mix/node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Nav.vue?vue&type=style&index=0&id=7cd4f788&scoped=true&lang=css&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/PaginationButtons.vue?vue&type=style&index=0&id=88f11fa8&scoped=true&lang=css&":
+/*!****************************************************************************************************************!*\
+  !*** ./resources/js/components/PaginationButtons.vue?vue&type=style&index=0&id=88f11fa8&scoped=true&lang=css& ***!
+  \****************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_laravel_mix_node_modules_style_loader_dist_cjs_js_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PaginationButtons_vue_vue_type_style_index_0_id_88f11fa8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/laravel-mix/node_modules/style-loader/dist/cjs.js!../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PaginationButtons.vue?vue&type=style&index=0&id=88f11fa8&scoped=true&lang=css& */ "./node_modules/laravel-mix/node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PaginationButtons.vue?vue&type=style&index=0&id=88f11fa8&scoped=true&lang=css&");
 
 
 /***/ }),

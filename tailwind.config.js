@@ -20,7 +20,8 @@ module.exports = {
                 'yellow': '#ffc73c',
                 'red': '#ec454f',
                 'green': '#1aab8b',
-                'purple': '#8b60ed'
+                'purple': '#614385',
+                'purple-hover': 'rgba(97,67,133,0.69)'
             },
             spacing: {
                 70: '17.5rem',

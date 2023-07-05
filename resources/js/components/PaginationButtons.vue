@@ -5,8 +5,7 @@
             <button
                 v-show="this.current_page > 1"
                 @click="previousPage"
-                class="w-44 bg-gray-200 border border-gray-200 hover:border-gray-400
-                          font-semibold text-xs rounded-xl transition duration-150 ease-in px-4 py-3"
+                class="previous-btn"
             >
                 Previous Page
             </button>
@@ -15,8 +14,7 @@
             <button
                 v-show="this.next_page_url"
                 @click="nextPage"
-                class="w-44 bg-blue text-white border border-gray-200 hover:bg-blue-hover
-                          font-semibold text-xs rounded-xl transition duration-150 ease-in px-4 py-3"
+                class="next-btn"
             >
                 Next Page
             </button>
@@ -56,5 +54,80 @@ export default {
 </script>
 
 <style scoped>
+    .previous-btn {
+        width: 11rem;
+        background-color: rgba(229, 229, 229, 0.99);
+        color: black;
+        border-width: 1px;
+        border-color: rgb(229 229 229 / var(--tw-border-opacity));
+        transition-property: border;
+        transition-duration: 150ms;
+        transition-timing-function: ease-in;
+        font-weight: 600;
+        font-size: 12px;
+        border-radius: 16px;
+        padding: 0.75em 1em;
+    }
+
+    .previous-btn:hover {
+        border-width: 1px;
+        --tw-border-opacity: 1;
+        border-color: rgb(163 163 163 / var(--tw-border-opacity));
+    }
+
+    .next-btn {
+        width: 11rem;
+        background-color: rgb(174 80 134);
+        color: #FFFFFF;
+        border: none;
+        transition-property: background-color;
+        transition-duration: 150ms;
+        transition-timing-function: ease-in;
+        font-weight: 600;
+        font-size: 12px;
+        border-radius: 16px;
+        padding: 0.75em 1em;
+    }
+
+    .next-btn:hover {
+        background-color: rgb(159 71 136 / 84%);
+    }
+
+    .dark .previous-btn {
+        width: 11rem;
+        background-color: rgba(229, 229, 229, 0.99);
+        color: black;
+        border-width: 1px;
+        border-color: rgb(229 229 229 / var(--tw-border-opacity));
+        transition-property: border;
+        transition-duration: 150ms;
+        transition-timing-function: ease-in;
+        font-weight: 600;
+        font-size: 12px;
+        border-radius: 16px;
+        padding: 0.75em 1em;
+    }
+
+    .dark .previous-btn:hover {
+        background-color: #d7dbdd;
+    }
+
+    .dark .next-btn {
+        width: 11rem;
+        background-color: #614385;
+        color: #FFFFFF;
+        border: none;
+        transition-property: background-color;
+        transition-duration: 150ms;
+        transition-timing-function: ease-in;
+        font-weight: 600;
+        font-size: 12px;
+        border-radius: 16px;
+        padding: 0.75em 1em;
+    }
+
+    .dark .next-btn:hover {
+        background-color: rgba(97,67,133,0.69);
+    }
 
 </style>

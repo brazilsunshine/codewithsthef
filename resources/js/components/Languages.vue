@@ -118,14 +118,6 @@ export default {
             this.langsOpen = false;
         },
 
-        // /**
-        //  *
-        //  */
-        // toggleOpen ()
-        // {
-        //     this.$store.commit('toggleLangsButton');
-        // },
-
         handleClickOutside(event)
         {
             if (!this.$refs.elementToMonitor.contains(event.target))
