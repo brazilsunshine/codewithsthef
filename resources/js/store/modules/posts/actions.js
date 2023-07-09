@@ -80,6 +80,8 @@ export const actions = {
             if (response.status === 200)
             {
                 context.commit("setPost", response.data);
+
+                window.scrollTo(0,0); // scroll the page to the top
             }
         })
         .catch(error => {

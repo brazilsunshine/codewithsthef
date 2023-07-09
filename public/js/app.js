@@ -6032,6 +6032,7 @@ var actions = {
                 console.log('GET_POST_BY_SLUG', response);
                 if (response.status === 200) {
                   context.commit("setPost", response.data);
+                  window.scrollTo(0, 0); // scroll the page to the top
                 }
               })["catch"](function (error) {
                 console.log('GET_POST_BY_SLUG', error);
@@ -6048,29 +6049,6 @@ var actions = {
 
 /***/ }),
 
-/***/ "./resources/js/store/modules/posts/getters.js":
-/*!*****************************************************!*\
-  !*** ./resources/js/store/modules/posts/getters.js ***!
-  \*****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getters": () => (/* binding */ getters)
-/* harmony export */ });
-var getters = {
-  // /**
-  //  *
-  //  */
-  // currentPost(state)
-  // {
-  //     return state.post;
-  // },
-};
-
-/***/ }),
-
 /***/ "./resources/js/store/modules/posts/index.js":
 /*!***************************************************!*\
   !*** ./resources/js/store/modules/posts/index.js ***!
@@ -6083,9 +6061,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "posts": () => (/* binding */ posts)
 /* harmony export */ });
 /* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./actions */ "./resources/js/store/modules/posts/actions.js");
-/* harmony import */ var _getters__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getters */ "./resources/js/store/modules/posts/getters.js");
-/* harmony import */ var _mutations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mutations */ "./resources/js/store/modules/posts/mutations.js");
-
+/* harmony import */ var _mutations__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mutations */ "./resources/js/store/modules/posts/mutations.js");
 
 
 var state = {
@@ -6103,8 +6079,7 @@ var state = {
 var posts = {
   state: state,
   actions: _actions__WEBPACK_IMPORTED_MODULE_0__.actions,
-  getters: _getters__WEBPACK_IMPORTED_MODULE_1__.getters,
-  mutations: _mutations__WEBPACK_IMPORTED_MODULE_2__.mutations
+  mutations: _mutations__WEBPACK_IMPORTED_MODULE_1__.mutations
 };
 
 /***/ }),
