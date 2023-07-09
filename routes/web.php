@@ -33,6 +33,10 @@ Route::get('/projects', function () {
     return view('root');
 });
 
+Route::get('/posts/{slug}/{lang}', function () {
+    return view('root');
+});
+
 Route::get('/admin/create-post', function () {
     return view('root');
 });

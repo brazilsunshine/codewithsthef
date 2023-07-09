@@ -179,7 +179,7 @@ export default {
                     .then(response => {
                         console.log('submit-blog-post', response);
 
-                        if (response.data.success)
+                        if (response.status === 200)
                         {
                             Vue.$vToastify.success("You created your post! =)");
 

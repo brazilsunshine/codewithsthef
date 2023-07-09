@@ -8,7 +8,9 @@
 
         <div >
 
-            <BlogCoverPreviewModal v-show="this.$store.state.posts.blogPhotoPreview" />
+            <BlogCoverPreviewModal
+                v-show="this.$store.state.posts.blogPhotoPreview"
+            />
 
             <Modal
                 v-show="showModal"

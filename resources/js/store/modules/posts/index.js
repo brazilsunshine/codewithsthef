@@ -1,9 +1,11 @@
 import { actions } from './actions';
+import { getters } from './getters';
 import { mutations } from './mutations';
 
 const state = {
     paginated: null,
     post: null,
+    viewCount: 0,
     editPostTitle: null,
     editPostDescription: null,
     blogHTML: "",
@@ -16,5 +18,6 @@ const state = {
 export const posts = {
     state,
     actions,
+    getters,
     mutations
 };

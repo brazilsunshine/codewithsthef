@@ -6,7 +6,11 @@
             </p>
         </div>
         <div class="cover-photo">
-            <img :src="post.cover_photo" class="cover-photo-mob" alt=""/>
+            <img
+                :src="post.cover_photo"
+                class="cover-photo-mob"
+                alt=""
+            />
         </div>
         <div v-if="auth && is('admin')">
             <button
@@ -22,15 +26,18 @@
             <div>
                 <p
                     class="padding-top"
+                    style="margin-bottom: 1em;"
                     v-html="processedContent"
                 />
-                <button
+                <router-link
+                    :to="getPostRoute(post)"
                     v-if="showReadMore"
                     @click="toggleDescription"
                     class="read-more-btn"
                 >
                     {{ showFullDescription ? 'Read Less' : 'Read More' }}
-                </button>
+                </router-link>
+
             </div>
         </div>
 
@@ -54,8 +61,12 @@
 </template>
 
 <script>
+import PostShow from "./PostShow";
 export default {
     name: "Post",
+    components: {
+        PostShow
+    },
     props: [
         'post'
     ],
@@ -72,6 +83,14 @@ export default {
          */
         auth () {
             return this.$store.state.user.auth;
+        },
+
+        /**
+         * Get the title with the current language. ex: this.post.title_pt or this.post.title_en
+         */
+        getSlug ()
+        {
+            return this.post['slug_' + this.$i18n.locale];
         },
 
         /**
@@ -106,7 +125,15 @@ export default {
          */
         showReadMore() {
             return this.getDescription && this.getDescription.length > this.maxLength;
-        }
+        },
+
+        /**
+         * Current locale
+         */
+        lang ()
+        {
+            return this.$i18n.locale;
+        },
     },
     methods: {
         /**
@@ -126,7 +153,20 @@ export default {
 
         toggleDescription()
         {
+            // make a commit to update the post in the Vuex store
+            this.$store.commit('setPost', this.post);
+
             this.showFullDescription = !this.showFullDescription;
+        },
+
+        getPostRoute() {
+            return {
+                name: "post",
+                params: {
+                    slug: this.getSlug,
+                    lang: this.lang
+                }
+            };
         },
     },
 }

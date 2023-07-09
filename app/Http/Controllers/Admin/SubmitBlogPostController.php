@@ -7,6 +7,9 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Str;
+
 
 class SubmitBlogPostController extends Controller
 {
@@ -50,6 +53,8 @@ class SubmitBlogPostController extends Controller
 
         $userId = auth()->user()->id;
 
+        $slug = 'slug_' . $request->lang;
+
         $title = 'title_' . $request->lang;
 
         $description = 'description_' . $request->lang;
@@ -60,22 +65,26 @@ class SubmitBlogPostController extends Controller
            $post = Post::create([
                'user_id' => $userId,
                'cover_photo' => $url,
+               $slug => Str::slug($request->title),
                $title => $request->title,
                $description => $request->description,
            ]);
+
+            // Increment view count
+            $redisKey = "post:$post->id:views";
+            Redis::incr($redisKey);
         }
         catch (\Exception $exception)
         {
             \Log::info(['SubmitBlogPostController', $exception->getMessage()]);
 
-            return [
+            return response()->json([
                 'success' => false,
                 'msg' => 'problem'
-            ];
+            ], 500);
         }
 
         return [
-            'success' => true,
             'post' => $post
         ];
     }

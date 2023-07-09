@@ -1,3 +1,5 @@
+import store from "../../index";
+
 export const actions = {
     /**
      * Get paginated posts
@@ -61,6 +63,27 @@ export const actions = {
         })
         .catch(error => {
             console.log('next-ideas-page', error);
+        });
+    },
+
+    /**
+     * Get post by slug
+     */
+    async GET_POST_BY_SLUG (context, payload)
+    {
+        const { slug, lang } = payload;
+
+        await axios.get(`/api/posts/${slug}/${lang}`)
+        .then(response => {
+            console.log('GET_POST_BY_SLUG', response);
+
+            if (response.status === 200)
+            {
+                context.commit("setPost", response.data);
+            }
+        })
+        .catch(error => {
+            console.log('GET_POST_BY_SLUG', error);
         });
     },
 }

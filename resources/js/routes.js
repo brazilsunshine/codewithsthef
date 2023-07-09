@@ -5,6 +5,7 @@ import admin from './middleware/admin'
 import auth from './middleware/auth'
 import superAdmin from './middleware/superAdmin'
 import middlewarePipeline from './middleware/middlewarePipeline'
+import PostShow from "./components/PostShow";
 const router = new VueRouter({
     mode: "history",
     routes: [
@@ -15,16 +16,16 @@ const router = new VueRouter({
         {
             path: '/register',
             component: require('./components/Register').default,
-            meta: {
-                middleware: [ admin, auth ],
-            }
+            // meta: {
+            //     middleware: [ admin, auth ],
+            // }
         },
         {
             path: '/login',
             component: require('./components/Login').default,
-            meta: {
-                middleware: [ admin, auth ],
-            }
+            // meta: {
+            //     middleware: [ admin, auth ],
+            // }
         },
         {
             path: '/contact',
@@ -33,6 +34,24 @@ const router = new VueRouter({
         {
             path: '/projects',
             component: require('./components/Projects').default,
+        },
+        {
+            path: '/posts/:slug/:lang',
+            name: 'post',
+            component: require('./components/PostShow').default,
+            props: true,
+            beforeEnter: (to, from, next) => {
+                const slug = to.params.slug;
+                const lang = to.params.lang;
+
+                store.dispatch('GET_POST_BY_SLUG', { slug, lang })
+                .then(() => {
+                    next();
+                })
+                .catch(e => {
+                    console.log(e)
+                });
+            },
         },
         {
             path: '/admin/create-post',
