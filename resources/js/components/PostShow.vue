@@ -1,11 +1,11 @@
 <template>
-    <div class="container container-mob">
+    <div class="container-mob">
         <div class="mt-3">
             <a
                 href="/"
                 class="flex items-center font-semibold hover:underline pointer"
             >
-                <i class="fas fa-chevron-left w-4 h-4"></i>
+                <i class="fas fa-chevron-left"></i>
                 <span class="ml-2">
                     All posts
                 </span>
@@ -35,7 +35,7 @@
 
 
 
-            <div>
+            <div class="mb-4">
                 <div
                     class="flex views-mob"
                     style="width: 6%; margin: 9px 49%; color: cornflowerblue;"
@@ -47,8 +47,8 @@
                 </div>
                 <p
                     class="description description-mob"
+                    v-html="getDescription"
                 >
-                    {{ getDescription }}
                 </p>
             </div>
         </div>
@@ -127,12 +127,8 @@ export default {
 </script>
 
 <style scoped>
-    .container {
-        margin: 2em 9em;
-        width: 100%;
-    }
     .dark i {
-        padding: 1px 4px;
+        padding: 2px 4px;
         color: cornflowerblue;
     }
 
