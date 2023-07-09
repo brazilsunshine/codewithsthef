@@ -4901,7 +4901,7 @@ var render = function render() {
     staticClass: "flex views-mob",
     staticStyle: {
       width: "6%",
-      margin: "9px 49%",
+      margin: "9px 48%",
       color: "cornflowerblue"
     }
   }, [_c("p", {

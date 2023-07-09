@@ -38,7 +38,7 @@
             <div class="mb-4">
                 <div
                     class="flex views-mob"
-                    style="width: 6%; margin: 9px 49%; color: cornflowerblue;"
+                    style="width: 6%; margin: 9px 48%; color: cornflowerblue;"
                 >
                     <p class="text-sm">
                         {{ post.view_count }} views
