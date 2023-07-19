@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style="width: 101%;" class="mob-100-w">
+<html lang="en" style="width: 100%;" class="mob-100-w">
 <head>
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
