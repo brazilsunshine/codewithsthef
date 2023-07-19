@@ -5668,16 +5668,16 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_6__["default"]({
     component: (__webpack_require__(/*! ./components/Home */ "./resources/js/components/Home.vue")["default"])
   }, {
     path: '/register',
-    component: (__webpack_require__(/*! ./components/Register */ "./resources/js/components/Register.vue")["default"])
-    // meta: {
-    //     middleware: [ admin, auth ],
-    // }
+    component: (__webpack_require__(/*! ./components/Register */ "./resources/js/components/Register.vue")["default"]),
+    meta: {
+      middleware: [_middleware_admin__WEBPACK_IMPORTED_MODULE_1__["default"], _middleware_auth__WEBPACK_IMPORTED_MODULE_2__["default"]]
+    }
   }, {
     path: '/login',
-    component: (__webpack_require__(/*! ./components/Login */ "./resources/js/components/Login.vue")["default"])
-    // meta: {
-    //     middleware: [ admin, auth ],
-    // }
+    component: (__webpack_require__(/*! ./components/Login */ "./resources/js/components/Login.vue")["default"]),
+    meta: {
+      middleware: [_middleware_admin__WEBPACK_IMPORTED_MODULE_1__["default"], _middleware_auth__WEBPACK_IMPORTED_MODULE_2__["default"]]
+    }
   }, {
     path: '/contact',
     component: (__webpack_require__(/*! ./components/Contact */ "./resources/js/components/Contact.vue")["default"])

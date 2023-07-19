@@ -12,8 +12,6 @@ class Post extends Model
 
     protected $guarded = [];
 
-    protected $fillable = ['title', 'slug'];
-
     public $appends = [
         'diffForHumans',
     ];
@@ -27,7 +25,7 @@ class Post extends Model
             'slug_en' => [
                 'source' => 'title',
                 'onUpdate' => true,
-            ]
+            ],
         ];
     }
 
