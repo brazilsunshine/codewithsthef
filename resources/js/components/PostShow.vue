@@ -127,7 +127,7 @@ export default {
 </script>
 
 <style scoped>
-    .dark i {
+    i {
         padding: 2px 4px;
         color: cornflowerblue;
     }
