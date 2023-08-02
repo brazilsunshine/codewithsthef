@@ -78478,7 +78478,7 @@ module.exports = JSON.parse('{"get-in-touch":"Ponerse en contacto!","description
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"hello":"¡Hola! Soy Sthefane","intro":"Soy un desarrollador junior completo al que le encanta crear y compartir contenido sobre informática y Harry Potter cuando, de alguna manera, no estoy leyendo, estudiando o programando porque no tengo vida. :)"}');
+module.exports = JSON.parse('{"hello":"¡Hola! Soy Sthefane","intro":"Hola, soy Sthefane y soy un desarrollador full stack autodidacta"}');
 
 /***/ }),
 
