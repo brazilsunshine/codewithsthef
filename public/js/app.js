@@ -6176,6 +6176,7 @@ var actions = {
                 console.log('GET_FILTERED_POSTS', response);
                 if (response.data.success) {
                   context.commit('serFilteredPosts', response.data.posts);
+                  vue__WEBPACK_IMPORTED_MODULE_1__["default"].$vToastify.success('You have successfully filtered the posts ❤️');
                 } else {
                   vue__WEBPACK_IMPORTED_MODULE_1__["default"].$vToastify.info('Sorry, no posts were found for this date :(');
                 }

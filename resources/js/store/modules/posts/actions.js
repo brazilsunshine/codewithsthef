@@ -108,6 +108,8 @@ export const actions = {
             if (response.data.success)
             {
                 context.commit('serFilteredPosts', response.data.posts)
+
+                Vue.$vToastify.success('You have successfully filtered the posts ❤️');
             }
             else
             {
