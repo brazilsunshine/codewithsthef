@@ -2842,6 +2842,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _this3.startDate = null;
                 _this3.endDate = null;
+
+                // get paginated posts
                 _context3.next = 4;
                 return _this3.$store.dispatch('GET_PAGINATED_POSTS');
               case 4:

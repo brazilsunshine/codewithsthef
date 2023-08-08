@@ -174,6 +174,7 @@ export default {
             this.startDate = null;
             this.endDate = null;
 
+            // get paginated posts
             await this.$store.dispatch('GET_PAGINATED_POSTS')
 
             this.filterButtonSelected = false;
