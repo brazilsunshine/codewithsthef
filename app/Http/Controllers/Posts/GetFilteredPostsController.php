@@ -62,7 +62,5 @@ class GetFilteredPostsController extends Controller
             'success' => true,
             'posts' => $posts
         ];
-
-        //return response()->json($posts);
     }
 }

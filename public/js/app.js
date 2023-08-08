@@ -2748,7 +2748,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       startDate: null,
       endDate: null,
       error: null,
-      errorMsg: null
+      errorMsg: null,
+      filterButtonSelected: false
     };
   },
   mounted: function mounted() {
@@ -2802,34 +2803,55 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                console.log(_this2.startDate);
-                console.log(_this2.endDate);
                 if (!(_this2.startDate && _this2.endDate)) {
-                  _context2.next = 9;
+                  _context2.next = 6;
                   break;
                 }
-                _context2.next = 5;
+                _context2.next = 3;
                 return _this2.$store.dispatch("GET_FILTERED_POSTS", {
                   startDate: _this2.startDate,
                   endDate: _this2.endDate
                 });
-              case 5:
-                _this2.startDate = '';
-                _this2.endDate = '';
-                _context2.next = 12;
+              case 3:
+                _this2.filterButtonSelected = true;
+                _context2.next = 9;
                 break;
-              case 9:
+              case 6:
                 _this2.error = true;
                 _this2.errorMsg = "Please select valid dates.";
                 setTimeout(function () {
                   _this2.error = false;
                 }, 5000);
-              case 12:
+              case 9:
               case "end":
                 return _context2.stop();
             }
           }
         }, _callee2);
+      }))();
+    },
+    /**
+     * Clear dates
+     */
+    clearDates: function clearDates() {
+      var _this3 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _this3.startDate = null;
+                _this3.endDate = null;
+                _context3.next = 4;
+                return _this3.$store.dispatch('GET_PAGINATED_POSTS');
+              case 4:
+                _this3.filterButtonSelected = false;
+              case 5:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
       }))();
     }
   }
@@ -4395,7 +4417,11 @@ var render = function render() {
     on: {
       click: _vm.getFilteredPosts
     }
-  }, [_vm._v("\n                                Filter\n                            ")])], 1)])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                Filter\n                            ")]), _vm._v(" "), _vm.filterButtonSelected ? _c("button", {
+    on: {
+      click: _vm.clearDates
+    }
+  }, [_vm._v("\n                                Clear\n                            ")]) : _vm._e()], 1)])])]), _vm._v(" "), _c("div", {
     staticClass: "w-full md:w-175 padding-idea-on-mobile"
   }, [_c("div", {
     staticClass: "mt-16"

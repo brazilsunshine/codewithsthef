@@ -42,8 +42,13 @@
                                     valueType="YYYY-MM-DD"
                                     format="DD-MM-YYYY"
                                 />
+
                                 <button @click="getFilteredPosts">
                                     Filter
+                                </button>
+
+                                <button v-if="filterButtonSelected" @click="clearDates">
+                                    Clear
                                 </button>
                             </div>
                         </div>
@@ -95,6 +100,7 @@ export default {
             endDate: null,
             error: null,
             errorMsg: null,
+            filterButtonSelected: false,
         }
     },
     async mounted()
@@ -140,8 +146,6 @@ export default {
          */
         async getFilteredPosts ()
         {
-            console.log(this.startDate)
-            console.log(this.endDate)
             if (this.startDate && this.endDate)
             {
                 await this.$store.dispatch("GET_FILTERED_POSTS", {
@@ -149,8 +153,7 @@ export default {
                     endDate: this.endDate,
                 });
 
-                this.startDate = ''
-                this.endDate = ''
+                this.filterButtonSelected = true;
             }
             else
             {
@@ -162,6 +165,20 @@ export default {
                 }, 5000);
             }
         },
+
+        /**
+         * Clear dates
+         */
+       async clearDates ()
+        {
+            this.startDate = null;
+            this.endDate = null;
+
+            await this.$store.dispatch('GET_PAGINATED_POSTS')
+
+            this.filterButtonSelected = false;
+        },
+
     }
 
 }
