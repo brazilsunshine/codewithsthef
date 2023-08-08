@@ -148,6 +148,9 @@ export default {
                     startDate: this.startDate,
                     endDate: this.endDate,
                 });
+
+                this.startDate = ''
+                this.endDate = ''
             }
             else
             {

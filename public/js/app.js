@@ -2805,7 +2805,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 console.log(_this2.startDate);
                 console.log(_this2.endDate);
                 if (!(_this2.startDate && _this2.endDate)) {
-                  _context2.next = 7;
+                  _context2.next = 9;
                   break;
                 }
                 _context2.next = 5;
@@ -2814,15 +2814,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   endDate: _this2.endDate
                 });
               case 5:
-                _context2.next = 10;
+                _this2.startDate = '';
+                _this2.endDate = '';
+                _context2.next = 12;
                 break;
-              case 7:
+              case 9:
                 _this2.error = true;
                 _this2.errorMsg = "Please select valid dates.";
                 setTimeout(function () {
                   _this2.error = false;
                 }, 5000);
-              case 10:
+              case 12:
               case "end":
                 return _context2.stop();
             }
