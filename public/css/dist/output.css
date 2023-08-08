@@ -834,10 +834,6 @@ select {
   width: 100%;
 }
 
-.w-70 {
-  width: 17.5rem;
-}
-
 .w-4 {
   width: 1rem;
 }
@@ -1273,6 +1269,10 @@ select {
   .ptr-mob {
     padding-top: 24px;
     padding-right: 2px;
+  }
+
+  .w18mob {
+    width: 18.5rem !important;
   }
 }
 

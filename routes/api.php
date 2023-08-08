@@ -18,9 +18,9 @@ Route::post('/contact', 'Contact\ContactController');
 
 Route::get('/user/check-auth', 'Auth\CheckAuthController');
 
-
+/** POSTS **/
 Route::get('/posts/get-paginated-posts', 'Posts\GetPaginatedPostsController');
-
+Route::get('/posts/get-filtered-posts', 'Posts\GetFilteredPostsController');
 Route::get('/posts/{slug}/{lang}', 'Posts\GetPostBySlugController');
 
 Route::group(['middleware' => ['auth:sanctum']], function () {

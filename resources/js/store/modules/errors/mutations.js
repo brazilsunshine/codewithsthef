@@ -21,6 +21,8 @@ export const mutations = {
      */
     setErrorsObject (state, payload)
     {
+        console.log({state});
+        console.log({payload});
         state.errorsObject = payload;
     }
 }

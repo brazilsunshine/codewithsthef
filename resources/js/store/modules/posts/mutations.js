@@ -85,6 +85,12 @@ export const mutations = {
         state.editPostDescription = payload;
     },
 
-
+    /**
+     * Set paginated posts to become filtered posts
+     */
+    serFilteredPosts (state, payload)
+    {
+        state.paginated = payload;
+    }
 }
 

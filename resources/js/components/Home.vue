@@ -5,8 +5,8 @@
         </div>
         <div v-else>
             <main class="container mx-auto flex flex-column-mob">
-                <div class="w-70 mx-auto">
-                    <div class="bg-white md:sticky md:top-8 border-2 br4 mt-16 gradient">
+                <div class="mx-auto w18mob" style="width: 24.5rem;">
+                    <div class="bg md:sticky md:top-8 border-2 br4 mt-16 gradient">
                         <div class="text-center px-6 py-2 pt-6">
                             <h1 class="font-semibold text-base">
                                 {{ this.$t('home.hello') }}
@@ -17,8 +17,40 @@
                                 </p>
                             </div>
                         </div>
+
+                        <div :class="{invisible: !error}" class=" md:sticky error-message">
+                            <p>{{ this.errorMsg }}</p>
+                        </div>
+                        <p v-if="errors[0]" class="error-message">
+                            {{ this.errors }}
+                        </p>
+
+                        <!--  Date Picker-->
+                        <div class="date-picker-container">
+                            <h1 class="date-picker-title">
+                                Filter posts by date
+                            </h1>
+                            <div class="date-picker">
+                                <datepicker
+                                    v-model="startDate"
+                                    valueType="YYYY-MM-DD"
+                                    format="DD-MM-YYYY"
+                                />
+                                <span style="margin: 3px">to</span>
+                                <datepicker
+                                    v-model="endDate"
+                                    valueType="YYYY-MM-DD"
+                                    format="DD-MM-YYYY"
+                                />
+                                <button @click="getFilteredPosts">
+                                    Filter
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </div>  <!-- Intro section ends here -->
+
+                <!-- Post section starts here -->
                 <div class="w-full md:w-175 padding-idea-on-mobile">
                     <div class="mt-16">
                         <div
@@ -33,8 +65,8 @@
                     <PaginationButtons
                         :current_page="this.$store.state.posts.paginated.current_page"
                         :next_page_url="this.$store.state.posts.paginated.next_page_url"
-                        prev_page="PREVIOUS_IDEAS_PAGE"
-                        next_page="NEXT_IDEAS_PAGE"
+                        prev_page="PREVIOUS_POSTS_PAGE"
+                        next_page="NEXT_POSTS_PAGE"
                     />
                 </div>
             </main>
@@ -45,20 +77,31 @@
 <script>
 import Post from "./Post";
 import PaginationButtons from "./PaginationButtons";
+import DatePicker from 'vue2-datepicker';
+import 'vue2-datepicker/index.css';
+
 export default {
     name: "Home",
     components: {
         PaginationButtons,
-        Post
+        Post,
+        DatePicker
     },
     data ()
     {
         return {
             loading: true,
+            startDate: null,
+            endDate: null,
+            error: null,
+            errorMsg: null,
         }
     },
     async mounted()
     {
+        /**
+         * Dispatch action to get paginated posts
+         */
         await this.$store.dispatch('GET_PAGINATED_POSTS');
 
         this.loading = false;
@@ -71,38 +114,174 @@ export default {
         posts ()
         {
             return this.$store.state.posts.paginated.data;
-        }
+        },
+
+        /**
+         * Return errors
+         */
+        errors ()
+        {
+            return this.$store.state.errors.errorsObject;
+        },
     },
     methods: {
+        /**
+         * Change current language
+         */
         changeLang (lang)
         {
             this.$i18n.locale = lang;
 
             this.$localStorage.set('codewithsthef.lang', lang);
-        }
+        },
+
+        /**
+         * Dispatch action to get filtered posts
+         */
+        async getFilteredPosts ()
+        {
+            console.log(this.startDate)
+            console.log(this.endDate)
+            if (this.startDate && this.endDate)
+            {
+                await this.$store.dispatch("GET_FILTERED_POSTS", {
+                    startDate: this.startDate,
+                    endDate: this.endDate,
+                });
+            }
+            else
+            {
+                this.error = true;
+                this.errorMsg = "Please select valid dates.";
+                setTimeout(() =>
+                {
+                    this.error = false
+                }, 5000);
+            }
+        },
     }
 
 }
 </script>
 
 <style scoped>
-    .container {
-        width: 71%;
-        padding-bottom: 28px;
-    }
-
-    .dark .bg-white {
+    .dark .bg {
         background: #242333;
     }
 
     .dark .gradient {
-        border-image-source: linear-gradient(to bottom, rgb(68, 52, 103), rgba(42, 9, 15, 0));
+        border-image-source: linear-gradient(to bottom, rgb(176, 132, 255), rgba(42, 9, 15, 0));
         border-image-slice: 1;
         background-origin: border-box;
         background-clip: content-box, border-box;
     }
 
+    .dark .date-picker-container {
+        padding: 20px;
+        max-width: 400px;
+        margin: 0 auto;
+        background: #242333; /* Light pink background */
+        border: 1px solid rgb(68, 52, 103); /* Pink border */
+        border-radius: 8px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .dark .date-picker-title {
+        color: #b084ff; /* Pink title color */
+        font-size: 24px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .dark .date-picker button {
+        background-color: #b084ff; /* Pink button background */
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 6px 7px;
+        font-size: 14px;
+        cursor: pointer;
+        margin-left: 3px;
+    }
+
+    .dark .date-picker button:hover {
+        background-color: #9360f3; /* Darker pink on hover */
+    }
+
+    .date-picker button {
+        background-color: #f49ac2; /* Pink button background */
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 6px 7px;
+        font-size: 14px;
+        cursor: pointer;
+        margin-left: 3px;
+    }
+
+
+    .container {
+        padding-bottom: 28px;
+        width: 71%;
+    }
+
     .br4 {
         border-radius: 4px;
+    }
+
+    .date-picker-container {
+        padding: 20px;
+        max-width: 400px;
+        margin: 0 auto;
+        background-color: #ffffff; /* Light pink background */
+        border: 1px solid #f49ac2; /* Pink border */
+        border-radius: 8px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .date-picker-title {
+        color: #f49ac2; /* Pink title color */
+        font-size: 24px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .date-picker {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .date-picker button:hover {
+        background-color: #f26dbb; /* Darker pink on hover */
+    }
+
+    /* Customize the datepicker letters style */
+    .vue-datepicker td {
+        color: #333;
+    }
+
+    .vue-datepicker .is-selected {
+        background-color: #f26dbb; /* Darker pink for selected date */
+        color: white;
+    }
+
+    .vue-datepicker th {
+        color: #f49ac2; /* Pink header text */
+        font-weight: bold;
+    }
+
+    /* Error Styling */
+    .invisible {
+        opacity: 0 !important;
+    }
+
+    .error-message {
+        width: 100%;
+        padding: 12px;
+        color: #fff;
+        background-color: darkred;
+        opacity: 1;
+        transition: .5s ease all;
     }
 </style>

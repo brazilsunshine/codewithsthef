@@ -48,7 +48,7 @@ export default {
         nextPage ()
         {
             this.$store.dispatch(this.next_page);
-        }
+        },
     }
 }
 </script>

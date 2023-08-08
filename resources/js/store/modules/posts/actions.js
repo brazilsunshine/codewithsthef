@@ -1,4 +1,5 @@
 import store from "../../index";
+import Vue from "vue";
 
 export const actions = {
     /**
@@ -25,12 +26,12 @@ export const actions = {
     /**
      * Load the previous page of Ideas
      */
-    async PREVIOUS_IDEAS_PAGE (context)
+    async PREVIOUS_POSTS_PAGE (context)
     {
         await axios.get(context.state.paginated.prev_page_url) // making a get request to my own store
 
         .then(response => {
-            console.log('previous-ideas-page', response);
+            console.log('previous-posts-page', response);
 
             if (response.data.success)
             {
@@ -40,19 +41,19 @@ export const actions = {
             }
         })
         .catch(error => {
-            console.log('previous-ideas-page', error);
+            console.log('previous-posts-page', error);
         });
     },
 
     /**
-     * Load the next page of Ideas
+     * Load the next page of Post
      */
-    async NEXT_IDEAS_PAGE (context)
+    async NEXT_POSTS_PAGE (context)
     {
         await axios.get(context.state.paginated.next_page_url) // making a get request to my own store
 
         .then(response => {
-            console.log('next-ideas-page', response);
+            console.log('next-posts-page', response);
 
             if (response.data.success)
             {
@@ -62,7 +63,7 @@ export const actions = {
             }
         })
         .catch(error => {
-            console.log('next-ideas-page', error);
+            console.log('next-posts-page', error);
         });
     },
 
@@ -86,6 +87,35 @@ export const actions = {
         })
         .catch(error => {
             console.log('GET_POST_BY_SLUG', error);
+        });
+    },
+
+    /**
+     * Get filtered posts
+     */
+    async GET_FILTERED_POSTS (context, payload)
+    {
+        await axios.get('api/posts/get-filtered-posts', {
+            params: {
+                startDate: payload.startDate,
+                endDate: payload.endDate
+            }
+        })
+
+        .then(response => {
+            console.log('GET_FILTERED_POSTS', response);
+
+            if (response.data.success)
+            {
+                context.commit('serFilteredPosts', response.data.posts)
+            }
+            else
+            {
+                Vue.$vToastify.info('Sorry, no posts were found for this date :(');
+            }
+         })
+        .catch(error => {
+            console.log('GET_FILTERED_POSTS', error);
         });
     },
 }

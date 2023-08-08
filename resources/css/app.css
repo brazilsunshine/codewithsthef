@@ -177,4 +177,8 @@
         padding-top: 24px;
         padding-right: 2px;
     }
+
+    .w18mob {
+        width: 18.5rem !important;
+    }
 }

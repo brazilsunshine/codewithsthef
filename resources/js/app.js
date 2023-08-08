@@ -14,7 +14,10 @@ import vClickOutside from 'v-click-outside';
 import VueRouter from 'vue-router';
 import VueToastify from 'vue-toastify';
 import VueXData from 'vue-x-data';
+import Datepicker from 'vue2-datepicker';
 
+
+Vue.component('datepicker', Datepicker);
 
 import RootContainer from './components/RootContainer';
 
