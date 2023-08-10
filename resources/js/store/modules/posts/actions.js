@@ -1,4 +1,3 @@
-import store from "../../index";
 import Vue from "vue";
 
 export const actions = {

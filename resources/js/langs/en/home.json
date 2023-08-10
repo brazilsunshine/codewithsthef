@@ -1,4 +1,6 @@
 {
     "hello": "Hello! I'm Sthefane",
-    "intro": "Hi, I'm Sthefane and I'm a self-taught full stack developer"
+    "intro": "Hi, I'm Sthefane and I'm a self-taught full stack developer",
+    "filter": "Filter posts by date",
+    "valid": "Please select valid dates."
 }

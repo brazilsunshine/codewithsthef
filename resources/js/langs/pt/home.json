@@ -1,4 +1,6 @@
 {
     "hello": "Oii! Eu sou a Sthefane!",
-    "intro": "Olá, sou Sthefane e sou um desenvolvedor full stack autodidata"
+    "intro": "Olá, sou Sthefane e sou um desenvolvedor full stack autodidata",
+    "filter": "Filtrar postagens por data",
+    "valid": "Por favor selecione datas válidas"
 }

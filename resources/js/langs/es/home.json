@@ -1,4 +1,6 @@
 {
     "hello": "¡Hola! Soy Sthefane",
-    "intro": "Hola, soy Sthefane y soy un desarrollador full stack autodidacta"
+    "intro": "Hola, soy Sthefane y soy un desarrollador full stack autodidacta",
+    "filter": "Filtrar publicaciones por fecha",
+    "valid": "Por favor seleccione fechas válidas."
 }

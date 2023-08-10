@@ -28,7 +28,7 @@
                         <!--  Date Picker-->
                         <div class="date-picker-container">
                             <h1 class="date-picker-title">
-                                Filter posts by date
+                                {{  this.$t('home.filter') }}
                             </h1>
                             <div class="date-picker">
                                 <datepicker
@@ -158,7 +158,7 @@ export default {
             else
             {
                 this.error = true;
-                this.errorMsg = "Please select valid dates.";
+                this.errorMsg = this.$t('home.valid');
                 setTimeout(() =>
                 {
                     this.error = false
