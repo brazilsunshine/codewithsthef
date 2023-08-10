@@ -94,12 +94,20 @@ export default {
         margin: 3em;
     }
 
+    .dark .contact-form {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 2rem;
+        border-radius: 5px;
+        box-shadow: 1px 1px 20px 2px #93f;
+    }
+
     .contact-form {
         max-width: 500px;
         margin: 0 auto;
         padding: 2rem;
         border-radius: 5px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        box-shadow: 1px 1px 20px 2px #f49ac2;
     }
 
     .form-group {
