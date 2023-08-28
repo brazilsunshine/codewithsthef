@@ -419,6 +419,13 @@ export default {
         -webkit-box-shadow: none;
     }
 
+    select {
+        outline: none;
+        --tw-ring-shadow: none;
+        border-color: #f49ac2;
+        -webkit-box-shadow: none;
+    }
+
     .dark select {
         outline: none;
         --tw-ring-shadow: none;
@@ -430,7 +437,7 @@ export default {
     input {
         transition: .5s ease-in-out all;
         border: none;
-        border-bottom: 1px solid #303030;
+        border-bottom: 1px solid #f49ac2;
     }
 
     .dark input {
@@ -446,6 +453,5 @@ export default {
         position: absolute;
         left: 313px;
         top: 152px;
-
     }
 </style>

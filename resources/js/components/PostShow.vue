@@ -45,7 +45,7 @@
                 </div>
 
                 <p
-                    class="description description-mob"
+                    class="description description-mob mb-4"
                     v-html="getDescription"
                 >
                 </p>
