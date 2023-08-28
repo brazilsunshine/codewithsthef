@@ -45,7 +45,7 @@
                 </div>
 
                 <p
-                    class="description description-mob mb-4"
+                    class="description description-mob"
                     v-html="getDescription"
                 >
                 </p>
@@ -140,7 +140,7 @@ export default {
     .description {
         width: 50%;
         text-align: center;
-        margin: 0 auto;
+        margin: 22px auto 22px;
     }
 
     .p3em {
