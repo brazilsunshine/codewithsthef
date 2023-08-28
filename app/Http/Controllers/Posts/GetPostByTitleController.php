@@ -16,7 +16,7 @@ class GetPostByTitleController extends Controller
         {
             $posts = Post::with('user')
                 ->orderBy('id', 'desc')
-                ->where('title_' . request('lang'), 'LIKE', request('postTitle') . '%') // search a post without having to type the full title
+                ->where('title_' . request('lang'), 'LIKE','%' . request('postTitle') . '%') // search a post without having to type the full title
                 ->paginate(5);
         }
         catch (\Exception $exception)
