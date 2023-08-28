@@ -3,19 +3,18 @@
         <p v-if="loading">
             Loading...
         </p>
-        <div v-else class="post-container">
-            <div class="blog-info">
+        <div v-else>
+            <div>
                 <form @submit.prevent="submit">
                     <input
                         type="text"
                         placeholder="Enter Blog Title"
                         v-model="blogTitle"
-                        class="margin-bottom"
                         @keydown="clearError('title')"
                     />
-                    <div>
-                        <div class="buttons">
-                            <label for="upload" class="mr-2" style="padding: 14px;">
+                    <div class="mt-6">
+                        <div>
+                            <label for="upload">
                             <span class=" glyphicon glyphicon-folder-open" aria-hidden="true">
                                 Upload Cover Photo
                             </span>
@@ -49,6 +48,20 @@
                             />
                         </div>
                     </div>
+
+                    <div>
+                        <div class="tags">
+                            <input
+                                v-model="tagName"
+                                placeholder="Add tag to this post"
+                            />
+                            <span class="tag"  v-for="tag in tags" :key="tag">{{ tag }}</span>
+                        </div>
+                        <button class="mt-2" @click.prevent="addTagToList">
+                            add tag
+                        </button>
+                    </div>
+
                     <div class="blog-actions pt-44-mob">
                         <div :class="{invisible: !error}" class="error-message">
                             <p>{{ this.errorMsg }}</p>
@@ -91,6 +104,9 @@ export default {
             loading: true,
 
             processing: false, // button
+
+            tagName: '',
+            tags: [],
 
             // data
             file: null, // cover_photo
@@ -168,6 +184,7 @@ export default {
                     formData.append('title', this.blogTitle);
                     formData.append('description', this.blogHTML);
                     formData.append('lang', this.lang);
+                    formData.append('tags', this.tags);
 
                     await axios({
                         url: "/api/posts/submit-blog-post",
@@ -264,6 +281,18 @@ export default {
                 this.$store.commit('deleteError', key);
             }
         },
+
+        /**
+         * Add tag inserted my author to tags array
+         */
+        addTagToList()
+        {
+            if (this.tagName && !this.tags.includes(this.tagName))
+            {
+                this.tags.push(this.tagName);
+                this.tagName = '';
+            }
+        },
     }
 }
 </script>
@@ -288,6 +317,8 @@ export default {
         height: 100%;
         justify-content: center;
         padding: 13px 23px 67px;
+        max-width: 50%;
+        margin: auto
     }
 
     .preview-button {
@@ -315,7 +346,6 @@ export default {
     .preview-button:hover {
         background-color: rgb(48, 48, 48, 0.7);
     }
-
 
     /* gradient */
     .dark label,
@@ -370,7 +400,7 @@ export default {
         display: flex;
         flex-direction: column;
         height: 80%;
-        max-width: 50em;
+        max-width: 100%;
     }
 
     .ql-container {
@@ -386,16 +416,8 @@ export default {
         overflow: visible;
     }
 
-    .margin-bottom {
-        margin-bottom: 20px;
-    }
-
     p {
        font-size: 14px;
-    }
-
-    .blog-info {
-        margin-bottom: 32px;
     }
 
     input:nth-child(1) {
@@ -418,10 +440,6 @@ export default {
         background: transparent;
     }
 
-    .buttons {
-        margin: 20px 0;
-    }
-
     input:nth-child(2) {
         opacity: 0;
         max-width: 165px;
@@ -430,12 +448,68 @@ export default {
         top: 152px;
 
     }
-        .padding-15 {
+
+    .padding-15
+    {
         padding: 15px;
     }
 
     button:disabled {
         cursor: not-allowed;
         opacity: 0.8;
+    }
+
+
+    /* TAGS */
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        font-family: 'Arial', sans-serif; /* Optional: Change font as needed */
+    }
+
+    .tag {
+        display: inline-block;
+        background: linear-gradient(135deg, #6B77DD, #8592E0); /* Gradient background for depth */
+        border-radius: 20px; /* Rounded corners */
+        font-size: 13px;
+        font-weight: 600; /* Bold font for better readability */
+        padding: 10px 24px;
+        color: #FFF;
+        position: relative;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Pronounced shadow for 3D effect */
+        transition: all 0.3s; /* Smooth transitions */
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Slight shadow on text for depth */
+    }
+
+    .tag::before, .tag::after {
+        content: "";
+        position: absolute;
+    }
+
+    .tag::before {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #FFF;
+        left: -5px;
+        top: 50%;
+        transform: translateY(-50%);
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Shadow for white dot */
+    }
+
+    .tag::after {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #6B77DD; /* Color taken from gradient start */
+        left: -4px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .tag:hover {
+        transform: translateY(-5px); /* Lifts the tag slightly */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Increase shadow for lifted effect */
     }
 </style>

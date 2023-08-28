@@ -4,6 +4,7 @@ import { mutations } from './mutations';
 const state = {
     paginated: null,
     post: null,
+    tags: null,
     viewCount: 0,
     editPostTitle: null,
     editPostDescription: null,

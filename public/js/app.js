@@ -2353,6 +2353,8 @@ vue2_editor__WEBPACK_IMPORTED_MODULE_0__.Quill.register("modules/imageResize", (
       processing: false,
       // button
 
+      tagName: '',
+      tags: [],
       // data
       file: null,
       // cover_photo
@@ -2419,11 +2421,11 @@ vue2_editor__WEBPACK_IMPORTED_MODULE_0__.Quill.register("modules/imageResize", (
               case 0:
                 _this.processing = true;
                 if (!(_this.blogTitle.length !== 0 && _this.blogHTML.length !== 0)) {
-                  _context.next = 17;
+                  _context.next = 18;
                   break;
                 }
                 if (!_this.$store.state.posts.blogPhotoName) {
-                  _context.next = 12;
+                  _context.next = 13;
                   break;
                 }
                 formData = new FormData();
@@ -2431,7 +2433,8 @@ vue2_editor__WEBPACK_IMPORTED_MODULE_0__.Quill.register("modules/imageResize", (
                 formData.append('title', _this.blogTitle);
                 formData.append('description', _this.blogHTML);
                 formData.append('lang', _this.lang);
-                _context.next = 10;
+                formData.append('tags', _this.tags);
+                _context.next = 11;
                 return axios({
                   url: "/api/posts/submit-blog-post",
                   method: "POST",
@@ -2450,27 +2453,27 @@ vue2_editor__WEBPACK_IMPORTED_MODULE_0__.Quill.register("modules/imageResize", (
                   console.log('submit-blog-post', error.response);
                   _this.$store.commit('setErrorsObject', error.response.data.errors);
                 });
-              case 10:
-                _context.next = 15;
+              case 11:
+                _context.next = 16;
                 break;
-              case 12:
+              case 13:
                 _this.error = true;
                 _this.errorMsg = "Please ensure you uploaded a cover photo";
                 setTimeout(function () {
                   _this.error = false;
                 }, 5000);
-              case 15:
-                _context.next = 20;
+              case 16:
+                _context.next = 21;
                 break;
-              case 17:
+              case 18:
                 _this.error = true;
                 _this.errorMsg = "Please ensure blog title & blog post has been filled";
                 setTimeout(function () {
                   _this.error = false;
                 }, 5000);
-              case 20:
-                _this.processing = false;
               case 21:
+                _this.processing = false;
+              case 22:
               case "end":
                 return _context.stop();
             }
@@ -2522,6 +2525,15 @@ vue2_editor__WEBPACK_IMPORTED_MODULE_0__.Quill.register("modules/imageResize", (
     clearError: function clearError(key) {
       if (this.errors[key]) {
         this.$store.commit('deleteError', key);
+      }
+    },
+    /**
+     * Add tag inserted my author to tags array
+     */
+    addTagToList: function addTagToList() {
+      if (this.tagName && !this.tags.includes(this.tagName)) {
+        this.tags.push(this.tagName);
+        this.tagName = '';
       }
     }
   }
@@ -2727,10 +2739,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _PaginationButtons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PaginationButtons */ "./resources/js/components/PaginationButtons.vue");
 /* harmony import */ var vue2_datepicker__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue2-datepicker */ "./node_modules/vue2-datepicker/index.esm.js");
 /* harmony import */ var vue2_datepicker_index_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue2-datepicker/index.css */ "./node_modules/vue2-datepicker/index.css");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_4__);
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var methodName = context.method, method = delegate.iterator[methodName]; if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel; var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -2749,7 +2764,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       endDate: null,
       error: null,
       errorMsg: null,
-      filterButtonSelected: false
+      filterButtonSelected: false,
+      postTitle: '',
+      selectedTag: 0
     };
   },
   mounted: function mounted() {
@@ -2762,8 +2779,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               _context.next = 2;
               return _this.$store.dispatch('GET_PAGINATED_POSTS');
             case 2:
+              _context.next = 4;
+              return _this.$store.dispatch('GET_TAGS');
+            case 4:
               _this.loading = false;
-            case 3:
+            case 5:
             case "end":
               return _context.stop();
           }
@@ -2779,10 +2799,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return this.$store.state.posts.paginated.data;
     },
     /**
+     * Return all tags
+     */
+    tags: function tags() {
+      return this.$store.state.posts.tags;
+    },
+    /**
      * Return errors
      */
     errors: function errors() {
       return this.$store.state.errors.errorsObject;
+    },
+    /**
+     * Current locale
+     */
+    lang: function lang() {
+      return this.$i18n.locale;
+    },
+    /**
+     *
+     */
+    noResults: function noResults() {
+      return this.posts && this.posts.length === 0 && this.postTitle !== '';
     }
   },
   methods: {
@@ -2854,6 +2892,51 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           }
         }, _callee3);
+      }))();
+    },
+    /**
+     * Make a get request to search for a Post when the user stops typing with debounce/lodash
+     */
+    searchTitle: lodash__WEBPACK_IMPORTED_MODULE_4___default().debounce(function () {
+      this.$store.dispatch('SEARCH_POST_BY_TITLE', {
+        postTitle: this.postTitle,
+        lang: this.lang
+      });
+    }, 500),
+    // time
+    /**
+     *
+     */
+    GET_POSTS_BY_TAG: function GET_POSTS_BY_TAG() {
+      var _this4 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                if (!_this4.selectedTag) {
+                  _context4.next = 3;
+                  break;
+                }
+                _context4.next = 3;
+                return axios.get('/api/posts-by-tag/', {
+                  params: {
+                    tag: _this4.selectedTag
+                  }
+                }).then(function (response) {
+                  console.log('GET_POSTS_BY_TAG', response);
+                  if (response.data.success) {
+                    _this4.$store.commit('setPaginatedPosts', response.data.posts);
+                  }
+                })["catch"](function (error) {
+                  console.log('GET_POSTS_BY_TAG', error);
+                });
+              case 3:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
       }))();
     }
   }
@@ -3998,11 +4081,7 @@ var render = function render() {
     _c = _vm._self._c;
   return _c("div", {
     staticClass: "create-post flex"
-  }, [_vm.loading ? _c("p", [_vm._v("\n        Loading...\n    ")]) : _c("div", {
-    staticClass: "post-container"
-  }, [_c("div", {
-    staticClass: "blog-info"
-  }, [_c("form", {
+  }, [_vm.loading ? _c("p", [_vm._v("\n        Loading...\n    ")]) : _c("div", [_c("div", [_c("form", {
     on: {
       submit: function submit($event) {
         $event.preventDefault();
@@ -4016,7 +4095,6 @@ var render = function render() {
       value: _vm.blogTitle,
       expression: "blogTitle"
     }],
-    staticClass: "margin-bottom",
     attrs: {
       type: "text",
       placeholder: "Enter Blog Title"
@@ -4033,13 +4111,9 @@ var render = function render() {
         _vm.blogTitle = $event.target.value;
       }
     }
-  }), _vm._v(" "), _c("div", [_c("div", {
-    staticClass: "buttons"
-  }, [_c("label", {
-    staticClass: "mr-2",
-    staticStyle: {
-      padding: "14px"
-    },
+  }), _vm._v(" "), _c("div", {
+    staticClass: "mt-6"
+  }, [_c("div", [_c("label", {
     attrs: {
       "for": "upload"
     }
@@ -4088,7 +4162,41 @@ var render = function render() {
       },
       expression: "blogHTML"
     }
-  })], 1)]), _vm._v(" "), _c("div", {
+  })], 1)]), _vm._v(" "), _c("div", [_c("div", {
+    staticClass: "tags"
+  }, [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.tagName,
+      expression: "tagName"
+    }],
+    attrs: {
+      placeholder: "Add tag to this post"
+    },
+    domProps: {
+      value: _vm.tagName
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.tagName = $event.target.value;
+      }
+    }
+  }), _vm._v(" "), _vm._l(_vm.tags, function (tag) {
+    return _c("span", {
+      key: tag,
+      staticClass: "tag"
+    }, [_vm._v(_vm._s(tag))]);
+  })], 2), _vm._v(" "), _c("button", {
+    staticClass: "mt-2",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.addTagToList.apply(null, arguments);
+      }
+    }
+  }, [_vm._v("\n                        add tag\n                    ")])]), _vm._v(" "), _c("div", {
     staticClass: "blog-actions pt-44-mob"
   }, [_c("div", {
     staticClass: "error-message",
@@ -4427,7 +4535,66 @@ var render = function render() {
     staticClass: "w-full md:w-175 padding-idea-on-mobile"
   }, [_c("div", {
     staticClass: "mt-16"
-  }, _vm._l(_vm.posts, function (post) {
+  }, [_c("div", {
+    staticClass: "filters flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-6"
+  }, [_c("div", {
+    staticClass: "w-full md:w-2/3 relative"
+  }, [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.postTitle,
+      expression: "postTitle"
+    }],
+    staticClass: "w-full rounded-xl px-4 py-2 pl-8",
+    attrs: {
+      placeholder: "Type a title to find a post"
+    },
+    domProps: {
+      value: _vm.postTitle
+    },
+    on: {
+      keyup: _vm.searchTitle,
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.postTitle = $event.target.value;
+      }
+    }
+  }), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _c("div", {
+    staticClass: "w-full md:w-2/3 relative"
+  }, [_c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.selectedTag,
+      expression: "selectedTag"
+    }],
+    staticClass: "w-full rounded-xl bg-transparent px-4 py-2",
+    on: {
+      change: [function ($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.selectedTag = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
+      }, _vm.GET_POSTS_BY_TAG]
+    }
+  }, [_c("option", {
+    attrs: {
+      value: "0"
+    }
+  }, [_vm._v("\n                                    All tags\n                                ")]), _vm._v(" "), _vm._l(_vm.tags, function (tag) {
+    return _c("option", {
+      key: tag.id
+    }, [_vm._v("\n                                    " + _vm._s(tag.name) + "\n                                ")]);
+  })], 2)])]), _vm._v(" "), _vm.noResults ? _c("p", {
+    staticClass: "mt-2",
+    staticStyle: {
+      color: "rgb(98, 114, 164)"
+    }
+  }, [_vm._v("\n                        Sorry, looks like no posts were found.\n                    ")]) : _vm._e(), _vm._v(" "), _vm._l(_vm.posts, function (post) {
     return _c("div", {
       key: post.id
     }, [_c("Post", {
@@ -4435,7 +4602,7 @@ var render = function render() {
         post: post
       }
     })], 1);
-  }), 0), _vm._v(" "), _c("PaginationButtons", {
+  })], 2), _vm._v(" "), _c("PaginationButtons", {
     attrs: {
       current_page: this.$store.state.posts.paginated.current_page,
       next_page_url: this.$store.state.posts.paginated.next_page_url,
@@ -4444,7 +4611,15 @@ var render = function render() {
     }
   })], 1)])])]);
 };
-var staticRenderFns = [];
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "absolute top-0 flex items-center h-full ml-2"
+  }, [_c("i", {
+    staticClass: "fas fa-search"
+  })]);
+}];
 render._withStripped = true;
 
 
@@ -5047,7 +5222,15 @@ var render = function render() {
     domProps: {
       innerHTML: _vm._s(_vm.getDescription)
     }
-  })])])]);
+  }), _vm._v(" "), _c("div", {
+    staticClass: "tags"
+  }, _vm._l(_vm.post.tags, function (tag) {
+    return _c("div", {
+      key: tag.id
+    }, [_c("span", {
+      staticClass: "tag"
+    }, [_vm._v(_vm._s(tag.name))])]);
+  }), 0)])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -5808,10 +5991,10 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_6__["default"]({
     }
   }, {
     path: '/login',
-    component: (__webpack_require__(/*! ./components/Login */ "./resources/js/components/Login.vue")["default"]),
-    meta: {
-      middleware: [_middleware_admin__WEBPACK_IMPORTED_MODULE_1__["default"], _middleware_auth__WEBPACK_IMPORTED_MODULE_2__["default"]]
-    }
+    component: (__webpack_require__(/*! ./components/Login */ "./resources/js/components/Login.vue")["default"])
+    // meta: {
+    //     middleware: [ admin, auth ],
+    // }
   }, {
     path: '/contact',
     component: (__webpack_require__(/*! ./components/Contact */ "./resources/js/components/Contact.vue")["default"])
@@ -6218,6 +6401,63 @@ var actions = {
         }
       }, _callee5);
     }))();
+  },
+  /**
+   * Get Post by title when the guest searches
+   */
+  SEARCH_POST_BY_TITLE: function SEARCH_POST_BY_TITLE(context, payload) {
+    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
+      return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+        while (1) {
+          switch (_context6.prev = _context6.next) {
+            case 0:
+              _context6.next = 2;
+              return axios.get('api/posts/get-posts-by-title', {
+                params: {
+                  postTitle: payload.postTitle,
+                  lang: payload.lang
+                }
+              }).then(function (response) {
+                console.log('SEARCH_POST_BY_TITLE', response);
+                if (response.data.success) {
+                  context.commit('setPaginatedPosts', response.data.posts);
+                }
+              })["catch"](function (error) {
+                console.log('SEARCH_POST_BY_TITLE', error);
+              });
+            case 2:
+            case "end":
+              return _context6.stop();
+          }
+        }
+      }, _callee6);
+    }))();
+  },
+  /**
+   * Get request to get all tags
+   */
+  GET_TAGS: function GET_TAGS(context) {
+    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
+      return _regeneratorRuntime().wrap(function _callee7$(_context7) {
+        while (1) {
+          switch (_context7.prev = _context7.next) {
+            case 0:
+              _context7.next = 2;
+              return axios.get('/api/posts/get-tags').then(function (response) {
+                console.log('get-tags', response);
+                if (response.data.success) {
+                  context.commit('setTags', response.data.tags);
+                }
+              })["catch"](function (error) {
+                console.log('get-categories', error);
+              });
+            case 2:
+            case "end":
+              return _context7.stop();
+          }
+        }
+      }, _callee7);
+    }))();
   }
 };
 
@@ -6241,6 +6481,7 @@ __webpack_require__.r(__webpack_exports__);
 var state = {
   paginated: null,
   post: null,
+  tags: null,
   viewCount: 0,
   editPostTitle: null,
   editPostDescription: null,
@@ -6341,6 +6582,12 @@ var mutations = {
    */
   serFilteredPosts: function serFilteredPosts(state, payload) {
     state.paginated = payload;
+  },
+  /**
+   *
+   */
+  setTags: function setTags(state, payload) {
+    state.tags = payload;
   }
 };
 
@@ -9430,7 +9677,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.modal[data-v-5d7b0982] {\n    top: 0;\n    background-color: rgba(0, 0, 0, 0.5);\n    z-index: 99;\n    position: fixed;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    height: 100%;\n    width: 100%;\n}\n.modal-content[data-v-5d7b0982] {\n    display: flex;\n    justify-content: center;\n    position: relative;\n    border-radius: 12px;\n    background-color: #fff;\n    width: 38%;\n    padding: 1em;\n    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.6);\n}\n.icon[data-v-5d7b0982] {\n    height: auto;\n    cursor: pointer;\n    font-size: 13px;\n    position: absolute;\n    top: 9px;\n    right: 4px;\n    color: #303030;\n}\nimg[data-v-5d7b0982] {\n    display: block;\n    width: auto;\n    height: 100%;\n    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.6);\n}\n\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.modal[data-v-5d7b0982] {\n    top: 0;\n    background-color: rgba(0, 0, 0, 0.5);\n    z-index: 99;\n    position: fixed;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    height: 100%;\n    width: 100%;\n}\n.modal-content[data-v-5d7b0982] {\n    display: flex;\n    justify-content: center;\n    position: relative;\n    border-radius: 12px;\n    background-color: #fff;\n    width: 38%;\n    padding: 1em;\n    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.6);\n}\n.icon[data-v-5d7b0982] {\n    height: auto;\n    cursor: pointer;\n    font-size: 13px;\n    position: absolute;\n    top: 9px;\n    right: 4px;\n    color: #303030;\n}\nimg[data-v-5d7b0982] {\n    display: block;\n    width: 50%;\n    height: 100%;\n    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.6);\n}\n\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9514,7 +9761,7 @@ ___CSS_LOADER_EXPORT___.i(_node_modules_laravel_mix_node_modules_css_loader_dist
 ___CSS_LOADER_EXPORT___.i(_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_quill_dist_quill_bubble_css__WEBPACK_IMPORTED_MODULE_3__["default"]);
 ___CSS_LOADER_EXPORT___.i(_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_4__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n/* Import the Quill styles you want */\ninput[data-v-20838332]:focus:nth-child(1) {\n    outline: none;\n    --tw-ring-shadow: none;\n    border-color: inherit;\n    -webkit-box-shadow: none;\n}\n.create-post[data-v-20838332] {\n    position: relative;\n    height: 100%;\n    justify-content: center;\n    padding: 13px 23px 67px;\n}\n.preview-button[data-v-20838332] {\n    text-decoration: none;\n    color: white;\n    margin-top: 26px;\n}\nlabel[data-v-20838332],\nbutton[data-v-20838332],\n.preview-button[data-v-20838332] {\n    transition: 0.5s ease-in-out all;\n    align-self: center;\n    font-size: 14px;\n    cursor: pointer;\n    border-radius: 20px;\n    padding: 12px 24px;\n    color: #fff;\n    background-color: #303030;\n    text-decoration: none;\n}\nlabel[data-v-20838332]:hover,\nbutton[data-v-20838332]:hover,\n.preview-button[data-v-20838332]:hover {\n    background-color: rgb(48, 48, 48, 0.7);\n}\n\n\n/* gradient */\n.dark label[data-v-20838332],\nbutton[data-v-20838332],\n.preview-button[data-v-20838332]  {\n    background-image: linear-gradient(to right, #614385 0%, #516395  51%, #614385  100%);\n    align-self: center;\n    font-size: 14px;\n    cursor: pointer;\n    border-radius: 20px;\n    padding: 12px 24px;\n    text-align: center;\n    text-transform: uppercase;\n    transition: 0.5s;\n    background-size: 200% auto;\n    color: white;\n}\n.dark label[data-v-20838332]:hover,\nbutton[data-v-20838332]:hover,\n.preview-button[data-v-20838332]:hover {\n    background-position: right center; /* change the direction of the change here */\n    color: #fff;\n    text-decoration: none;\n}\n\n/* Error Styling */\n.invisible[data-v-20838332] {\n    opacity: 0 !important;\n}\n.error-message[data-v-20838332] {\n    width: 100%;\n    padding: 12px;\n    border-radius: 8px;\n    color: #fff;\n    margin-bottom: 10px;\n    background-color: darkred;\n    opacity: 1;\n    transition: .5s ease all;\n}\n.editor[data-v-20838332] {\n    height: 73vh;\n    display: flex;\n    flex-direction: column;\n    margin-top: 43px;\n}\n.quillWrapper[data-v-20838332] {\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    height: 80%;\n    max-width: 50em;\n}\n.ql-container[data-v-20838332] {\n    display:flex;\n    flex-direction: column;\n    height: 50%;\n    overflow: scroll;\n}\n.ql-snow .ql-editor pre.ql-syntax[data-v-20838332] {\n    background-color: #23241f;\n    color: #f8f8f2;\n    overflow: visible;\n}\n.margin-bottom[data-v-20838332] {\n    margin-bottom: 20px;\n}\np[data-v-20838332] {\n   font-size: 14px;\n}\n.blog-info[data-v-20838332] {\n    margin-bottom: 32px;\n}\ninput[data-v-20838332]:nth-child(1) {\n    min-width: 300px;\n    outline: none;\n}\ninput[data-v-20838332] {\n    transition: .5s ease-in-out all;\n    padding: 10px 4px;\n    border: none;\n    border-bottom: 1px solid #303030;\n}\n.dark input[data-v-20838332] {\n    transition: .5s ease-in-out all;\n    padding: 10px 4px;\n    border: none;\n    border-bottom: 1px solid #614385;\n    background: transparent;\n}\n.buttons[data-v-20838332] {\n    margin: 20px 0;\n}\ninput[data-v-20838332]:nth-child(2) {\n    opacity: 0;\n    max-width: 165px;\n    position: absolute;\n    left: 313px;\n    top: 152px;\n}\n.padding-15[data-v-20838332] {\n    padding: 15px;\n}\nbutton[data-v-20838332]:disabled {\n    cursor: not-allowed;\n    opacity: 0.8;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n/* Import the Quill styles you want */\ninput[data-v-20838332]:focus:nth-child(1) {\n    outline: none;\n    --tw-ring-shadow: none;\n    border-color: inherit;\n    -webkit-box-shadow: none;\n}\n.create-post[data-v-20838332] {\n    position: relative;\n    height: 100%;\n    justify-content: center;\n    padding: 13px 23px 67px;\n    max-width: 50%;\n    margin: auto\n}\n.preview-button[data-v-20838332] {\n    text-decoration: none;\n    color: white;\n    margin-top: 26px;\n}\nlabel[data-v-20838332],\nbutton[data-v-20838332],\n.preview-button[data-v-20838332] {\n    transition: 0.5s ease-in-out all;\n    align-self: center;\n    font-size: 14px;\n    cursor: pointer;\n    border-radius: 20px;\n    padding: 12px 24px;\n    color: #fff;\n    background-color: #303030;\n    text-decoration: none;\n}\nlabel[data-v-20838332]:hover,\nbutton[data-v-20838332]:hover,\n.preview-button[data-v-20838332]:hover {\n    background-color: rgb(48, 48, 48, 0.7);\n}\n\n/* gradient */\n.dark label[data-v-20838332],\nbutton[data-v-20838332],\n.preview-button[data-v-20838332]  {\n    background-image: linear-gradient(to right, #614385 0%, #516395  51%, #614385  100%);\n    align-self: center;\n    font-size: 14px;\n    cursor: pointer;\n    border-radius: 20px;\n    padding: 12px 24px;\n    text-align: center;\n    text-transform: uppercase;\n    transition: 0.5s;\n    background-size: 200% auto;\n    color: white;\n}\n.dark label[data-v-20838332]:hover,\nbutton[data-v-20838332]:hover,\n.preview-button[data-v-20838332]:hover {\n    background-position: right center; /* change the direction of the change here */\n    color: #fff;\n    text-decoration: none;\n}\n\n/* Error Styling */\n.invisible[data-v-20838332] {\n    opacity: 0 !important;\n}\n.error-message[data-v-20838332] {\n    width: 100%;\n    padding: 12px;\n    border-radius: 8px;\n    color: #fff;\n    margin-bottom: 10px;\n    background-color: darkred;\n    opacity: 1;\n    transition: .5s ease all;\n}\n.editor[data-v-20838332] {\n    height: 73vh;\n    display: flex;\n    flex-direction: column;\n    margin-top: 43px;\n}\n.quillWrapper[data-v-20838332] {\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    height: 80%;\n    max-width: 100%;\n}\n.ql-container[data-v-20838332] {\n    display:flex;\n    flex-direction: column;\n    height: 50%;\n    overflow: scroll;\n}\n.ql-snow .ql-editor pre.ql-syntax[data-v-20838332] {\n    background-color: #23241f;\n    color: #f8f8f2;\n    overflow: visible;\n}\np[data-v-20838332] {\n   font-size: 14px;\n}\ninput[data-v-20838332]:nth-child(1) {\n    min-width: 300px;\n    outline: none;\n}\ninput[data-v-20838332] {\n    transition: .5s ease-in-out all;\n    padding: 10px 4px;\n    border: none;\n    border-bottom: 1px solid #303030;\n}\n.dark input[data-v-20838332] {\n    transition: .5s ease-in-out all;\n    padding: 10px 4px;\n    border: none;\n    border-bottom: 1px solid #614385;\n    background: transparent;\n}\ninput[data-v-20838332]:nth-child(2) {\n    opacity: 0;\n    max-width: 165px;\n    position: absolute;\n    left: 313px;\n    top: 152px;\n}\n.padding-15[data-v-20838332]\n{\n    padding: 15px;\n}\nbutton[data-v-20838332]:disabled {\n    cursor: not-allowed;\n    opacity: 0.8;\n}\n\n\n/* TAGS */\n.tags[data-v-20838332] {\n    display: flex;\n    flex-wrap: wrap;\n    gap: 15px;\n    font-family: 'Arial', sans-serif; /* Optional: Change font as needed */\n}\n.tag[data-v-20838332] {\n    display: inline-block;\n    background: linear-gradient(135deg, #6B77DD, #8592E0); /* Gradient background for depth */\n    border-radius: 20px; /* Rounded corners */\n    font-size: 13px;\n    font-weight: 600; /* Bold font for better readability */\n    padding: 10px 24px;\n    color: #FFF;\n    position: relative;\n    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Pronounced shadow for 3D effect */\n    transition: all 0.3s; /* Smooth transitions */\n    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Slight shadow on text for depth */\n}\n.tag[data-v-20838332]::before, .tag[data-v-20838332]::after {\n    content: \"\";\n    position: absolute;\n}\n.tag[data-v-20838332]::before {\n    width: 10px;\n    height: 10px;\n    border-radius: 50%;\n    background-color: #FFF;\n    left: -5px;\n    top: 50%;\n    transform: translateY(-50%);\n    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Shadow for white dot */\n}\n.tag[data-v-20838332]::after {\n    width: 8px;\n    height: 8px;\n    border-radius: 50%;\n    background-color: #6B77DD; /* Color taken from gradient start */\n    left: -4px;\n    top: 50%;\n    transform: translateY(-50%);\n}\n.tag[data-v-20838332]:hover {\n    transform: translateY(-5px); /* Lifts the tag slightly */\n    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Increase shadow for lifted effect */\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9586,7 +9833,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.dark .bg[data-v-f2b6376c] {\n    background: #242333;\n}\n.dark .gradient[data-v-f2b6376c] {\n    border-image-source: linear-gradient(to bottom, rgb(176, 132, 255), rgba(42, 9, 15, 0));\n    border-image-slice: 1;\n    background-origin: border-box;\n    background-clip: content-box, border-box;\n}\n.dark .date-picker-container[data-v-f2b6376c] {\n    padding: 20px;\n    max-width: 400px;\n    margin: 0 auto;\n    background: #242333; /* Light pink background */\n    border: 1px solid rgb(68, 52, 103); /* Pink border */\n    border-radius: 8px;\n    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);\n}\n.dark .date-picker-title[data-v-f2b6376c] {\n    color: #b084ff; /* Pink title color */\n    font-size: 24px;\n    margin-bottom: 10px;\n    text-align: center;\n}\n.dark .date-picker button[data-v-f2b6376c] {\n    background-color: #b084ff; /* Pink button background */\n    color: white;\n    border: none;\n    border-radius: 4px;\n    padding: 6px 7px;\n    font-size: 14px;\n    cursor: pointer;\n    margin-left: 3px;\n}\n.dark .date-picker button[data-v-f2b6376c]:hover {\n    background-color: #9360f3; /* Darker pink on hover */\n}\n.date-picker button[data-v-f2b6376c] {\n    background-color: #f49ac2; /* Pink button background */\n    color: white;\n    border: none;\n    border-radius: 4px;\n    padding: 6px 7px;\n    font-size: 14px;\n    cursor: pointer;\n    margin-left: 3px;\n}\n.container[data-v-f2b6376c] {\n    padding-bottom: 28px;\n    width: 71%;\n}\n.br4[data-v-f2b6376c] {\n    border-radius: 4px;\n}\n.date-picker-container[data-v-f2b6376c] {\n    padding: 20px;\n    max-width: 400px;\n    margin: 0 auto;\n    background-color: #ffffff; /* Light pink background */\n    border: 1px solid #f49ac2; /* Pink border */\n    border-radius: 8px;\n    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);\n}\n.date-picker-title[data-v-f2b6376c] {\n    color: #f49ac2; /* Pink title color */\n    font-size: 24px;\n    margin-bottom: 10px;\n    text-align: center;\n}\n.date-picker[data-v-f2b6376c] {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n}\n.date-picker button[data-v-f2b6376c]:hover {\n    background-color: #f26dbb; /* Darker pink on hover */\n}\n\n/* Customize the datepicker letters style */\n.vue-datepicker td[data-v-f2b6376c] {\n    color: #333;\n}\n.vue-datepicker .is-selected[data-v-f2b6376c] {\n    background-color: #f26dbb; /* Darker pink for selected date */\n    color: white;\n}\n.vue-datepicker th[data-v-f2b6376c] {\n    color: #f49ac2; /* Pink header text */\n    font-weight: bold;\n}\n\n/* Error Styling */\n.invisible[data-v-f2b6376c] {\n    opacity: 0 !important;\n}\n.error-message[data-v-f2b6376c] {\n    width: 100%;\n    padding: 12px;\n    color: #fff;\n    background-color: darkred;\n    opacity: 1;\n    transition: .5s ease all;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.dark .bg[data-v-f2b6376c] {\n    background: #242333;\n}\n.dark .gradient[data-v-f2b6376c] {\n    border-image-source: linear-gradient(to bottom, rgb(176, 132, 255), rgba(42, 9, 15, 0));\n    border-image-slice: 1;\n    background-origin: border-box;\n    background-clip: content-box, border-box;\n}\n.dark .date-picker-container[data-v-f2b6376c] {\n    padding: 20px;\n    max-width: 400px;\n    margin: 0 auto;\n    background: #242333; /* Light pink background */\n    border: 1px solid rgb(68, 52, 103); /* Pink border */\n    border-radius: 8px;\n    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);\n}\n.dark .date-picker-title[data-v-f2b6376c] {\n    color: #b084ff;\n    font-size: 24px;\n    margin-bottom: 10px;\n    text-align: center;\n}\n.dark .date-picker button[data-v-f2b6376c] {\n    background-color: #b084ff; /* Pink button background */\n    color: white;\n    border: none;\n    border-radius: 4px;\n    padding: 6px 7px;\n    font-size: 14px;\n    cursor: pointer;\n    margin-left: 3px;\n}\n.dark .date-picker button[data-v-f2b6376c]:hover {\n    background-color: #9360f3; /* Darker pink on hover */\n}\n.date-picker button[data-v-f2b6376c] {\n    background-color: #f49ac2; /* Pink button background */\n    color: white;\n    border: none;\n    border-radius: 4px;\n    padding: 6px 7px;\n    font-size: 14px;\n    cursor: pointer;\n    margin-left: 3px;\n}\n.container[data-v-f2b6376c] {\n    padding-bottom: 28px;\n    width: 71%;\n}\n.br4[data-v-f2b6376c] {\n    border-radius: 4px;\n}\n.date-picker-container[data-v-f2b6376c] {\n    padding: 20px;\n    max-width: 400px;\n    margin: 0 auto;\n    background-color: #ffffff; /* Light pink background */\n    border: 1px solid #f49ac2; /* Pink border */\n    border-radius: 8px;\n    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);\n}\n.date-picker-title[data-v-f2b6376c] {\n    color: #f49ac2; /* Pink title color */\n    font-size: 24px;\n    margin-bottom: 10px;\n    text-align: center;\n}\n.date-picker[data-v-f2b6376c] {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n}\n.date-picker button[data-v-f2b6376c]:hover {\n    background-color: #f26dbb; /* Darker pink on hover */\n}\n\n/* Customize the datepicker letters style */\n.vue-datepicker td[data-v-f2b6376c] {\n    color: #333;\n}\n.vue-datepicker .is-selected[data-v-f2b6376c] {\n    background-color: #f26dbb; /* Darker pink for selected date */\n    color: white;\n}\n.vue-datepicker th[data-v-f2b6376c] {\n    color: #f49ac2; /* Pink header text */\n    font-weight: bold;\n}\n\n/* Error Styling */\n.invisible[data-v-f2b6376c] {\n    opacity: 0 !important;\n}\n.error-message[data-v-f2b6376c] {\n    width: 100%;\n    padding: 12px;\n    color: #fff;\n    background-color: darkred;\n    opacity: 1;\n    transition: .5s ease all;\n}\ninput[data-v-f2b6376c]:focus:nth-child(1) {\n    outline: none;\n    --tw-ring-shadow: none;\n    border-color: inherit;\n    -webkit-box-shadow: none;\n}\nselect[data-v-f2b6376c]:focus:nth-child(1) {\n    outline: none;\n    --tw-ring-shadow: none;\n    border-color: inherit;\n    -webkit-box-shadow: none;\n}\n.dark select[data-v-f2b6376c] {\n    outline: none;\n    --tw-ring-shadow: none;\n    border-color: #b084ff;\n    -webkit-box-shadow: none;\n}\ninput[data-v-f2b6376c] {\n    transition: .5s ease-in-out all;\n    border: none;\n    border-bottom: 1px solid #303030;\n}\n.dark input[data-v-f2b6376c] {\n    transition: .5s ease-in-out all;\n    border: none;\n    border-bottom: 1px solid #b084ff; ;\n    background: transparent;\n}\ninput[data-v-f2b6376c]:nth-child(2) {\n    opacity: 0;\n    max-width: 165px;\n    position: absolute;\n    left: 313px;\n    top: 152px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9754,7 +10001,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\ni[data-v-3a8cf2b0] {\n    padding: 2px 4px;\n    color: cornflowerblue;\n}\n.description[data-v-3a8cf2b0] {\n    width: 50%;\n    text-align: center;\n    margin: 0 auto;\n}\n.p3em[data-v-3a8cf2b0] {\n    padding: 3em;\n}\nimg[data-v-3a8cf2b0] {\n    max-width: 55%;\n    height: auto;\n    border-radius: 20px;\n}\n.cover-photo[data-v-3a8cf2b0] {\n    display: flex;\n    justify-content: center;\n    padding-top: 25px;\n}\n.read-more-btn[data-v-3a8cf2b0] {\n    margin-top: 1em;\n    background-image: linear-gradient(to right, rgba(100, 9, 76, 0.87) 0%, rgb(255, 121, 198) 51%, rgba(100, 9, 76, 0.87) 100%);\n    font-size: 14px;\n    cursor: pointer;\n    border-radius: 20px;\n    padding: 12px 24px;\n    text-align: center;\n    text-transform: uppercase;\n    transition: 0.5s;\n    background-size: 200% auto;\n    color: white;\n}\n.read-more-btn[data-v-3a8cf2b0]:hover {\n    background-position: right center; /* change the direction of the change here */\n    color: #fff;\n    text-decoration: none;\n}\n.dark .read-more-btn[data-v-3a8cf2b0] {\n    margin-top: 1em;\n    background-image: linear-gradient(to right, #614385 0%, #516395  51%, #614385  100%);\n    font-size: 14px;\n    cursor: pointer;\n    border-radius: 20px;\n    padding: 12px 24px;\n    text-align: center;\n    text-transform: uppercase;\n    transition: 0.5s;\n    background-size: 200% auto;\n    color: white;\n}\n.dark .read-more-btn[data-v-3a8cf2b0]:hover {\n    background-position: right center; /* change the direction of the change here */\n    color: #fff;\n    text-decoration: none;\n}\n@media screen and (max-width: 687px) {\n.description-mob[data-v-3a8cf2b0] {\n        width: 100%;\n        text-align: center !important;\n}\n.views-mob[data-v-3a8cf2b0] {\n        width: auto !important;\n        margin: auto !important;\n        padding: 1em;\n}\n.container-mob[data-v-3a8cf2b0] {\n        margin: 0;\n        width: 100% !important;\n        padding: 1em !important;\n}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ni[data-v-3a8cf2b0] {\n    padding: 2px 4px;\n    color: cornflowerblue;\n}\n.description[data-v-3a8cf2b0] {\n    width: 50%;\n    text-align: center;\n    margin: 0 auto;\n}\n.p3em[data-v-3a8cf2b0] {\n    padding: 3em;\n}\nimg[data-v-3a8cf2b0] {\n    max-width: 55%;\n    height: auto;\n    border-radius: 20px;\n}\n.cover-photo[data-v-3a8cf2b0] {\n    display: flex;\n    justify-content: center;\n    padding-top: 25px;\n}\n.read-more-btn[data-v-3a8cf2b0] {\n    margin-top: 1em;\n    background-image: linear-gradient(to right, rgba(100, 9, 76, 0.87) 0%, rgb(255, 121, 198) 51%, rgba(100, 9, 76, 0.87) 100%);\n    font-size: 14px;\n    cursor: pointer;\n    border-radius: 20px;\n    padding: 12px 24px;\n    text-align: center;\n    text-transform: uppercase;\n    transition: 0.5s;\n    background-size: 200% auto;\n    color: white;\n}\n.read-more-btn[data-v-3a8cf2b0]:hover {\n    background-position: right center; /* change the direction of the change here */\n    color: #fff;\n    text-decoration: none;\n}\n.dark .read-more-btn[data-v-3a8cf2b0] {\n    margin-top: 1em;\n    background-image: linear-gradient(to right, #614385 0%, #516395  51%, #614385  100%);\n    font-size: 14px;\n    cursor: pointer;\n    border-radius: 20px;\n    padding: 12px 24px;\n    text-align: center;\n    text-transform: uppercase;\n    transition: 0.5s;\n    background-size: 200% auto;\n    color: white;\n}\n.dark .read-more-btn[data-v-3a8cf2b0]:hover {\n    background-position: right center; /* change the direction of the change here */\n    color: #fff;\n    text-decoration: none;\n}\n\n/* TAGS */\n.tags[data-v-3a8cf2b0] {\n    display: flex;\n    flex-wrap: wrap;\n    gap: 15px;\n    font-family: 'Arial', sans-serif;\n    align-items: center;\n    justify-content: center;\n}\n.tag[data-v-3a8cf2b0] {\n    display: inline-block;\n    background: linear-gradient(135deg, #6B77DD, #8592E0); /* Gradient background for depth */\n    border-radius: 20px; /* Rounded corners */\n    font-size: 13px;\n    font-weight: 600; /* Bold font for better readability */\n    padding: 10px 24px;\n    color: #FFF;\n    position: relative;\n    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Pronounced shadow for 3D effect */\n    transition: all 0.3s; /* Smooth transitions */\n    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Slight shadow on text for depth */\n}\n.tag[data-v-3a8cf2b0]::before, .tag[data-v-3a8cf2b0]::after {\n    content: \"\";\n    position: absolute;\n}\n.tag[data-v-3a8cf2b0]::before {\n    width: 10px;\n    height: 10px;\n    border-radius: 50%;\n    background-color: #FFF;\n    left: -5px;\n    top: 50%;\n    transform: translateY(-50%);\n    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Shadow for white dot */\n}\n.tag[data-v-3a8cf2b0]::after {\n    width: 8px;\n    height: 8px;\n    border-radius: 50%;\n    background-color: #6B77DD; /* Color taken from gradient start */\n    left: -4px;\n    top: 50%;\n    transform: translateY(-50%);\n}\n.tag[data-v-3a8cf2b0]:hover {\n    transform: translateY(-5px); /* Lifts the tag slightly */\n    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Increase shadow for lifted effect */\n}\n@media screen and (max-width: 687px) {\n.description-mob[data-v-3a8cf2b0] {\n        width: 100%;\n        text-align: center !important;\n}\n.views-mob[data-v-3a8cf2b0] {\n        width: auto !important;\n        margin: auto !important;\n        padding: 1em;\n}\n.container-mob[data-v-3a8cf2b0] {\n        margin: 0;\n        width: 100% !important;\n        padding: 1em !important;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

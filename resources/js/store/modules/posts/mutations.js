@@ -91,6 +91,14 @@ export const mutations = {
     serFilteredPosts (state, payload)
     {
         state.paginated = payload;
+    },
+
+    /**
+     *
+     */
+    setTags (state, payload)
+    {
+        state.tags = payload;
     }
 }
 

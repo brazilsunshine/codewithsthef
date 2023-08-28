@@ -12,8 +12,6 @@ class GetFilteredPostsController extends Controller
 {
     public function __invoke (Request $request)
     {
-        \Log::info($request);
-
         // Define the validation rules
         $rules = [
             'startDate' => 'required|date_format:Y-m-d',
@@ -34,7 +32,6 @@ class GetFilteredPostsController extends Controller
 
         $query = Post::query();
 
-        // load this data with my ideas
         $query->with('user')->orderBy('id', 'desc');
 
         if ($startDate && $endDate)

@@ -33,8 +33,6 @@
                 </button>
             </div>
 
-
-
             <div class="mb-4">
                 <div
                     class="flex views-mob"
@@ -45,11 +43,18 @@
                     </p>
                     <i class="far fa-eye" />
                 </div>
+
                 <p
                     class="description description-mob"
                     v-html="getDescription"
                 >
                 </p>
+                <div class="tags">
+                    <div  v-for="tag in post.tags" :key="tag.id">
+                        <span class="tag">{{ tag.name }}</span>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -192,6 +197,61 @@ export default {
         background-position: right center; /* change the direction of the change here */
         color: #fff;
         text-decoration: none;
+    }
+
+    /* TAGS */
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        font-family: 'Arial', sans-serif;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .tag {
+        display: inline-block;
+        background: linear-gradient(135deg, #6B77DD, #8592E0); /* Gradient background for depth */
+        border-radius: 20px; /* Rounded corners */
+        font-size: 13px;
+        font-weight: 600; /* Bold font for better readability */
+        padding: 10px 24px;
+        color: #FFF;
+        position: relative;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Pronounced shadow for 3D effect */
+        transition: all 0.3s; /* Smooth transitions */
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Slight shadow on text for depth */
+    }
+
+    .tag::before, .tag::after {
+        content: "";
+        position: absolute;
+    }
+
+    .tag::before {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #FFF;
+        left: -5px;
+        top: 50%;
+        transform: translateY(-50%);
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Shadow for white dot */
+    }
+
+    .tag::after {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #6B77DD; /* Color taken from gradient start */
+        left: -4px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .tag:hover {
+        transform: translateY(-5px); /* Lifts the tag slightly */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Increase shadow for lifted effect */
     }
 
     @media screen and (max-width: 687px) {

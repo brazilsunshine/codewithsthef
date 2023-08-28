@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
@@ -34,34 +35,34 @@ class SubmitBlogPostController extends Controller
             ];
         }
 
-        $file = $request->file('file'); // /tmp/php7S8v..
-
-        $path = $file->hashName();
-
-        $image = Image::make($file)->fit(1000, 1000);
-
-        // Ternary operator: one line if else statement
-        $disk = (app()->environment() === 'production')
-            ? 'do'
-            : 'local';
-
-        $filesystem = Storage::disk($disk);
-        $filesystem->put($path, $image->stream(), 'public');
-
-        // our image will live here
-        $url = $filesystem->url($path);
-
-        $userId = auth()->user()->id;
-
-        $slug = 'slug_' . $request->lang;
-
-        $title = 'title_' . $request->lang;
-
-        $description = 'description_' . $request->lang;
-
-
         try
         {
+
+            $file = $request->file('file'); // /tmp/php7S8v..
+
+            $path = $file->hashName();
+
+            $image = Image::make($file)->fit(1000, 1000);
+
+            // Ternary operator: one line if else statement
+            $disk = (app()->environment() === 'production')
+                ? 'do'
+                : 'local';
+
+            $filesystem = Storage::disk($disk);
+            $filesystem->put($path, $image->stream(), 'public');
+
+            // our image will live here
+            $url = $filesystem->url($path);
+
+            $userId = auth()->user()->id;
+
+            $slug = 'slug_' . $request->lang;
+
+            $title = 'title_' . $request->lang;
+
+            $description = 'description_' . $request->lang;
+
            $post = Post::create([
                'user_id' => $userId,
                'cover_photo' => $url,
@@ -69,6 +70,13 @@ class SubmitBlogPostController extends Controller
                $title => $request->title,
                $description => $request->description,
            ]);
+
+            $tags = collect($request->input('tags'))->map(function($tag)
+            {
+                return Tag::firstOrCreate(['name' => $tag])->id;
+            });
+
+            $post->tags()->attach($tags);
 
             // Increment view count
             $redisKey = "post:$post->id:views";

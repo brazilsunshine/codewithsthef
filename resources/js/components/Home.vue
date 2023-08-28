@@ -17,14 +17,12 @@
                                 </p>
                             </div>
                         </div>
-
                         <div :class="{invisible: !error}" class=" md:sticky error-message">
                             <p>{{ this.errorMsg }}</p>
                         </div>
                         <p v-if="errors[0]" class="error-message">
                             {{ this.errors }}
                         </p>
-
                         <!--  Date Picker-->
                         <div class="date-picker-container">
                             <h1 class="date-picker-title">
@@ -42,11 +40,9 @@
                                     valueType="YYYY-MM-DD"
                                     format="DD-MM-YYYY"
                                 />
-
                                 <button @click="getFilteredPosts">
                                     Filter
                                 </button>
-
                                 <button v-if="filterButtonSelected" @click="clearDates">
                                     Clear
                                 </button>
@@ -54,10 +50,46 @@
                         </div>
                     </div>
                 </div>  <!-- Intro section ends here -->
-
-                <!-- Post section starts here -->
                 <div class="w-full md:w-175 padding-idea-on-mobile">
                     <div class="mt-16">
+                        <div class="filters flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-6">
+
+                            <!-- FIND A POST BY TITLE -->
+                            <div class="w-full md:w-2/3 relative">
+                                <input
+                                    v-model="postTitle"
+                                    @keyup="searchTitle"
+                                    placeholder="Type a title to find a post"
+                                    class="w-full rounded-xl px-4 py-2 pl-8"
+                                >
+                                <div class="absolute top-0 flex items-center h-full ml-2">
+                                    <i class="fas fa-search" />
+                                </div>
+                            </div><!-- END FIND POST BY TITLE -->
+
+                            <!-- FIND A POST BY TAG -->
+                            <div class="w-full md:w-2/3 relative">
+                                <select
+                                    v-model="selectedTag"
+                                    @change="GET_POSTS_BY_TAG"
+                                    class="w-full rounded-xl bg-transparent px-4 py-2"
+                                >
+                                    <option value="0">
+                                        All tags
+                                    </option>
+                                    <option
+                                        v-for="tag in tags"
+                                        :key="tag.id"
+                                    >
+                                        {{ tag.name }}
+                                    </option>
+                                </select>
+                            </div> <!-- FIND A POST BY TAG -->
+                        </div>
+                        <p v-if="noResults" class="mt-2" style="color: rgb(98, 114, 164);">
+                            Sorry, looks like no posts were found.
+                        </p>
+                        <!-- POST SECTION HERE -->
                         <div
                             v-for="post in posts"
                             :key="post.id"
@@ -84,6 +116,7 @@ import Post from "./Post";
 import PaginationButtons from "./PaginationButtons";
 import DatePicker from 'vue2-datepicker';
 import 'vue2-datepicker/index.css';
+import _ from "lodash";
 
 export default {
     name: "Home",
@@ -101,6 +134,8 @@ export default {
             error: null,
             errorMsg: null,
             filterButtonSelected: false,
+            postTitle: '',
+            selectedTag: 0,
         }
     },
     async mounted()
@@ -109,6 +144,11 @@ export default {
          * Dispatch action to get paginated posts
          */
         await this.$store.dispatch('GET_PAGINATED_POSTS');
+
+        /**
+         * GET TAGS
+         */
+        await this.$store.dispatch('GET_TAGS');
 
         this.loading = false;
     },
@@ -123,11 +163,35 @@ export default {
         },
 
         /**
+         * Return all tags
+         */
+        tags ()
+        {
+            return this.$store.state.posts.tags;
+        },
+
+        /**
          * Return errors
          */
         errors ()
         {
             return this.$store.state.errors.errorsObject;
+        },
+
+        /**
+         * Current locale
+         */
+        lang ()
+        {
+            return this.$i18n.locale;
+        },
+
+        /**
+         *
+         */
+        noResults ()
+        {
+            return this.posts && this.posts.length === 0 && this.postTitle !== '';
         },
     },
     methods: {
@@ -180,8 +244,43 @@ export default {
             this.filterButtonSelected = false;
         },
 
-    }
+        /**
+         * Make a get request to search for a Post when the user stops typing with debounce/lodash
+         */
+        searchTitle: _.debounce(function ()
+        {
+            this.$store.dispatch('SEARCH_POST_BY_TITLE', {
+                postTitle: this.postTitle,
+                lang: this.lang
+            })
+        }, 500), // time
 
+        /**
+         *
+         */
+        async GET_POSTS_BY_TAG()
+        {
+            if (this.selectedTag)
+            {
+                await axios.get('/api/posts-by-tag/', {
+                    params: {
+                        tag: this.selectedTag
+                    }
+                })
+                .then(response => {
+                    console.log('GET_POSTS_BY_TAG', response);
+
+                    if (response.data.success)
+                    {
+                        this.$store.commit('setPaginatedPosts', response.data.posts)
+                    }
+                 })
+                .catch(error => {
+                    console.log('GET_POSTS_BY_TAG', error);
+                });
+            }
+        }
+    }
 }
 </script>
 
@@ -208,7 +307,7 @@ export default {
     }
 
     .dark .date-picker-title {
-        color: #b084ff; /* Pink title color */
+        color: #b084ff;
         font-size: 24px;
         margin-bottom: 10px;
         text-align: center;
@@ -304,5 +403,49 @@ export default {
         background-color: darkred;
         opacity: 1;
         transition: .5s ease all;
+    }
+
+    input:focus:nth-child(1) {
+        outline: none;
+        --tw-ring-shadow: none;
+        border-color: inherit;
+        -webkit-box-shadow: none;
+    }
+
+    select:focus:nth-child(1) {
+        outline: none;
+        --tw-ring-shadow: none;
+        border-color: inherit;
+        -webkit-box-shadow: none;
+    }
+
+    .dark select {
+        outline: none;
+        --tw-ring-shadow: none;
+        border-color: #b084ff;
+        -webkit-box-shadow: none;
+    }
+
+
+    input {
+        transition: .5s ease-in-out all;
+        border: none;
+        border-bottom: 1px solid #303030;
+    }
+
+    .dark input {
+        transition: .5s ease-in-out all;
+        border: none;
+        border-bottom: 1px solid #b084ff; ;
+        background: transparent;
+    }
+
+    input:nth-child(2) {
+        opacity: 0;
+        max-width: 165px;
+        position: absolute;
+        left: 313px;
+        top: 152px;
+
     }
 </style>

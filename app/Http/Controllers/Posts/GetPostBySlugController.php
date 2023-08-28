@@ -10,10 +10,7 @@ class GetPostBySlugController extends Controller
 {
     public function __invoke ($slug, $lang)
     {
-
-//        \Log::info($slug, ['lang' => $lang]);
-
-        $post = Post::where('slug_' . $lang, $slug)->first();
+        $post = Post::where('slug_' . $lang, $slug)->with('tags')->first();
 
         if ($post)
         {

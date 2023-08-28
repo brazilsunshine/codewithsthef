@@ -119,4 +119,49 @@ export const actions = {
             console.log('GET_FILTERED_POSTS', error);
         });
     },
+
+    /**
+     * Get Post by title when the guest searches
+     */
+    async SEARCH_POST_BY_TITLE (context, payload)
+    {
+        await axios.get('api/posts/get-posts-by-title', {
+            params: {
+                postTitle: payload.postTitle,
+                lang: payload.lang
+            }
+        })
+
+        .then(response => {
+            console.log('SEARCH_POST_BY_TITLE', response);
+
+            if (response.data.success)
+            {
+                context.commit('setPaginatedPosts', response.data.posts)
+            }
+         })
+        .catch(error => {
+            console.log('SEARCH_POST_BY_TITLE', error);
+        });
+    },
+
+    /**
+     * Get request to get all tags
+     */
+    async GET_TAGS (context)
+    {
+        await axios.get('/api/posts/get-tags')
+
+            .then(response => {
+                console.log('get-tags', response);
+
+                if (response.data.success)
+                {
+                    context.commit('setTags', response.data.tags);
+                }
+            })
+            .catch(error => {
+                console.log('get-categories', error);
+            });
+    },
 }
