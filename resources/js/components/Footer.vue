@@ -13,9 +13,9 @@
                 <a href="https://www.youtube.com/@codewithsthef" target="_blank">
                     <i class="fab fa-youtube"></i>
                 </a>
-                <a href="https://twitter.com/codewithsthef" target="_blank">
-                    <i class="fab fa-twitter"></i>
-                </a>
+<!--                <a href="https://twitter.com/codewithsthef" target="_blank">-->
+<!--                    <i class="fab fa-twitter"></i>-->
+<!--                </a>-->
             </div>
             <p class="copyright">codewithsthef © 2023</p>
         </footer>

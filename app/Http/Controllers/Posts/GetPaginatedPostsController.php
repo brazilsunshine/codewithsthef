@@ -13,6 +13,8 @@ class GetPaginatedPostsController extends Controller
         $posts = Post::with('user')->orderBy('id', 'desc') // will order the ideas by the last post date
             ->paginate(5);
 
+        \Log::info($posts);
+
         return [
             'success' => true,
             'posts' => $posts
