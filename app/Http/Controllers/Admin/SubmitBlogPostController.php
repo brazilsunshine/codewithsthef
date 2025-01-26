@@ -37,7 +37,6 @@ class SubmitBlogPostController extends Controller
 
         try
         {
-
             $file = $request->file('file'); // /tmp/php7S8v..
 
             $path = $file->hashName();
