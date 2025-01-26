@@ -16,16 +16,16 @@ const router = new VueRouter({
         {
             path: '/register',
             component: require('./components/Register').default,
-            meta: {
-                middleware: [ admin, auth ],
-            }
+            // meta: {
+            //     middleware: [ admin, auth ],
+            // }
         },
         {
             path: '/login',
             component: require('./components/Login').default,
-            meta: {
-                middleware: [ admin, auth ],
-            }
+            // meta: {
+            //     middleware: [ admin, auth ],
+            // }
         },
         {
             path: '/contact',

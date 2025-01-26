@@ -2,24 +2,24 @@
     <div>
         <hr />
         <div class="footer-basic">
-        <footer>
-            <div class="social">
-                <a href="https://github.com/brazilsunshine" target="_blank">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://www.instagram.com/sthefanesoliveira/" target="_blank">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://www.youtube.com/@codewithsthef" target="_blank">
-                    <i class="fab fa-youtube"></i>
-                </a>
-<!--                <a href="https://twitter.com/codewithsthef" target="_blank">-->
-<!--                    <i class="fab fa-twitter"></i>-->
-<!--                </a>-->
-            </div>
-            <p class="copyright">codewithsthef © {{ getCurrentYear }}</p>
-        </footer>
-    </div>
+            <footer>
+                <div class="social">
+                    <a href="https://github.com/brazilsunshine" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.instagram.com/sthefanesoliveira/" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@codewithsthef" target="_blank">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+    <!--                <a href="https://twitter.com/codewithsthef" target="_blank">-->
+    <!--                    <i class="fab fa-twitter"></i>-->
+    <!--                </a>-->
+                </div>
+                <p class="copyright">codewithsthef © {{ getCurrentYear }}</p>
+            </footer>
+        </div>
     </div>
 </template>
 
