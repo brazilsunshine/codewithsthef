@@ -17,7 +17,7 @@
 <!--                    <i class="fab fa-twitter"></i>-->
 <!--                </a>-->
             </div>
-            <p class="copyright">codewithsthef © 2023</p>
+            <p class="copyright">codewithsthef © {{ getCurrentYear }}</p>
         </footer>
     </div>
     </div>
@@ -25,7 +25,12 @@
 
 <script>
 export default {
-    name: "Footer"
+    name: "Footer",
+    computed: {
+        getCurrentYear () {
+            return new Date().getFullYear();
+        }
+    }
 }
 </script>
 
