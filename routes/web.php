@@ -24,6 +24,7 @@ Route::get('/register', function () {
 Route::get('/login', function () {
     return view('root');
 });
+// test
 
 Route::get('/contact', function () {
     return view('root');
